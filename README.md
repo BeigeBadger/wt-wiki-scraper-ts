@@ -15,12 +15,15 @@ MONGO_DB=warthunder
 
 - **Node.js** - v18 or higher
 - **MongoDB** - v6 or higher
- - `sudo systemctl start mongod`
- - `sudo systemctl status mongod`
+- **MongoDB Compass** - Any version
 
  ## Getting Started
 
 ```bash
+# Start a locally running MongoDB instance
+docker run --name mongodb -p 27017:27017 -d mongodb/mongodb-community-server:latest
+docker container ls
+
 # Install dependencies
 npm install
 
