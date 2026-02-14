@@ -34,6 +34,7 @@ interface Vehicle {
 
 function App() {
   const { loading, error, data } = useQuery<{ vehicles: Vehicle[] }>(GET_VEHICLES);
+  const vehicles = data ? [...data.vehicles].sort((a, b) => a.name.localeCompare(b.name)) : [];
 
   if (loading) {
     return (
@@ -54,7 +55,7 @@ function App() {
     );
   }
 
-  if (!data || data.vehicles.length === 0) {
+  if (!data || vehicles.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen">
         <p className="text-lg">No data available.</p>
@@ -67,7 +68,7 @@ function App() {
     <div className="p-8">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold">War Thunder Vehicles</h1>
-        <p className="text-gray-600">Total: {data.vehicles.length} vehicles</p>
+        <p className="text-gray-600">Total: {vehicles.length} vehicles</p>
       </div>
       <div className="overflow-x-auto">
         <table className="min-w-full border border-gray-300">
@@ -82,7 +83,7 @@ function App() {
             </tr>
           </thead>
           <tbody>
-            {data.vehicles.map((vehicle, index) => (
+            {vehicles.map((vehicle, index) => (
               <tr
                 key={vehicle.id}
                 className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50' + ' hover:bg-gray-100'}
