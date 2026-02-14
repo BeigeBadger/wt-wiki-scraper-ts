@@ -1,0 +1,46 @@
+{
+  "name": "wt-wiki-scraper-ts",
+  "version": "1.0.0",
+  "description": "War Thunder Wiki Scraper",
+  "type": "module",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "scrape": "tsx src/index.ts",
+    "scrape:verbose": "tsx src/index.ts --verbose",
+    "scrape:skip-db": "tsx src/index.ts --skip-db",
+    "db:populate": "tsx src/index.ts --db-only",
+    "db:init": "tsx src/index.ts --db-init",
+    "test:fixtures": "tsx src/utils/fixtures.ts",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@types/cheerio": "^0.22.35",
+    "@types/node": "^25.2.3",
+    "@typescript-eslint/eslint-plugin": "^8.55.0",
+    "@typescript-eslint/parser": "^8.55.0",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "mongodb-memory-server": "^11.0.1",
+    "playwright": "^1.58.2",
+    "prettier": "^3.8.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
+  },
+  "dependencies": {
+    "cheerio": "^1.2.0",
+    "dotenv": "^17.3.1",
+    "mongodb": "^7.1.0"
+  }
+}

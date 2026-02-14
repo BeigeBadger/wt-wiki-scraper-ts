@@ -1,0 +1,1336 @@
+{
+  "country": "ussr",
+  "category": "aviation",
+  "vehicles": [
+    {
+      "name": "Ar-2",
+      "rank": 1,
+      "battleRating": {
+        "arcade": 2.3,
+        "realistic": 2.3,
+        "simulator": 2.7
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "BB-1",
+      "rank": 1,
+      "battleRating": {
+        "arcade": 1.3,
+        "realistic": 1.3,
+        "simulator": 1.7
+      },
+      "role": "Strike aircraft"
+    },
+    {
+      "name": "BI",
+      "rank": 5,
+      "battleRating": {
+        "arcade": 6.7,
+        "realistic": 6.7,
+        "simulator": 6.3
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "DB-3B",
+      "rank": 2,
+      "battleRating": {
+        "arcade": 2.7,
+        "realistic": 2.7,
+        "simulator": 2.7
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "Yer-2 (ACh-30B) (e)",
+      "rank": 4,
+      "battleRating": {
+        "arcade": 4.3,
+        "realistic": 4.3,
+        "simulator": 5.3
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "Yer-2 (ACh-30B) (l)",
+      "rank": 4,
+      "battleRating": {
+        "arcade": 4.3,
+        "realistic": 4.3,
+        "simulator": 5.7
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "Yer-2 (M-105R) LU",
+      "rank": 3,
+      "battleRating": {
+        "arcade": 3.7,
+        "realistic": 3.7,
+        "simulator": 4
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "Yer-2 (M-105R) TAT",
+      "rank": 3,
+      "battleRating": {
+        "arcade": 3.7,
+        "realistic": 3.7,
+        "simulator": 4
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "Yer-2 (M-105)",
+      "rank": 3,
+      "battleRating": {
+        "arcade": 3.3,
+        "realistic": 3.3,
+        "simulator": 4
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "Yer-2 (M-105) TAT",
+      "rank": 3,
+      "battleRating": {
+        "arcade": 3.7,
+        "realistic": 3.7,
+        "simulator": 4
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "I-153 M-62",
+      "rank": 1,
+      "battleRating": {
+        "arcade": 2.3,
+        "realistic": 2.3,
+        "simulator": 2
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "I-15bis",
+      "rank": 1,
+      "battleRating": {
+        "arcade": 1,
+        "realistic": 1,
+        "simulator": 1
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "I-15 WR",
+      "rank": 1,
+      "battleRating": {
+        "arcade": 1,
+        "realistic": 1,
+        "simulator": 1
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "I-15 M-22",
+      "rank": 1,
+      "battleRating": {
+        "arcade": 1,
+        "realistic": 1,
+        "simulator": 1
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "I-15 M-25",
+      "rank": 1,
+      "battleRating": {
+        "arcade": 1,
+        "realistic": 1,
+        "simulator": 1
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "I-16 type 10",
+      "rank": 1,
+      "battleRating": {
+        "arcade": 2,
+        "realistic": 2,
+        "simulator": 1.7
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "I-16 type 18",
+      "rank": 1,
+      "battleRating": {
+        "arcade": 2.3,
+        "realistic": 2.3,
+        "simulator": 2.3
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "I-16 type 24",
+      "rank": 1,
+      "battleRating": {
+        "arcade": 2.7,
+        "realistic": 2.7,
+        "simulator": 2.7
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "I-16 type 27",
+      "rank": 2,
+      "battleRating": {
+        "arcade": 3.3,
+        "realistic": 3.3,
+        "simulator": 2.7
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "I-16 type 5",
+      "rank": 1,
+      "battleRating": {
+        "arcade": 1.3,
+        "realistic": 1.3,
+        "simulator": 1.3
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "IL-10",
+      "rank": 4,
+      "battleRating": {
+        "arcade": 5,
+        "realistic": 5,
+        "simulator": 5.3
+      },
+      "role": "Strike aircraft"
+    },
+    {
+      "name": "IL-10 (1946)",
+      "rank": 4,
+      "battleRating": {
+        "arcade": 5,
+        "realistic": 5,
+        "simulator": 5.3
+      },
+      "role": "Strike aircraft"
+    },
+    {
+      "name": "IL-2 (1942)",
+      "rank": 2,
+      "battleRating": {
+        "arcade": 3,
+        "realistic": 3,
+        "simulator": 2.7
+      },
+      "role": "Strike aircraft"
+    },
+    {
+      "name": "IL-2M type 3",
+      "rank": 3,
+      "battleRating": {
+        "arcade": 3.3,
+        "realistic": 3.3,
+        "simulator": 3.3
+      },
+      "role": "Strike aircraft"
+    },
+    {
+      "name": "IL-4",
+      "rank": 2,
+      "battleRating": {
+        "arcade": 2.7,
+        "realistic": 2.7,
+        "simulator": 3
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "IL-28",
+      "rank": 5,
+      "battleRating": {
+        "arcade": 8,
+        "realistic": 8,
+        "simulator": 8
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "IL-28Sh",
+      "rank": 5,
+      "battleRating": {
+        "arcade": 8,
+        "realistic": 8,
+        "simulator": 8
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "IL-2M (1943)",
+      "rank": 3,
+      "battleRating": {
+        "arcade": 3.3,
+        "realistic": 3.3,
+        "simulator": 3.7
+      },
+      "role": "Strike aircraft"
+    },
+    {
+      "name": "IL-2 (1941)",
+      "rank": 2,
+      "battleRating": {
+        "arcade": 2.3,
+        "realistic": 2.3,
+        "simulator": 2.3
+      },
+      "role": "Strike aircraft"
+    },
+    {
+      "name": "IL-2-37",
+      "rank": 2,
+      "battleRating": {
+        "arcade": 2.7,
+        "realistic": 2.7,
+        "simulator": 3.7
+      },
+      "role": "Strike aircraft"
+    },
+    {
+      "name": "I-185 (M-71)",
+      "rank": 3,
+      "battleRating": {
+        "arcade": 4.3,
+        "realistic": 4.3,
+        "simulator": 4.3
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "I-185 (M-82)",
+      "rank": 3,
+      "battleRating": {
+        "arcade": 3.7,
+        "realistic": 3.7,
+        "simulator": 3.7
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "I-225",
+      "rank": 4,
+      "battleRating": {
+        "arcade": 5,
+        "realistic": 5,
+        "simulator": 6
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "KOR-1",
+      "rank": 1,
+      "battleRating": {
+        "arcade": null,
+        "realistic": null,
+        "simulator": null
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "KOR-2",
+      "rank": 1,
+      "battleRating": {
+        "arcade": null,
+        "realistic": null,
+        "simulator": null
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "La-15",
+      "rank": 5,
+      "battleRating": {
+        "arcade": 8,
+        "realistic": 8,
+        "simulator": 8
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "La-5FN",
+      "rank": 3,
+      "battleRating": {
+        "arcade": 3.7,
+        "realistic": 3.7,
+        "simulator": 4
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "La-5",
+      "rank": 2,
+      "battleRating": {
+        "arcade": 3,
+        "realistic": 3,
+        "simulator": 3
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "La-5F",
+      "rank": 2,
+      "battleRating": {
+        "arcade": 3.3,
+        "realistic": 3.3,
+        "simulator": 3.3
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "La-7",
+      "rank": 3,
+      "battleRating": {
+        "arcade": 4.7,
+        "realistic": 4.7,
+        "simulator": 5
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "La-7B-20",
+      "rank": 4,
+      "battleRating": {
+        "arcade": 5,
+        "realistic": 5,
+        "simulator": 5.7
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "La-9",
+      "rank": 4,
+      "battleRating": {
+        "arcade": 6,
+        "realistic": 6,
+        "simulator": 6
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "LaGG-3-11",
+      "rank": 2,
+      "battleRating": {
+        "arcade": 2,
+        "realistic": 2,
+        "simulator": 2.3
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "LaGG-3-35",
+      "rank": 2,
+      "battleRating": {
+        "arcade": 2.3,
+        "realistic": 2.3,
+        "simulator": 2.3
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "LaGG-3-66",
+      "rank": 2,
+      "battleRating": {
+        "arcade": 2.7,
+        "realistic": 2.7,
+        "simulator": 2.7
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "LaGG-3-8",
+      "rank": 2,
+      "battleRating": {
+        "arcade": 2,
+        "realistic": 2,
+        "simulator": 2
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "La-174",
+      "rank": 5,
+      "battleRating": {
+        "arcade": 8,
+        "realistic": 8,
+        "simulator": 8
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "La-200",
+      "rank": 5,
+      "battleRating": {
+        "arcade": 7.7,
+        "realistic": 7.7,
+        "simulator": 8
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "MiG-15bis",
+      "rank": 5,
+      "battleRating": {
+        "arcade": 8.3,
+        "realistic": 8.3,
+        "simulator": 8.7
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "MiG-15",
+      "rank": 5,
+      "battleRating": {
+        "arcade": 8,
+        "realistic": 8,
+        "simulator": 8.3
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "MiG-17",
+      "rank": 6,
+      "battleRating": {
+        "arcade": 8.7,
+        "realistic": 8.7,
+        "simulator": 9
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "MiG-19PT",
+      "rank": 6,
+      "battleRating": {
+        "arcade": 9.3,
+        "realistic": 9.3,
+        "simulator": 9.7
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "MiG-21bis",
+      "rank": 7,
+      "battleRating": {
+        "arcade": 11,
+        "realistic": 11,
+        "simulator": 11
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "MiG-21F-13",
+      "rank": 6,
+      "battleRating": {
+        "arcade": 9.3,
+        "realistic": 9.3,
+        "simulator": 9.7
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "MiG-21PFM",
+      "rank": 6,
+      "battleRating": {
+        "arcade": 9.3,
+        "realistic": 9.3,
+        "simulator": 10
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "MiG-21SMT",
+      "rank": 7,
+      "battleRating": {
+        "arcade": 10.3,
+        "realistic": 10.3,
+        "simulator": 10.7
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "MiG-9",
+      "rank": 5,
+      "battleRating": {
+        "arcade": 7.3,
+        "realistic": 7.3,
+        "simulator": 7.3
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "MiG-9 (l)",
+      "rank": 5,
+      "battleRating": {
+        "arcade": 7.3,
+        "realistic": 7.3,
+        "simulator": 7.7
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "MiG-23M",
+      "rank": 7,
+      "battleRating": {
+        "arcade": 11,
+        "realistic": 11,
+        "simulator": 11
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "MiG-23MLD",
+      "rank": 7,
+      "battleRating": {
+        "arcade": 11.7,
+        "realistic": 11.7,
+        "simulator": 11.3
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "MiG-25PD",
+      "rank": 7,
+      "battleRating": {
+        "arcade": 11,
+        "realistic": 11,
+        "simulator": 11
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "MiG-27K",
+      "rank": 7,
+      "battleRating": {
+        "arcade": 11,
+        "realistic": 11,
+        "simulator": 11.7
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "MiG-27M",
+      "rank": 7,
+      "battleRating": {
+        "arcade": 11,
+        "realistic": 11,
+        "simulator": 11.7
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "MiG-29SMT",
+      "rank": 8,
+      "battleRating": {
+        "arcade": 13.3,
+        "realistic": 13.3,
+        "simulator": 13.3
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "MiG-29",
+      "rank": 8,
+      "battleRating": {
+        "arcade": 12.7,
+        "realistic": 12.7,
+        "simulator": 12.7
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "MiG-3-15",
+      "rank": 1,
+      "battleRating": {
+        "arcade": 2.3,
+        "realistic": 2.3,
+        "simulator": 1.7
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "MiG-3-15 (BK)",
+      "rank": 2,
+      "battleRating": {
+        "arcade": 2.3,
+        "realistic": 2.3,
+        "simulator": 2.3
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "MiG-3-34",
+      "rank": 2,
+      "battleRating": {
+        "arcade": 2.7,
+        "realistic": 2.7,
+        "simulator": 2.3
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "Pe-2-1",
+      "rank": 2,
+      "battleRating": {
+        "arcade": 3.3,
+        "realistic": 3.3,
+        "simulator": 3.3
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "Pe-2-110",
+      "rank": 3,
+      "battleRating": {
+        "arcade": 3.7,
+        "realistic": 3.7,
+        "simulator": 4.3
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "Pe-2-31",
+      "rank": 2,
+      "battleRating": {
+        "arcade": 3.3,
+        "realistic": 3.3,
+        "simulator": 3.7
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "Pe-2-359",
+      "rank": 3,
+      "battleRating": {
+        "arcade": 4.3,
+        "realistic": 4.3,
+        "simulator": 4.7
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "Pe-2-83",
+      "rank": 2,
+      "battleRating": {
+        "arcade": 3.3,
+        "realistic": 3.3,
+        "simulator": 4
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "Pe-3",
+      "rank": 1,
+      "battleRating": {
+        "arcade": 2,
+        "realistic": 2,
+        "simulator": 2.7
+      },
+      "role": "Strike aircraft"
+    },
+    {
+      "name": "Pe-3bis",
+      "rank": 2,
+      "battleRating": {
+        "arcade": 2.7,
+        "realistic": 2.7,
+        "simulator": 3
+      },
+      "role": "Strike aircraft"
+    },
+    {
+      "name": "Pe-3 (e)",
+      "rank": 1,
+      "battleRating": {
+        "arcade": 2,
+        "realistic": 2,
+        "simulator": 2
+      },
+      "role": "Strike aircraft"
+    },
+    {
+      "name": "Pe-8",
+      "rank": 3,
+      "battleRating": {
+        "arcade": 4.3,
+        "realistic": 4.3,
+        "simulator": 5.3
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "Po-2",
+      "rank": 1,
+      "battleRating": {
+        "arcade": 1,
+        "realistic": 1,
+        "simulator": 1
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "SB 2M-100A",
+      "rank": 1,
+      "battleRating": {
+        "arcade": 1,
+        "realistic": 1,
+        "simulator": 1.7
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "SB 2M-103",
+      "rank": 1,
+      "battleRating": {
+        "arcade": 2,
+        "realistic": 2,
+        "simulator": 2
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "SB 2M-103U",
+      "rank": 1,
+      "battleRating": {
+        "arcade": 2.3,
+        "realistic": 2.3,
+        "simulator": 2.3
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "SB 2M-103U MV-3",
+      "rank": 1,
+      "battleRating": {
+        "arcade": 2.3,
+        "realistic": 2.3,
+        "simulator": 2.3
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "SB 2M-103 MV-3",
+      "rank": 1,
+      "battleRating": {
+        "arcade": 1.7,
+        "realistic": 1.7,
+        "simulator": 2.3
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "SB 2M-105",
+      "rank": 1,
+      "battleRating": {
+        "arcade": 2.7,
+        "realistic": 2.7,
+        "simulator": 2.7
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "Su-2 (M-82)",
+      "rank": 1,
+      "battleRating": {
+        "arcade": 2.7,
+        "realistic": 2.7,
+        "simulator": 2.7
+      },
+      "role": "Strike aircraft"
+    },
+    {
+      "name": "Su-2 MV-5",
+      "rank": 1,
+      "battleRating": {
+        "arcade": 1.7,
+        "realistic": 1.7,
+        "simulator": 2
+      },
+      "role": "Strike aircraft"
+    },
+    {
+      "name": "Su-2 TSS-1",
+      "rank": 1,
+      "battleRating": {
+        "arcade": 2,
+        "realistic": 2,
+        "simulator": 1.7
+      },
+      "role": "Strike aircraft"
+    },
+    {
+      "name": "Su-6 (AM-42)",
+      "rank": 4,
+      "battleRating": {
+        "arcade": 4.7,
+        "realistic": 4.7,
+        "simulator": 5
+      },
+      "role": "Strike aircraft"
+    },
+    {
+      "name": "Su-6 (M-71F)",
+      "rank": 3,
+      "battleRating": {
+        "arcade": 4.3,
+        "realistic": 4.3,
+        "simulator": 5.3
+      },
+      "role": "Strike aircraft"
+    },
+    {
+      "name": "Su-7B",
+      "rank": 6,
+      "battleRating": {
+        "arcade": 9,
+        "realistic": 9,
+        "simulator": 9.7
+      },
+      "role": "Strike aircraft"
+    },
+    {
+      "name": "Su-7BKL",
+      "rank": 6,
+      "battleRating": {
+        "arcade": 9,
+        "realistic": 9,
+        "simulator": 10
+      },
+      "role": "Strike aircraft"
+    },
+    {
+      "name": "Su-9",
+      "rank": 5,
+      "battleRating": {
+        "arcade": 7,
+        "realistic": 7,
+        "simulator": 7
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "Su-17M2",
+      "rank": 7,
+      "battleRating": {
+        "arcade": 10,
+        "realistic": 10,
+        "simulator": 10
+      },
+      "role": "Strike aircraft"
+    },
+    {
+      "name": "Su-17M4",
+      "rank": 7,
+      "battleRating": {
+        "arcade": 11,
+        "realistic": 11,
+        "simulator": 11
+      },
+      "role": "Strike aircraft"
+    },
+    {
+      "name": "Su-24M",
+      "rank": 7,
+      "battleRating": {
+        "arcade": 11.3,
+        "realistic": 11.3,
+        "simulator": 11.3
+      },
+      "role": "Strike aircraft"
+    },
+    {
+      "name": "Su-25",
+      "rank": 6,
+      "battleRating": {
+        "arcade": 10.3,
+        "realistic": 10.3,
+        "simulator": 10.7
+      },
+      "role": "Strike aircraft"
+    },
+    {
+      "name": "Su-25SM3",
+      "rank": 8,
+      "battleRating": {
+        "arcade": 11.7,
+        "realistic": 11.7,
+        "simulator": 11.7
+      },
+      "role": "Strike aircraft"
+    },
+    {
+      "name": "Su-25T",
+      "rank": 7,
+      "battleRating": {
+        "arcade": 11.3,
+        "realistic": 11.3,
+        "simulator": 11.7
+      },
+      "role": "Strike aircraft"
+    },
+    {
+      "name": "Su-25BM",
+      "rank": 7,
+      "battleRating": {
+        "arcade": 11,
+        "realistic": 11,
+        "simulator": 11.7
+      },
+      "role": "Strike aircraft"
+    },
+    {
+      "name": "Su-27",
+      "rank": 8,
+      "battleRating": {
+        "arcade": 13,
+        "realistic": 13,
+        "simulator": 13.3
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "Su-27SM",
+      "rank": 8,
+      "battleRating": {
+        "arcade": 13.7,
+        "realistic": 13.7,
+        "simulator": 13.7
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "Su-30SM",
+      "rank": 8,
+      "battleRating": {
+        "arcade": 14.3,
+        "realistic": 14.3,
+        "simulator": 14.3
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "Su-30SM2",
+      "rank": 8,
+      "battleRating": {
+        "arcade": 14.7,
+        "realistic": 14.7,
+        "simulator": 14.7
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "Su-34",
+      "rank": 8,
+      "battleRating": {
+        "arcade": 13.7,
+        "realistic": 13.7,
+        "simulator": 13.3
+      },
+      "role": "Strike aircraft"
+    },
+    {
+      "name": "Tu-2S",
+      "rank": 4,
+      "battleRating": {
+        "arcade": 5.3,
+        "realistic": 5.3,
+        "simulator": 5.7
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "Tu-2",
+      "rank": 3,
+      "battleRating": {
+        "arcade": 4.7,
+        "realistic": 4.7,
+        "simulator": 4.7
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "Tu-2S-44",
+      "rank": 4,
+      "battleRating": {
+        "arcade": 5.3,
+        "realistic": 5.3,
+        "simulator": 6
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "Tu-2S-59",
+      "rank": 4,
+      "battleRating": {
+        "arcade": 5.7,
+        "realistic": 5.7,
+        "simulator": 6
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "Tu-14T",
+      "rank": 5,
+      "battleRating": {
+        "arcade": 8,
+        "realistic": 8,
+        "simulator": 8
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "Tu-4",
+      "rank": 5,
+      "battleRating": {
+        "arcade": 8,
+        "realistic": 8,
+        "simulator": 7.7
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "Yak-15",
+      "rank": 5,
+      "battleRating": {
+        "arcade": 6.7,
+        "realistic": 6.7,
+        "simulator": 6.7
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "Yak-15P",
+      "rank": 5,
+      "battleRating": {
+        "arcade": 6.3,
+        "realistic": 6.3,
+        "simulator": 6.7
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "Yak-17",
+      "rank": 5,
+      "battleRating": {
+        "arcade": 6.7,
+        "realistic": 6.7,
+        "simulator": 7
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "Yak-1B",
+      "rank": 2,
+      "battleRating": {
+        "arcade": 3,
+        "realistic": 3,
+        "simulator": 3.3
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "Yak-1",
+      "rank": 2,
+      "battleRating": {
+        "arcade": 2.3,
+        "realistic": 2.3,
+        "simulator": 2.7
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "Yak-23",
+      "rank": 5,
+      "battleRating": {
+        "arcade": 8.3,
+        "realistic": 8.3,
+        "simulator": 7.7
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "Yak-28B",
+      "rank": 6,
+      "battleRating": {
+        "arcade": 9,
+        "realistic": 9,
+        "simulator": 9
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "Yak-3",
+      "rank": 3,
+      "battleRating": {
+        "arcade": 4.3,
+        "realistic": 4.3,
+        "simulator": 4.7
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "Yak-30D",
+      "rank": 6,
+      "battleRating": {
+        "arcade": 8.3,
+        "realistic": 8.3,
+        "simulator": 8
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "Yak-38M",
+      "rank": 6,
+      "battleRating": {
+        "arcade": 9.3,
+        "realistic": 9.3,
+        "simulator": 9.3
+      },
+      "role": "Strike aircraft"
+    },
+    {
+      "name": "Yak-3P",
+      "rank": 4,
+      "battleRating": {
+        "arcade": 5,
+        "realistic": 5,
+        "simulator": 5.7
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "Yak-3U",
+      "rank": 4,
+      "battleRating": {
+        "arcade": 5.7,
+        "realistic": 5.7,
+        "simulator": 6
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "Yak-4",
+      "rank": 1,
+      "battleRating": {
+        "arcade": 2,
+        "realistic": 2,
+        "simulator": 2.3
+      },
+      "role": "Bomber"
+    },
+    {
+      "name": "Yak-7B",
+      "rank": 2,
+      "battleRating": {
+        "arcade": 2.7,
+        "realistic": 2.7,
+        "simulator": 2.7
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "Yak-9",
+      "rank": 2,
+      "battleRating": {
+        "arcade": 3,
+        "realistic": 3,
+        "simulator": 3
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "Yak-9B",
+      "rank": 2,
+      "battleRating": {
+        "arcade": 3,
+        "realistic": 3,
+        "simulator": 3
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "Yak-9K",
+      "rank": 3,
+      "battleRating": {
+        "arcade": 4,
+        "realistic": 4,
+        "simulator": 4.3
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "Yak-9P",
+      "rank": 4,
+      "battleRating": {
+        "arcade": 5,
+        "realistic": 5,
+        "simulator": 5.3
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "Yak-9T",
+      "rank": 3,
+      "battleRating": {
+        "arcade": 4,
+        "realistic": 4,
+        "simulator": 4
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "Yak-9U",
+      "rank": 3,
+      "battleRating": {
+        "arcade": 4.7,
+        "realistic": 4.7,
+        "simulator": 5
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "Yak-9UT",
+      "rank": 4,
+      "battleRating": {
+        "arcade": 5.7,
+        "realistic": 5.7,
+        "simulator": 6.3
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "Yak-141",
+      "rank": 8,
+      "battleRating": {
+        "arcade": 12.7,
+        "realistic": 12.7,
+        "simulator": 12.7
+      },
+      "role": "Fighter"
+    },
+    {
+      "name": "Yak-2 KABB",
+      "rank": 1,
+      "battleRating": {
+        "arcade": 2.3,
+        "realistic": 2.3,
+        "simulator": 2.7
+      },
+      "role": "Strike aircraft"
+    }
+  ]
+}
