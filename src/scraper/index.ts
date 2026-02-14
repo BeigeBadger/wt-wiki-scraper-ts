@@ -1,12 +1,18 @@
 import { parseArgs } from 'util';
 import * as dotenv from 'dotenv';
-import { scrapeCategory } from './scraper/scraper.js';
-import { closeBrowser } from './scraper/browser.js';
-import { populateDatabase, initDatabase } from './scraper/database.js';
-import { setVerbose, logInfo, writeLogs } from './utils/logger.js';
-import type { VehicleCategory } from './scraper/types.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-dotenv.config();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+dotenv.config({ path: path.resolve(__dirname, '../../.env') });
+
+import { scrapeCategory } from './scraper.js';
+import { closeBrowser } from './browser.js';
+import { populateDatabase, initDatabase } from './database.js';
+import { setVerbose, logInfo, writeLogs } from './utils/logger.js';
+import type { VehicleCategory } from '@shared-types';
 
 export interface CliOptions {
   verbose?: boolean;

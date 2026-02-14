@@ -2,7 +2,8 @@ import { MongoClient, Db, Collection } from 'mongodb';
 import { exec } from 'child_process';
 import * as fs from 'fs/promises';
 import * as path from 'path';
-import { logInfo, logDebug, logError, logWarning } from '../utils/logger.js';
+import { fileURLToPath } from 'url';
+import { logInfo, logDebug, logError, logWarning } from './utils/logger.js';
 
 export interface VehicleDocument {
   _id: string;
@@ -52,14 +53,14 @@ function getEnvVar(name: string): string {
 
 async function tryStartMongoDB(): Promise<boolean> {
   logInfo('Checking if MongoDB can be auto-started...');
-  
-  return new Promise((resolve) => {
+
+  return new Promise(resolve => {
     const timeout = setTimeout(() => {
       logInfo('MongoDB auto-start check timed out.');
       resolve(false);
     }, 3000);
 
-    exec('which mongod', (err) => {
+    exec('which mongod', err => {
       if (err) {
         clearTimeout(timeout);
 
@@ -70,7 +71,7 @@ async function tryStartMongoDB(): Promise<boolean> {
         return;
       }
 
-      exec('pgrep -x mongod', (pgrepErr) => {
+      exec('pgrep -x mongod', pgrepErr => {
         if (!pgrepErr) {
           clearTimeout(timeout);
 
@@ -123,13 +124,13 @@ export async function connectToDatabase(): Promise<Db | null> {
         uri,
         `Connection failed (attempt ${i + 1}/${maxRetries}): ${error}`
       );
-      
+
       if (i === 0) {
         await tryStartMongoDB();
       }
-      
+
       if (i < maxRetries - 1) {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, 1000));
       }
     }
   }
@@ -157,14 +158,15 @@ function generateId(country: string, category: string, name: string): string {
 
 export async function populateDatabase(): Promise<void> {
   const db = await connectToDatabase();
-  
+
   if (!db) {
     return;
   }
-  
+
   const collection: Collection<VehicleDocument> = db.collection('vehicles');
 
-  const dataDir = path.join(process.cwd(), 'data');
+  const scraperDir = path.dirname(fileURLToPath(import.meta.url));
+  const dataDir = path.join(scraperDir, '../../data');
   const categories = ['aviation'];
 
   const failedDocuments: { id: string; error: string }[] = [];
@@ -176,7 +178,7 @@ export async function populateDatabase(): Promise<void> {
 
     try {
       const files = await fs.readdir(categoryDir);
-      const jsonFiles = files.filter((f) => f.endsWith('.json'));
+      const jsonFiles = files.filter(f => f.endsWith('.json'));
 
       for (const file of jsonFiles) {
         const country = file.replace('.json', '');
@@ -210,11 +212,7 @@ export async function populateDatabase(): Promise<void> {
 
           for (let i = 0; i < maxRetries; i++) {
             try {
-              await collection.updateOne(
-                { _id: doc._id },
-                { $set: doc },
-                { upsert: true }
-              );
+              await collection.updateOne({ _id: doc._id }, { $set: doc }, { upsert: true });
 
               success = true;
 
@@ -284,7 +282,7 @@ export async function initDatabase(): Promise<void> {
       process.env.MONGO_URI || 'unknown',
       `Database initialization failed: ${error}`
     );
-    
+
     throw error;
   }
 }

@@ -1,0 +1,32 @@
+type Query {
+  vehicles(country: String, category: String, gameMode: String): [Vehicle!]!
+  vehicle(id: ID!): Vehicle
+  countries: [Country!]!
+  categories: [VehicleCategory!]!
+}
+
+type Vehicle {
+  id: ID!
+  name: String!
+  country: String!
+  category: String!
+  rank: Int
+  role: String
+  battleRating: BattleRating!
+}
+
+type BattleRating {
+  arcade: Float
+  realistic: Float
+  simulator: Float
+}
+
+type Country {
+  id: String!
+  name: String!
+}
+
+type VehicleCategory {
+  id: String!
+  name: String!
+}

@@ -25,7 +25,16 @@ export interface ErrorEntry {
   message: string;
 }
 
-export type Country = 'usa' | 'germany' | 'ussr' | 'britain' | 'japan' | 'italy' | 'france' | 'china' | 'sweden';
+export type Country =
+  | 'usa'
+  | 'germany'
+  | 'ussr'
+  | 'britain'
+  | 'japan'
+  | 'italy'
+  | 'france'
+  | 'china'
+  | 'sweden';
 
 export type VehicleCategory = 'aviation' | 'helicopters' | 'ground' | 'ships' | 'boats';
 

@@ -4,8 +4,8 @@ import {
   type Vehicle,
   type Country,
   type VehicleCategory,
-} from './types.js';
-import { logDebug, logWarning } from '../utils/logger.js';
+} from '@shared-types';
+import { logDebug, logWarning } from './utils/logger.js';
 
 type CheerioRoot = cheerio.Root;
 
