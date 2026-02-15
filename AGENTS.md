@@ -221,3 +221,4 @@ test/
 - Use early returns to reduce nesting
 - Keep functions small and focused (single responsibility)
 - Export helper functions from parser.ts for reuse in tests to avoid code duplication
+- Consider any diagrams that may need updating when planning your changes
