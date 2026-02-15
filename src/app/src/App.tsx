@@ -1,4 +1,5 @@
 import { useQuery, gql } from '@apollo/client';
+import { VehicleList } from './components/VehicleList';
 
 const GET_VEHICLES = gql`
   query GetVehicles {
@@ -70,38 +71,7 @@ function App() {
         <h1 className="text-2xl font-bold">War Thunder Vehicles</h1>
         <p className="text-gray-600">Total: {vehicles.length} vehicles</p>
       </div>
-      <div className="overflow-x-auto">
-        <table className="min-w-full border border-gray-300">
-          <thead className="bg-gray-100">
-            <tr>
-              <th className="border px-4 py-2 text-left">Name</th>
-              <th className="border px-4 py-2 text-left">Country</th>
-              <th className="border px-4 py-2 text-left">Category</th>
-              <th className="border px-4 py-2 text-left">Rank</th>
-              <th className="border px-4 py-2 text-left">Role</th>
-              <th className="border px-4 py-2 text-left">BR (AB/RB/SB)</th>
-            </tr>
-          </thead>
-          <tbody>
-            {vehicles.map((vehicle, index) => (
-              <tr
-                key={vehicle.id}
-                className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50' + ' hover:bg-gray-100'}
-              >
-                <td className="border px-4 py-2">{vehicle.name}</td>
-                <td className="border px-4 py-2">{vehicle.country}</td>
-                <td className="border px-4 py-2">{vehicle.category}</td>
-                <td className="border px-4 py-2">{vehicle.rank}</td>
-                <td className="border px-4 py-2">{vehicle.role}</td>
-                <td className="border px-4 py-2">
-                  {vehicle.battleRating.arcade ?? '-'} / {vehicle.battleRating.realistic ?? '-'} /{' '}
-                  {vehicle.battleRating.simulator ?? '-'}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <VehicleList vehicles={vehicles} />
     </div>
   );
 }
