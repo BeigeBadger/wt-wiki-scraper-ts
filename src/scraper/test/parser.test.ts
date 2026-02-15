@@ -18,7 +18,6 @@ const FIXTURES_DIR = path.join(process.cwd(), 'test', 'fixtures');
 describe('parser', () => {
   describe('AB fixture', () => {
     it('should find vehicle rows in aviation AB fixture', async () => {
-      try {
         // Arrange
         const fixturePath = path.join(FIXTURES_DIR, 'aviation-ab.html');
         
@@ -30,13 +29,9 @@ describe('parser', () => {
         
         // Assert
         expect(rows.length).toBeGreaterThan(0);
-      } catch (error) {
-        throw new Error(`Test failed: ${error}`);
-      }
     }, 10000);
 
     it('should extract vehicle name from table row', async () => {
-      try {
         // Arrange
         const fixturePath = path.join(FIXTURES_DIR, 'aviation-ab.html');
         
@@ -52,13 +47,9 @@ describe('parser', () => {
         const name = extractName($, rows[0]);
         
         expect(name).toBeDefined();
-      } catch (error) {
-        throw new Error(`Test failed: ${error}`);
-      }
     }, 10000);
 
     it('should extract role from table row', async () => {
-      try {
         // Arrange
         const fixturePath = path.join(FIXTURES_DIR, 'aviation-ab.html');
         
@@ -74,13 +65,9 @@ describe('parser', () => {
         const role = extractRole($, rows[0]);
         
         expect(role).toBeDefined();
-      } catch (error) {
-        throw new Error(`Test failed: ${error}`);
-      }
     }, 10000);
 
     it('should extract rank from table row', async () => {
-      try {
         // Arrange
         const fixturePath = path.join(FIXTURES_DIR, 'aviation-ab.html');
         
@@ -96,13 +83,9 @@ describe('parser', () => {
         const rank = extractRank($, rows[0]);
         
         expect(rank).toBeDefined();
-      } catch (error) {
-        throw new Error(`Test failed: ${error}`);
-      }
     }, 10000);
 
     it('should extract BR from table row', async () => {
-      try {
         // Arrange
         const fixturePath = path.join(FIXTURES_DIR, 'aviation-ab.html');
         
@@ -118,13 +101,9 @@ describe('parser', () => {
         const br = extractBR($, rows[0]);
         
         expect(br).toBeDefined();
-      } catch (error) {
-        throw new Error(`Test failed: ${error}`);
-      }
     }, 10000);
 
     it('should extract country from table row', async () => {
-      try {
         // Arrange
         const fixturePath = path.join(FIXTURES_DIR, 'aviation-ab.html');
         
@@ -140,15 +119,11 @@ describe('parser', () => {
         const country = extractCountry($, rows[0]);
         
         expect(country).toBeDefined();
-      } catch (error) {
-        throw new Error(`Test failed: ${error}`);
-      }
     }, 10000);
   });
 
   describe('RB fixture', () => {
     it('should find vehicle rows in aviation RB fixture', async () => {
-      try {
         // Arrange
         const fixturePath = path.join(FIXTURES_DIR, 'aviation-rb.html');
         
@@ -160,13 +135,9 @@ describe('parser', () => {
         
         // Assert
         expect(rows.length).toBeGreaterThan(0);
-      } catch (error) {
-        throw new Error(`Test failed: ${error}`);
-      }
     }, 10000);
 
     it('should parse table with parseHtmlTable', async () => {
-      try {
         // Arrange
         const fixturePath = path.join(FIXTURES_DIR, 'aviation-rb.html');
         
@@ -177,15 +148,11 @@ describe('parser', () => {
         
         // Assert
         expect(result.vehicles.size).toBeGreaterThan(0);
-      } catch (error) {
-        throw new Error(`Test failed: ${error}`);
-      }
     }, 10000);
   });
 
   describe('SB fixture', () => {
     it('should find vehicle rows in aviation SB fixture', async () => {
-      try {
         // Arrange
         const fixturePath = path.join(FIXTURES_DIR, 'aviation-sb.html');
         
@@ -197,13 +164,9 @@ describe('parser', () => {
         
         // Assert
         expect(rows.length).toBeGreaterThan(0);
-      } catch (error) {
-        throw new Error(`Test failed: ${error}`);
-      }
     }, 10000);
 
     it('should parse table with parseHtmlTable', async () => {
-      try {
         // Arrange
         const fixturePath = path.join(FIXTURES_DIR, 'aviation-sb.html');
         
@@ -214,9 +177,6 @@ describe('parser', () => {
         
         // Assert
         expect(result.vehicles.size).toBeGreaterThan(0);
-      } catch (error) {
-        throw new Error(`Test failed: ${error}`);
-      }
     }, 10000);
   });
 });

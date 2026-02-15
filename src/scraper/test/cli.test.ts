@@ -90,7 +90,6 @@ describe('CLI Options', () => {
 
   describe('main with skip-db', () => {
     it('should NOT call populateDatabase when skipDb is true', async () => {
-      try {
         // Arrange
         const options: CliOptions = {
           skipDb: true,
@@ -105,13 +104,10 @@ describe('CLI Options', () => {
         expect(closeBrowser).toHaveBeenCalled();
         expect(populateDatabase).not.toHaveBeenCalled();
         expect(writeLogs).toHaveBeenCalled();
-      } catch (error) {
-        throw new Error(`Test failed: ${error}`);
-      }
+
     });
 
     it('should call populateDatabase when skipDb is false', async () => {
-      try {
         // Arrange
         const options: CliOptions = {
           skipDb: false,
@@ -126,15 +122,11 @@ describe('CLI Options', () => {
         expect(closeBrowser).toHaveBeenCalled();
         expect(populateDatabase).toHaveBeenCalled();
         expect(writeLogs).toHaveBeenCalled();
-      } catch (error) {
-        throw new Error(`Test failed: ${error}`);
-      }
     });
   });
 
   describe('main with db-only', () => {
     it('should only call populateDatabase and skip scraping when dbOnly is true', async () => {
-      try {
         // Arrange
         const options: CliOptions = {
           dbOnly: true,
@@ -149,15 +141,11 @@ describe('CLI Options', () => {
         expect(closeBrowser).not.toHaveBeenCalled();
         expect(populateDatabase).toHaveBeenCalled();
         expect(writeLogs).toHaveBeenCalled();
-      } catch (error) {
-        throw new Error(`Test failed: ${error}`);
-      }
     });
   });
 
   describe('main with db-init', () => {
     it('should only call initDatabase and exit when dbInit is true', async () => {
-      try {
         // Arrange
         const options: CliOptions = {
           dbInit: true,
@@ -171,9 +159,6 @@ describe('CLI Options', () => {
         expect(initDatabase).toHaveBeenCalled();
         expect(scrapeCategory).not.toHaveBeenCalled();
         expect(populateDatabase).not.toHaveBeenCalled();
-      } catch (error) {
-        throw new Error(`Test failed: ${error}`);
-      }
     });
   });
 });
