@@ -196,21 +196,33 @@ describe('VehicleName', () => {
 ### Project Structure
 
 ```
-src/
-├── index.ts           # Main entry point, CLI handling
-├── scraper/          # Core scraping logic
-│   ├── browser.ts    # Playwright browser setup
-│   ├── scraper.ts   # Main scraping orchestration
-│   ├── parser.ts    # HTML parsing with Cheerio, helper functions
-│   ├── output.ts    # JSON and HTML file output
-│   ├── database.ts  # MongoDB population logic
-│   └── types.ts     # TypeScript interfaces
-└── utils/           # Utilities
-    ├── logger.ts    # Level-based logging with subdirectory support
-    └── fixtures.ts  # Download HTML fixtures
-test/
-├── fixtures/         # HTML fixtures for testing
-└── parser.test.ts  # Parser unit tests
+.
+├── data/                    # JSON data files (root/data)
+│   ├── aviation/           # Aviation vehicle data
+│   └── raw/                # Raw HTML downloads
+├── src/
+│   ├── app/                 # React frontend
+│   │   └── src/
+│   │       ├── components/ # React components
+│   │       ├── lib/        # Apollo client
+│   │       └── App.tsx     # Main app component
+│   ├── scraper/            # TypeScript scraper
+│   │   ├── index.ts        # CLI entry point
+│   │   ├── browser.ts      # Playwright browser setup
+│   │   ├── scraper.ts      # Main scraping orchestration
+│   │   ├── parser.ts       # HTML parsing with Cheerio
+│   │   ├── output.ts       # JSON file output
+│   │   ├── database.ts     # MongoDB population logic
+│   │   ├── utils/          # Utilities
+│   │   │   ├── logger.ts   # Logging
+│   │   │   └── fixtures.ts # Download fixtures
+│   │   └── test/          # Test files
+│   │       └── fixtures/  # HTML fixtures
+│   └── server/             # GraphQL server
+├── test/
+│   └── fixtures/          # HTML test fixtures
+├── package.json
+└── README.md
 ```
 
 ### General Patterns

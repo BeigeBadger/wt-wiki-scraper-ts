@@ -44,17 +44,16 @@ npm run test
 ## Project Structure
 
 ```
-src/
+src/scraper/
 ├── index.ts              # CLI entry point
-├── scraper/              # Core scraping logic
-│   ├── browser.ts        # Playwright browser setup
-│   ├── scraper.ts        # Main scraping orchestration
-│   ├── parser.ts         # HTML parsing with Cheerio
-│   ├── output.ts         # JSON file output
-│   └── database.ts       # MongoDB population logic
-├── utils/                # Utilities
+├── browser.ts            # Playwright browser setup
+├── scraper.ts            # Main scraping orchestration
+├── parser.ts             # HTML parsing with Cheerio
+├── output.ts             # JSON file output
+├── database.ts           # MongoDB population logic
+├── utils/
 │   ├── logger.ts         # Level-based logging
-│   └── fixtures.ts       # Download HTML fixtures
-└── test/                 # Test files
-    └── fixtures/         # HTML fixtures
+│   └── fixtures.ts        # Download HTML fixtures
+└── test/
+    └── fixtures/          # HTML fixtures
 ```

@@ -5,11 +5,19 @@ A monorepo containing the War Thunder Wiki scraper and web application.
 ## Project Structure
 
 ```
-src/
-├── app/           # Vite + React 19 frontend
-├── scraper/       # TypeScript scraper using Playwright
-├── server/        # Express + Apollo GraphQL server
-└── shared-types/  # Shared TypeScript interfaces
+.
+├── data/                    # JSON data files
+│   ├── aviation/           # Aviation vehicle data
+│   └── raw/                 # Raw HTML downloads
+├── src/
+│   ├── app/                 # Vite + React 19 frontend
+│   ├── scraper/             # TypeScript scraper using Playwright
+│   ├── server/              # Express + Apollo GraphQL server
+│   └── shared-types/        # Shared TypeScript interfaces
+├── test/
+│   └── fixtures/            # HTML test fixtures
+├── package.json
+└── README.md
 ```
 
 ## Getting Started

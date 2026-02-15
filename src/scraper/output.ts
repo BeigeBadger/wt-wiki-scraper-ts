@@ -1,4 +1,8 @@
 import type { Vehicle, CategoryData } from '@shared-types';
+import { fileURLToPath } from 'url';
+import * as path from 'path';
+
+const scraperDir = path.dirname(fileURLToPath(import.meta.url));
 
 export async function writeOutputFile(
   category: string,
@@ -6,9 +10,8 @@ export async function writeOutputFile(
   vehicles: Vehicle[]
 ): Promise<void> {
   const fs = await import('fs/promises');
-  const path = await import('path');
 
-  const dataDir = path.join(process.cwd(), 'data', category);
+  const dataDir = path.join(scraperDir, '../../data', category);
   await fs.mkdir(dataDir, { recursive: true });
 
   const filename = `${country}.json`;
@@ -25,14 +28,12 @@ export async function writeOutputFile(
 
 export async function saveHtmlToFile(html: string, filename: string): Promise<void> {
   const fs = await import('fs/promises');
-  const path = await import('path');
 
-  const rawDir = path.join(process.cwd(), 'data', 'raw');
+  const rawDir = path.join(scraperDir, '../../data', 'raw');
   await fs.mkdir(rawDir, { recursive: true });
 
   const filepath = path.join(rawDir, filename);
 
-  await fs.writeFile(filepath, html, 'utf-8');
   await fs.writeFile(filepath, html, 'utf-8');
   logDebug(`Saved HTML to ${filepath}`);
 }
