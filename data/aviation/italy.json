@@ -13,7 +13,7 @@
       "role": "Strike aircraft"
     },
     {
-      "name": "▄AV-8B Plus",
+      "name": "[Italy]AV-8B Plus",
       "rank": 8,
       "battleRating": {
         "arcade": 13,
@@ -33,7 +33,7 @@
       "role": "Strike aircraft"
     },
     {
-      "name": "▄Bf 109 G-14/AS",
+      "name": "[Italy]Bf 109 G-14/AS",
       "rank": 4,
       "battleRating": {
         "arcade": 5.3,
@@ -113,7 +113,7 @@
       "role": "Fighter"
     },
     {
-      "name": "▄F-104G",
+      "name": "[Italy]F-104G",
       "rank": 6,
       "battleRating": {
         "arcade": 11,
@@ -143,7 +143,7 @@
       "role": "Fighter"
     },
     {
-      "name": "▄F-84F",
+      "name": "[Italy]F-84F",
       "rank": 6,
       "battleRating": {
         "arcade": 8.3,
@@ -153,7 +153,7 @@
       "role": "Strike aircraft"
     },
     {
-      "name": "▄F-84G-21-RE",
+      "name": "[Italy]F-84G-21-RE",
       "rank": 5,
       "battleRating": {
         "arcade": 7.7,
@@ -163,7 +163,7 @@
       "role": "Strike aircraft"
     },
     {
-      "name": "▄F-86K",
+      "name": "[Italy]F-86K",
       "rank": 6,
       "battleRating": {
         "arcade": 9,
@@ -263,7 +263,7 @@
       "role": "Fighter"
     },
     {
-      "name": "▄F-16A ADF",
+      "name": "[Italy]F-16A ADF",
       "rank": 8,
       "battleRating": {
         "arcade": 13.3,
@@ -313,7 +313,7 @@
       "role": "Strike aircraft"
     },
     {
-      "name": "◔IL-10",
+      "name": "[Italy]IL-10",
       "rank": 4,
       "battleRating": {
         "arcade": 5,
@@ -323,7 +323,7 @@
       "role": "Strike aircraft"
     },
     {
-      "name": "◔IL-28",
+      "name": "[Italy]IL-28",
       "rank": 5,
       "battleRating": {
         "arcade": 8,
@@ -333,7 +333,7 @@
       "role": "Bomber"
     },
     {
-      "name": "▄Ju 87 D-3",
+      "name": "[Italy]Ju 87 D-3",
       "rank": 2,
       "battleRating": {
         "arcade": 2,
@@ -343,7 +343,7 @@
       "role": "Bomber"
     },
     {
-      "name": "▄Ju 87 R-2",
+      "name": "[Italy]Ju 87 R-2",
       "rank": 1,
       "battleRating": {
         "arcade": 1.3,
@@ -433,7 +433,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◔MiG-15bis",
+      "name": "[Italy]MiG-15bis",
       "rank": 5,
       "battleRating": {
         "arcade": 8.3,
@@ -443,7 +443,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◔MiG-17PF",
+      "name": "[Italy]MiG-17PF",
       "rank": 6,
       "battleRating": {
         "arcade": 8.7,
@@ -453,7 +453,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◔MiG-21bis-SAU",
+      "name": "[Italy]MiG-21bis-SAU",
       "rank": 7,
       "battleRating": {
         "arcade": 11,
@@ -463,7 +463,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◔MiG-21MF",
+      "name": "[Italy]MiG-21MF",
       "rank": 7,
       "battleRating": {
         "arcade": 10.3,
@@ -473,7 +473,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◔MiG-23MF",
+      "name": "[Italy]MiG-23MF",
       "rank": 7,
       "battleRating": {
         "arcade": 11,
@@ -483,7 +483,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◔MiG-29",
+      "name": "[Italy]MiG-29",
       "rank": 8,
       "battleRating": {
         "arcade": 12.7,
@@ -493,7 +493,7 @@
       "role": "Fighter"
     },
     {
-      "name": "▄P-47D-30",
+      "name": "[Italy]P-47D-30",
       "rank": 3,
       "battleRating": {
         "arcade": 5,
@@ -623,7 +623,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◔JAS39EBS HU C",
+      "name": "[Italy]JAS39EBS HU C",
       "rank": 8,
       "battleRating": {
         "arcade": 13.7,
@@ -713,7 +713,7 @@
       "role": "Strike aircraft"
     },
     {
-      "name": "◔Su-22M3",
+      "name": "[Italy]Su-22M3",
       "rank": 7,
       "battleRating": {
         "arcade": 11,
@@ -743,7 +743,7 @@
       "role": "Fighter"
     },
     {
-      "name": "▄Tornado IDS",
+      "name": "[Italy]Tornado IDS",
       "rank": 7,
       "battleRating": {
         "arcade": 11.3,
@@ -753,7 +753,7 @@
       "role": "Strike aircraft"
     },
     {
-      "name": "▄Tornado IDS (1995)",
+      "name": "[Italy]Tornado IDS (1995)",
       "rank": 8,
       "battleRating": {
         "arcade": 11.7,
@@ -763,7 +763,7 @@
       "role": "Strike aircraft"
     },
     {
-      "name": "▄Tornado IDS MLU (RET.8)",
+      "name": "[Italy]Tornado IDS MLU (RET.8)",
       "rank": 8,
       "battleRating": {
         "arcade": 11.7,
@@ -773,7 +773,7 @@
       "role": "Strike aircraft"
     },
     {
-      "name": "◔Tu-2S-59",
+      "name": "[Italy]Tu-2S-59",
       "rank": 4,
       "battleRating": {
         "arcade": 5.7,
@@ -793,7 +793,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◔Yak-9P",
+      "name": "[Italy]Yak-9P",
       "rank": 4,
       "battleRating": {
         "arcade": 5,

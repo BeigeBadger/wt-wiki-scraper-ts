@@ -223,7 +223,7 @@
       "role": "Bomber"
     },
     {
-      "name": "◌C-3604",
+      "name": "[Germany]C-3604",
       "rank": 2,
       "battleRating": {
         "arcade": 2.7,
@@ -363,7 +363,7 @@
       "role": "Strike aircraft"
     },
     {
-      "name": "◄EF-2000 (AESA)",
+      "name": "[Germany]EF-2000 (AESA)",
       "rank": 8,
       "battleRating": {
         "arcade": 14.7,
@@ -373,7 +373,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◄EF-2000",
+      "name": "[Germany]EF-2000",
       "rank": 8,
       "battleRating": {
         "arcade": 14.3,
@@ -383,7 +383,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◄F-104G",
+      "name": "[Germany]F-104G",
       "rank": 7,
       "battleRating": {
         "arcade": 11,
@@ -393,7 +393,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◄F-4F Early",
+      "name": "[Germany]F-4F Early",
       "rank": 7,
       "battleRating": {
         "arcade": 10.7,
@@ -403,7 +403,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◄F-4F KWS LV",
+      "name": "[Germany]F-4F KWS LV",
       "rank": 8,
       "battleRating": {
         "arcade": 13,
@@ -413,7 +413,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◄F-4F",
+      "name": "[Germany]F-4F",
       "rank": 7,
       "battleRating": {
         "arcade": 11,
@@ -423,7 +423,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◌F-5E",
+      "name": "[Germany]F-5E",
       "rank": 7,
       "battleRating": {
         "arcade": 11,
@@ -433,7 +433,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◄F-84F",
+      "name": "[Germany]F-84F",
       "rank": 6,
       "battleRating": {
         "arcade": 8.3,
@@ -443,7 +443,7 @@
       "role": "Strike aircraft"
     },
     {
-      "name": "◄F-86K",
+      "name": "[Germany]F-86K",
       "rank": 6,
       "battleRating": {
         "arcade": 9,
@@ -453,7 +453,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◄CL-13A Mk 5",
+      "name": "[Germany]CL-13A Mk 5",
       "rank": 6,
       "battleRating": {
         "arcade": 8.7,
@@ -463,7 +463,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◄CL-13B Mk.6",
+      "name": "[Germany]CL-13B Mk.6",
       "rank": 6,
       "battleRating": {
         "arcade": 9,
@@ -473,7 +473,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◌F/A-18C Late",
+      "name": "[Germany]F/A-18C Late",
       "rank": 8,
       "battleRating": {
         "arcade": 14,
@@ -483,7 +483,7 @@
       "role": "Fighter"
     },
     {
-      "name": "▀CR.42",
+      "name": "[Germany]CR.42",
       "rank": 1,
       "battleRating": {
         "arcade": 1.3,
@@ -493,7 +493,7 @@
       "role": "Fighter"
     },
     {
-      "name": "▀G.50 serie 2",
+      "name": "[Germany]G.50 serie 2",
       "rank": 1,
       "battleRating": {
         "arcade": 1.7,
@@ -503,7 +503,7 @@
       "role": "Fighter"
     },
     {
-      "name": "▀G.50 AS serie 7",
+      "name": "[Germany]G.50 AS serie 7",
       "rank": 1,
       "battleRating": {
         "arcade": 1.7,
@@ -513,7 +513,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◄G.91 R/3",
+      "name": "[Germany]G.91 R/3",
       "rank": 6,
       "battleRating": {
         "arcade": 8.7,
@@ -813,7 +813,7 @@
       "role": "Strike aircraft"
     },
     {
-      "name": "◌Hunter F.58A (1971)",
+      "name": "[Germany]Hunter F.58A (1971)",
       "rank": 6,
       "battleRating": {
         "arcade": 9.3,
@@ -823,7 +823,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◊IL-28",
+      "name": "[Germany]IL-28",
       "rank": 5,
       "battleRating": {
         "arcade": 8,
@@ -933,7 +933,7 @@
       "role": "Fighter"
     },
     {
-      "name": "▀C. 202",
+      "name": "[Germany]C. 202",
       "rank": 1,
       "battleRating": {
         "arcade": 3,
@@ -943,7 +943,7 @@
       "role": "Fighter"
     },
     {
-      "name": "▀C. 200 serie 3",
+      "name": "[Germany]C. 200 serie 3",
       "rank": 1,
       "battleRating": {
         "arcade": 2.3,
@@ -953,7 +953,7 @@
       "role": "Fighter"
     },
     {
-      "name": "▀C. 200 serie 7",
+      "name": "[Germany]C. 200 serie 7",
       "rank": 1,
       "battleRating": {
         "arcade": 2.3,
@@ -1123,7 +1123,7 @@
       "role": "Bomber"
     },
     {
-      "name": "◊MiG-15bis",
+      "name": "[Germany]MiG-15bis",
       "rank": 5,
       "battleRating": {
         "arcade": 8.3,
@@ -1133,7 +1133,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◊Lim-5P",
+      "name": "[Germany]Lim-5P",
       "rank": 6,
       "battleRating": {
         "arcade": 8.7,
@@ -1143,7 +1143,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◊MiG-19S",
+      "name": "[Germany]MiG-19S",
       "rank": 6,
       "battleRating": {
         "arcade": 9.3,
@@ -1153,7 +1153,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◊MiG-21bis-SAU",
+      "name": "[Germany]MiG-21bis-SAU",
       "rank": 7,
       "battleRating": {
         "arcade": 11,
@@ -1163,7 +1163,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◊MiG-21MF",
+      "name": "[Germany]MiG-21MF",
       "rank": 7,
       "battleRating": {
         "arcade": 10.3,
@@ -1173,7 +1173,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◊MiG-23BN",
+      "name": "[Germany]MiG-23BN",
       "rank": 6,
       "battleRating": {
         "arcade": 9.7,
@@ -1183,7 +1183,7 @@
       "role": "Strike aircraft"
     },
     {
-      "name": "◊MiG-23MF",
+      "name": "[Germany]MiG-23MF",
       "rank": 7,
       "battleRating": {
         "arcade": 11,
@@ -1193,7 +1193,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◊MiG-23MLA",
+      "name": "[Germany]MiG-23MLA",
       "rank": 7,
       "battleRating": {
         "arcade": 11.7,
@@ -1203,7 +1203,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◄MiG-29G",
+      "name": "[Germany]MiG-29G",
       "rank": 8,
       "battleRating": {
         "arcade": 13,
@@ -1213,7 +1213,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◊MiG-29",
+      "name": "[Germany]MiG-29",
       "rank": 8,
       "battleRating": {
         "arcade": 12.7,
@@ -1223,7 +1223,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◌Mirage IIIS C.70",
+      "name": "[Germany]Mirage IIIS C.70",
       "rank": 7,
       "battleRating": {
         "arcade": 10.3,
@@ -1233,7 +1233,7 @@
       "role": "Fighter"
     },
     {
-      "name": "▀S.M.79 serie 1",
+      "name": "[Germany]S.M.79 serie 1",
       "rank": 2,
       "battleRating": {
         "arcade": 1.7,
@@ -1243,7 +1243,7 @@
       "role": "Bomber"
     },
     {
-      "name": "▀S.M.79 serie 4",
+      "name": "[Germany]S.M.79 serie 4",
       "rank": 2,
       "battleRating": {
         "arcade": 2.3,
@@ -1253,7 +1253,7 @@
       "role": "Bomber"
     },
     {
-      "name": "▀S.M.79 serie 8",
+      "name": "[Germany]S.M.79 serie 8",
       "rank": 2,
       "battleRating": {
         "arcade": 2,
@@ -1263,7 +1263,7 @@
       "role": "Bomber"
     },
     {
-      "name": "▀S.M.79 AS",
+      "name": "[Germany]S.M.79 AS",
       "rank": 2,
       "battleRating": {
         "arcade": 2.3,
@@ -1273,7 +1273,7 @@
       "role": "Bomber"
     },
     {
-      "name": "▀S.M.79 bis/N",
+      "name": "[Germany]S.M.79 bis/N",
       "rank": 2,
       "battleRating": {
         "arcade": 2.3,
@@ -1283,7 +1283,7 @@
       "role": "Bomber"
     },
     {
-      "name": "▀S.M.79 bis/T.M",
+      "name": "[Germany]S.M.79 bis/T.M",
       "rank": 2,
       "battleRating": {
         "arcade": 2.3,
@@ -1293,7 +1293,7 @@
       "role": "Bomber"
     },
     {
-      "name": "▀S.M.79 B",
+      "name": "[Germany]S.M.79 B",
       "rank": 2,
       "battleRating": {
         "arcade": 2.3,
@@ -1303,7 +1303,7 @@
       "role": "Bomber"
     },
     {
-      "name": "◊Su-22M4",
+      "name": "[Germany]Su-22M4",
       "rank": 7,
       "battleRating": {
         "arcade": 11,
@@ -1313,7 +1313,7 @@
       "role": "Strike aircraft"
     },
     {
-      "name": "◊Su-22UM3K",
+      "name": "[Germany]Su-22UM3K",
       "rank": 7,
       "battleRating": {
         "arcade": 11,
@@ -1343,7 +1343,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◄Tornado IDS ASSTA1",
+      "name": "[Germany]Tornado IDS ASSTA1",
       "rank": 8,
       "battleRating": {
         "arcade": 11.7,
@@ -1353,7 +1353,7 @@
       "role": "Strike aircraft"
     },
     {
-      "name": "◄Tornado IDS SLE",
+      "name": "[Germany]Tornado IDS SLE",
       "rank": 8,
       "battleRating": {
         "arcade": 12.3,
@@ -1363,7 +1363,7 @@
       "role": "Strike aircraft"
     },
     {
-      "name": "◄Tornado IDS MFG",
+      "name": "[Germany]Tornado IDS MFG",
       "rank": 8,
       "battleRating": {
         "arcade": 11.3,

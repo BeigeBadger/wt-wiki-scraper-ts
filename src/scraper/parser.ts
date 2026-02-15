@@ -9,6 +9,65 @@ import { logDebug, logWarning } from './utils/logger.js';
 
 type CheerioRoot = cheerio.Root;
 
+const NATION_PREFIX_CHARS = [
+  '\u2417', // ␗ (U+2417)
+  '\u2583', // ▃ (U+2583)
+  '\u2585', // ▅ (U+2585)
+  '\u2582', // ▂ (U+2582)
+  '\uf059', //  (U+F059)
+  '\u2584', // ▄ (U+2584)
+  '\u2419', // ␙ (U+2419)
+  '\u25c4', // ◄ (U+25C4)
+  '\u25ca', // ◊ (U+25CA)
+  '\u25cb', // ○ (U+25CB)
+  '\u25cc', // ◌ (U+25CC)
+  '\u25d4', // ◔ (U+25D4)
+  '\u25d7', // ◗ (U+25D7)
+  '\u25d8', // ◘ (U+25D8)
+  '\u25e1', // ◡ (U+25E1)
+  '\u25e2', // ◢ (U+25E2)
+  '\u2580', // ▀ (U+2580)
+];
+
+const COUNTRY_DISPLAY_NAMES: Record<string, string> = {
+  china: 'China',
+  usa: 'USA',
+  japan: 'Japan',
+  ussr: 'USSR',
+  israel: 'Israel',
+  sweden: 'Sweden',
+  germany: 'Germany',
+  britain: 'Britain',
+  france: 'France',
+  italy: 'Italy',
+};
+
+function formatCountryName(country: string): string {
+  return COUNTRY_DISPLAY_NAMES[country.toLowerCase()] ?? country.charAt(0).toUpperCase() + country.slice(1);
+}
+
+export function cleanVehicleName(name: string, country: string | null): string {
+  if (!country) {
+    return name;
+  }
+
+  // Handle prefix characters - use row's country for the bracket tag
+  for (const char of NATION_PREFIX_CHARS) {
+    if (name.startsWith(char)) {
+      return `[${formatCountryName(country)}]` + name.slice(char.length);
+    }
+  }
+
+  // Handle suffix characters - use row's country for the bracket tag
+  for (const char of NATION_PREFIX_CHARS) {
+    if (name.endsWith(char)) {
+      return name.slice(0, -char.length) + `[${formatCountryName(country)}]`;
+    }
+  }
+
+  return name;
+}
+
 export const SELECTORS = {
   VEHICLE_ROW: 'tr.wt-ulist_unit--regular',
   NAME: 'td.wt-ulist_unit-name span',
@@ -26,9 +85,10 @@ export function getVehicleRows($: CheerioRoot): cheerio.Element[] {
   return $(SELECTORS.VEHICLE_ROW).toArray();
 }
 
-export function extractName($: CheerioRoot, row: cheerio.Element): string | null {
+export function extractName($: CheerioRoot, row: cheerio.Element, country: string | null = null): string | null {
   const name = $(row).find(SELECTORS.NAME).text().trim();
-  return name || null;
+  if (!name) return null;
+  return cleanVehicleName(name, country);
 }
 
 export function extractRole($: CheerioRoot, row: cheerio.Element): string | null {
@@ -71,15 +131,15 @@ export function parseHtmlTable(
   logDebug(`Found ${rows.length} vehicle rows for ${category} (${mode})`);
 
   for (const row of rows) {
-    const name = extractName($, row);
-    if (!name) {
-      logWarning('scraping', 'unknown', category, 'unknown', 'Could not find vehicle name');
+    const country = extractCountry($, row);
+    if (!country) {
+      logWarning('scraping', 'unknown', category, 'unknown', 'Could not find country');
       continue;
     }
 
-    const country = extractCountry($, row);
-    if (!country) {
-      logWarning('scraping', 'unknown', category, name, 'Could not find country');
+    const name = extractName($, row, country);
+    if (!name) {
+      logWarning('scraping', 'unknown', category, 'unknown', 'Could not find vehicle name');
       continue;
     }
 

@@ -3,7 +3,7 @@
   "category": "aviation",
   "vehicles": [
     {
-      "name": "▄A-35B",
+      "name": "[France]A-35B",
       "rank": 2,
       "battleRating": {
         "arcade": 2.7,
@@ -53,7 +53,7 @@
       "role": "Fighter"
     },
     {
-      "name": "▄AD-4",
+      "name": "[France]AD-4",
       "rank": 4,
       "battleRating": {
         "arcade": 6,
@@ -123,7 +123,7 @@
       "role": "Strike aircraft"
     },
     {
-      "name": "▄F-100D",
+      "name": "[France]F-100D",
       "rank": 6,
       "battleRating": {
         "arcade": 9.3,
@@ -133,7 +133,7 @@
       "role": "Fighter"
     },
     {
-      "name": "▄F-104G",
+      "name": "[France]F-104G",
       "rank": 7,
       "battleRating": {
         "arcade": 11,
@@ -143,7 +143,7 @@
       "role": "Fighter"
     },
     {
-      "name": "▄F-84F",
+      "name": "[France]F-84F",
       "rank": 6,
       "battleRating": {
         "arcade": 8.3,
@@ -153,7 +153,7 @@
       "role": "Strike aircraft"
     },
     {
-      "name": "▄F-84G-26-RE",
+      "name": "[France]F-84G-26-RE",
       "rank": 5,
       "battleRating": {
         "arcade": 7.7,
@@ -163,7 +163,7 @@
       "role": "Strike aircraft"
     },
     {
-      "name": "▄F-86K",
+      "name": "[France]F-86K",
       "rank": 6,
       "battleRating": {
         "arcade": 9,
@@ -173,7 +173,7 @@
       "role": "Fighter"
     },
     {
-      "name": "▄F-8E(FN)",
+      "name": "[France]F-8E(FN)",
       "rank": 7,
       "battleRating": {
         "arcade": 10,
@@ -193,7 +193,7 @@
       "role": "Fighter"
     },
     {
-      "name": "▄F6F-5N",
+      "name": "[France]F6F-5N",
       "rank": 4,
       "battleRating": {
         "arcade": 4.3,
@@ -203,7 +203,7 @@
       "role": "Fighter"
     },
     {
-      "name": "▄F6F-5",
+      "name": "[France]F6F-5",
       "rank": 2,
       "battleRating": {
         "arcade": 3.3,
@@ -213,7 +213,7 @@
       "role": "Fighter"
     },
     {
-      "name": "▄F8F-1B",
+      "name": "[France]F8F-1B",
       "rank": 4,
       "battleRating": {
         "arcade": 6.3,
@@ -223,7 +223,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◘Firefly F.Mk.IV",
+      "name": "[France]Firefly F.Mk.IV",
       "rank": 3,
       "battleRating": {
         "arcade": 3.7,
@@ -233,7 +233,7 @@
       "role": "Strike aircraft"
     },
     {
-      "name": "◗Fokker D.XXI",
+      "name": "[France]Fokker D.XXI",
       "rank": 1,
       "battleRating": {
         "arcade": 1.7,
@@ -243,7 +243,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◗Fokker D.XXIII",
+      "name": "[France]Fokker D.XXIII",
       "rank": 2,
       "battleRating": {
         "arcade": 2.3,
@@ -253,7 +253,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◗Fokker G.IA",
+      "name": "[France]Fokker G.IA",
       "rank": 2,
       "battleRating": {
         "arcade": 2.3,
@@ -263,7 +263,7 @@
       "role": "Strike aircraft"
     },
     {
-      "name": "▄F-16AM",
+      "name": "[France]F-16AM",
       "rank": 8,
       "battleRating": {
         "arcade": 13.7,
@@ -273,7 +273,7 @@
       "role": "Fighter"
     },
     {
-      "name": "▄F-16A",
+      "name": "[France]F-16A",
       "rank": 8,
       "battleRating": {
         "arcade": 12.7,
@@ -293,7 +293,7 @@
       "role": "Bomber"
     },
     {
-      "name": "▄Gladiator Mk I",
+      "name": "[France]Gladiator Mk I",
       "rank": 1,
       "battleRating": {
         "arcade": 1,
@@ -333,7 +333,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◘Hunter F.6",
+      "name": "[France]Hunter F.6",
       "rank": 6,
       "battleRating": {
         "arcade": 9.3,
@@ -513,7 +513,7 @@
       "role": "Fighter"
     },
     {
-      "name": "␙Super Mystere B2",
+      "name": "[France]Super Mystere B2",
       "rank": 6,
       "battleRating": {
         "arcade": 9,
@@ -523,7 +523,7 @@
       "role": "Fighter"
     },
     {
-      "name": "▄Meteor F Mk.8",
+      "name": "[France]Meteor F Mk.8",
       "rank": 5,
       "battleRating": {
         "arcade": 8,
@@ -613,7 +613,7 @@
       "role": "Fighter"
     },
     {
-      "name": "▄Mirage 5BA",
+      "name": "[France]Mirage 5BA",
       "rank": 7,
       "battleRating": {
         "arcade": 10.3,
@@ -693,7 +693,7 @@
       "role": "Bomber"
     },
     {
-      "name": "▄P-63C-5",
+      "name": "[France]P-63C-5",
       "rank": 3,
       "battleRating": {
         "arcade": 4,
@@ -703,7 +703,7 @@
       "role": "Fighter"
     },
     {
-      "name": "▄PB4Y-2",
+      "name": "[France]PB4Y-2",
       "rank": 4,
       "battleRating": {
         "arcade": 4.7,
@@ -763,7 +763,7 @@
       "role": "Fighter"
     },
     {
-      "name": "▄SB2C-5",
+      "name": "[France]SB2C-5",
       "rank": 3,
       "battleRating": {
         "arcade": 3.7,
@@ -773,7 +773,7 @@
       "role": "Bomber"
     },
     {
-      "name": "▄Seafire LF Mk.III",
+      "name": "[France]Seafire LF Mk.III",
       "rank": 4,
       "battleRating": {
         "arcade": 5,
@@ -783,7 +783,7 @@
       "role": "Fighter"
     },
     {
-      "name": "◘Sea Fury FB 51",
+      "name": "[France]Sea Fury FB 51",
       "rank": 4,
       "battleRating": {
         "arcade": 5.7,
@@ -823,7 +823,7 @@
       "role": "Fighter"
     },
     {
-      "name": "▄Spitfire FR Mk XIVe",
+      "name": "[France]Spitfire FR Mk XIVe",
       "rank": 4,
       "battleRating": {
         "arcade": 5.7,
