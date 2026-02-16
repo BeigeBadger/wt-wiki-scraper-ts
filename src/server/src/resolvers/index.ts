@@ -3,7 +3,9 @@ import { Db, Collection } from 'mongodb';
 let db: Db | null = null;
 
 export async function connectToDatabase(uri: string, dbName: string): Promise<Db> {
-  if (db) return db;
+  if (db) {
+    return db;
+  }
 
   const { MongoClient } = await import('mongodb');
   const client = new MongoClient(uri);
@@ -73,11 +75,17 @@ export const resolvers = {
       _parent: unknown,
       args: { country?: string; category?: string; gameMode?: string }
     ): Promise<VehicleDocument[]> => {
-      if (!db) throw new Error('Database not connected');
+      if (!db) {
+        throw new Error('Database not connected');
+      }
 
       const filter: Record<string, string> = {};
-      if (args.country) filter.country = args.country;
-      if (args.category) filter.category = args.category;
+      if (args.country) {
+        filter.country = args.country;
+      }
+      if (args.category) {
+        filter.category = args.category;
+      }
 
       const collection = getVehiclesCollection(db);
       const vehicles = await collection.find(filter).toArray();
@@ -86,13 +94,17 @@ export const resolvers = {
     },
 
     vehicle: async (_parent: unknown, args: { id: string }): Promise<VehicleDocument | null> => {
-      if (!db) throw new Error('Database not connected');
+      if (!db) {
+        throw new Error('Database not connected');
+      }
 
       const collection = getVehiclesCollection(db);
       const { ObjectId } = await import('mongodb');
       const vehicle = await collection.findOne({ _id: new ObjectId(args.id) });
 
-      if (!vehicle) return null;
+      if (!vehicle) {
+        return null;
+      }
 
       return transformVehicle(vehicle);
     },
