@@ -26,7 +26,8 @@ npm run build
 - React 19
 - Vite
 - Tailwind CSS
-- React ARA (components)
+- React Aria (components)
+- React Router DOM (routing)
 - Apollo Client
 
 ## Project Structure
@@ -34,9 +35,15 @@ npm run build
 ```
 src/
 ├── main.tsx          # Entry point
-├── App.tsx           # Main application
+├── App.tsx           # Main application with routes
 ├── index.css         # Tailwind imports
 ├── lib/
 │   └── apollo.ts    # Apollo Client setup
-└── components/       # React components
+├── components/       # React components
+│   ├── Navbar.tsx
+│   └── VehicleList.tsx
+└── pages/            # Page components
+    ├── Home.tsx
+    ├── Vehicles.tsx
+    └── LineUpBuilder.tsx
 ```
