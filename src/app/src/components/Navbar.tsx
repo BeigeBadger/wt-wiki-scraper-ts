@@ -2,8 +2,8 @@ import { NavLink } from 'react-router-dom';
 
 const navLinks = [
   { path: '/', label: 'Home' },
-  { path: '/vehicles', label: 'Vehicles' },
   { path: '/line-up-builder', label: 'Line-up Builder' },
+  { path: '/vehicles', label: 'Vehicles' },
 ];
 
 export function Navbar() {
@@ -16,10 +16,9 @@ export function Navbar() {
               <NavLink
                 to={link.path}
                 className={({ isActive }) =>
-                  `text-lg pb-1 ${
-                    isActive
-                      ? 'text-blue-600 font-semibold border-b-2 border-blue-600'
-                      : 'text-gray-600 hover:text-blue-600'
+                  `text-lg pb-1 ${isActive
+                    ? 'text-blue-600 font-semibold border-b-2 border-blue-600'
+                    : 'text-gray-600 hover:text-blue-600'
                   }`
                 }
               >

@@ -11,8 +11,8 @@ function App() {
       <div className="pt-16">
         <Routes>
           <Route index element={<Home />} />
-          <Route path="vehicles" element={<Vehicles />} />
           <Route path="line-up-builder" element={<LineUpBuilder />} />
+          <Route path="vehicles" element={<Vehicles />} />
         </Routes>
       </div>
     </>
