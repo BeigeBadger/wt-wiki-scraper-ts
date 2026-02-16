@@ -1,3 +1,4 @@
+import { Routes, Route } from 'react-router-dom';
 import { useQuery, gql } from '@apollo/client';
 import { VehicleList } from './components/VehicleList';
 
@@ -66,13 +67,20 @@ function App() {
   }
 
   return (
-    <div className="p-8">
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold">War Thunder Vehicles</h1>
-        <p className="text-gray-600">Total: {vehicles.length} vehicles</p>
-      </div>
-      <VehicleList vehicles={vehicles} />
-    </div>
+    <Routes>
+      <Route
+        index
+        element={
+          <div className="p-8">
+            <div className="flex justify-between items-center mb-4">
+              <h1 className="text-2xl font-bold">War Thunder Vehicles</h1>
+              <p className="text-gray-600">Total: {vehicles.length} vehicles</p>
+            </div>
+            <VehicleList vehicles={vehicles} />
+          </div>
+        }
+      />
+    </Routes>
   );
 }
 
