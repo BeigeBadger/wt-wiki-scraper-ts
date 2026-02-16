@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "War Thunder Wiki - Scraper and Web App Monorepo",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:app\"",
     "dev:app": "cd src/app && npm run dev",
@@ -36,6 +37,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^9.1.2"
+    "@typescript-eslint/eslint-plugin": "^8.55.0",
+    "@typescript-eslint/parser": "^8.55.0",
+    "concurrently": "^9.1.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react": "^7.37.5"
   }
 }
