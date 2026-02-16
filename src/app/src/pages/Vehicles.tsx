@@ -71,6 +71,7 @@ export function Vehicles() {
         <h1 className="text-2xl font-bold">War Thunder Vehicles</h1>
         <p className="text-gray-600">Total: {vehicles.length} vehicles</p>
       </div>
+
       <VehicleList vehicles={vehicles} />
     </div>
   );

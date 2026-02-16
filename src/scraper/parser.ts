@@ -87,35 +87,47 @@ export function getVehicleRows($: CheerioRoot): cheerio.Element[] {
 
 export function extractName($: CheerioRoot, row: cheerio.Element, country: string | null = null): string | null {
   const name = $(row).find(SELECTORS.NAME).text().trim();
-  if (!name) return null;
+
+  if (!name) {
+    return null;
+  }
+
   return cleanVehicleName(name, country);
 }
 
 export function extractRole($: CheerioRoot, row: cheerio.Element): string | null {
   const role = $(row).find(SELECTORS.ROLE).text().trim();
+
   return role || null;
 }
 
 export function extractRank($: CheerioRoot, row: cheerio.Element): number | null {
   const rankValue = $(row).find(SELECTORS.RANK).attr('data-value');
+
   if (rankValue) {
     const rank = parseInt(rankValue, 10);
+
     return isNaN(rank) ? null : rank;
   }
+
   return null;
 }
 
 export function extractBR($: CheerioRoot, row: cheerio.Element): number | null {
   const brText = $(row).find(SELECTORS.BR).text().trim();
+
   if (brText) {
     const br = parseFloat(brText);
+
     return isNaN(br) ? null : br;
   }
+
   return null;
 }
 
 export function extractCountry($: CheerioRoot, row: cheerio.Element): string | null {
   const countryValue = $(row).find(SELECTORS.COUNTRY).attr('data-value');
+
   return countryValue || null;
 }
 
@@ -128,18 +140,23 @@ export function parseHtmlTable(
   const vehicles = new Map<string, Map<string, Partial<Vehicle>>>();
 
   const rows = getVehicleRows($);
+
   logDebug(`Found ${rows.length} vehicle rows for ${category} (${mode})`);
 
   for (const row of rows) {
     const country = extractCountry($, row);
+
     if (!country) {
       logWarning('scraping', 'unknown', category, 'unknown', 'Could not find country');
+
       continue;
     }
 
     const name = extractName($, row, country);
+
     if (!name) {
       logWarning('scraping', 'unknown', category, 'unknown', 'Could not find vehicle name');
+
       continue;
     }
 
@@ -162,16 +179,19 @@ export function parseHtmlTable(
     };
 
     const role = extractRole($, row);
+
     if (role && !existing.role) {
       existing.role = role;
     }
 
     const rank = extractRank($, row);
+
     if (rank !== null && existing.rank === null) {
       existing.rank = rank;
     }
 
     const br = extractBR($, row);
+
     if (br !== null && existing.battleRating) {
       existing.battleRating[mode] = br;
     }
@@ -200,16 +220,20 @@ export function mergeVehicleData(
         if (newVehicle.role && !existingVehicle.role) {
           existingVehicle.role = newVehicle.role;
         }
+
         if (newVehicle.rank !== null && existingVehicle.rank === null) {
           existingVehicle.rank = newVehicle.rank;
         }
+
         if (newVehicle.battleRating && existingVehicle.battleRating) {
           if (newVehicle.battleRating.arcade !== null) {
             existingVehicle.battleRating.arcade = newVehicle.battleRating.arcade;
           }
+
           if (newVehicle.battleRating.realistic !== null) {
             existingVehicle.battleRating.realistic = newVehicle.battleRating.realistic;
           }
+
           if (newVehicle.battleRating.simulator !== null) {
             existingVehicle.battleRating.simulator = newVehicle.battleRating.simulator;
           }
@@ -246,6 +270,7 @@ export function validateAndCleanVehicles(
     if (vehicle.role === null) {
       logWarning(subDir, country, category, name, 'missing role');
     }
+
     if (vehicle.rank === null) {
       logWarning(subDir, country, category, name, 'missing rank');
     }

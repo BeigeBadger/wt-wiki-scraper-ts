@@ -104,7 +104,6 @@ describe('CLI Options', () => {
       expect(closeBrowser).toHaveBeenCalled();
       expect(populateDatabase).not.toHaveBeenCalled();
       expect(writeLogs).toHaveBeenCalled();
-
     });
 
     it('should call populateDatabase when skipDb is false', async () => {

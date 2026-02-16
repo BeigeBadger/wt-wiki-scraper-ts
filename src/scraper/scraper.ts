@@ -25,13 +25,16 @@ export async function scrapeCategory(category: VehicleCategory): Promise<void> {
     logInfo(`Processing ${category}...`);
 
     const listUrl = `${BASE_URL}/${category}?v=l`;
+
     logDebug(`Visiting: ${listUrl}`);
 
     try {
       await page.goto(listUrl, { waitUntil: 'networkidle', timeout: 30000 });
     } catch (error) {
       logError('scraping', 'all', category, listUrl, `Network error: ${error}`);
+
       await page.close();
+
       return;
     }
 
@@ -54,21 +57,26 @@ export async function scrapeCategory(category: VehicleCategory): Promise<void> {
             page.url(),
             `Failed to switch to ${mode}: ${error}`
           );
+
           continue;
         }
       }
 
       const html = await page.content();
       const htmlFilename = `${category}-${mode}.html`;
+
       await saveHtmlToFile(html, htmlFilename);
 
       const parsed = parseHtmlTable(html, mode, category);
+
       mergeVehicleData(allVehicles, parsed.vehicles);
     }
 
     for (const [country, countryVehicles] of allVehicles) {
       const vehicles = validateAndCleanVehicles(countryVehicles, country, category);
+
       await writeOutputFile(category, country, vehicles);
+
       logInfo(`Completed ${country}/${category}: ${vehicles.length} vehicles`);
     }
   } catch (error) {

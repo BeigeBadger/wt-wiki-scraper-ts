@@ -50,6 +50,7 @@ describe('Navbar', () => {
 
     const homeLink = await screen.findByRole('link', { name: 'Home' });
     expect(homeLink).not.toHaveAttribute('aria-current');
+
     const lineupLink = await screen.findByRole('link', { name: 'Line-up Builder' });
     expect(lineupLink).not.toHaveAttribute('aria-current');
   });

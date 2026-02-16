@@ -89,6 +89,7 @@ Examples:
   npm run db:populate
   npm run db:init
     `);
+
     return;
   }
 
@@ -100,14 +101,18 @@ Examples:
 
   if (args.dbInit) {
     await initDatabase();
+
     return;
   }
 
   if (args.dbOnly) {
     logInfo('Starting database population...');
+
     await populateDatabase();
     await writeLogs();
+
     logInfo('Database population complete!');
+
     return;
   }
 

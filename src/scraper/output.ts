@@ -12,6 +12,7 @@ export async function writeOutputFile(
   const fs = await import('fs/promises');
 
   const dataDir = path.join(scraperDir, '../../data', category);
+
   await fs.mkdir(dataDir, { recursive: true });
 
   const filename = `${country}.json`;
@@ -30,15 +31,18 @@ export async function saveHtmlToFile(html: string, filename: string): Promise<vo
   const fs = await import('fs/promises');
 
   const rawDir = path.join(scraperDir, '../../data', 'raw');
+
   await fs.mkdir(rawDir, { recursive: true });
 
   const filepath = path.join(rawDir, filename);
 
   await fs.writeFile(filepath, html, 'utf-8');
+
   logDebug(`Saved HTML to ${filepath}`);
 }
 
 async function logDebug(message: string): Promise<void> {
   const { logDebug: debugLog } = await import('./utils/logger.js');
+
   debugLog(message);
 }
