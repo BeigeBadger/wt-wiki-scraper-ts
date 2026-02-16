@@ -107,6 +107,14 @@ import { logInfo } from '../utils/logger.js';
 - 100 character line width
 - Trailing commas in ES5 contexts (objects, arrays)
 
+### Whitespace & Code Style
+
+- **Blank line before return statements** - keep return statements separated from preceding code
+- **Blank line before early returns** in conditionals
+- **Space inside self-closing JSX tags** - use `<Component />` not `<Component/>`
+- **One blank line between logical sections** - imports → constants → sub-components → main function
+- **Always use curly braces** around blocks even when not required (e.g., `if (condition) { return value }`)
+
 ### Error Handling
 
 - Use custom error classes extending `Error` for domain-specific errors
@@ -134,7 +142,8 @@ export class ScraperError extends Error {
 - Test files: `*.test.ts` in `test/` directory
 - Use `describe` blocks for grouping related tests
 - Name tests descriptively: "should extract vehicle name from table row"
-- Use AAA pattern: // Arrange, // Act, // Assert
+- Use AAA pattern: use `// Arrange/Act` when there is no setup, otherwise use `// Arrange` and `// Act` as separate comments
+- Place // Act comment immediately before the action being tested
 
 ```typescript
 import { describe, it, expect } from 'vitest';
@@ -160,10 +169,14 @@ describe('parser', () => {
 - Test files: place `*.test.tsx` files next to the components they test (e.g., `VehicleList.tsx` and `VehicleList.test.tsx` in the same directory)
 - Use React Testing Library for all component tests
 - Prefer `findBy*` queries over `getBy*` and `queryBy*` for async element finding
-- Use AAA pattern: // Arrange, // Act, // Assert
+- Use AAA pattern: use `// Arrange/Act` when there is no setup, otherwise use `// Arrange` and `// Act` as separate comments
 - Mock Apollo Client with in-memory data for GraphQL queries
 - Prefer finding by roles where possible as it's more semantic
 - Use `toBeVisible()` for elements that should be visible, rather than `toBeInTheDocument()`
+- **Do not use snapshot testing** for frontend components
+- **Minimize mocks** - only mock the bare essentials (e.g., Apollo Client for GraphQL queries)
+- **Test behavior, not implementation** - prefer testing user interactions and accessibility
+- When adding new components, add basic test coverage for rendering and basic behavior
 
 ```typescript
 import { describe, it, expect } from 'vitest';
@@ -193,6 +206,18 @@ describe('VehicleName', () => {
 });
 ```
 
+### Frontend
+
+- **UI Library**: Use React Aria for accessible UI components
+- **Styling**: Use Tailwind CSS for all styling
+- **Routing**: Use react-router-dom for client-side routing
+
+### Page Components
+
+- For page files (e.g., `Vehicles.tsx`), create semantically named sub-components for readability
+- Place sub-components at the top of the file, main export function at the bottom
+- Example: `Loading`, `ErrorOnLoad`, `PageHeader` as separate const arrow functions
+
 ### Project Structure
 
 ```
@@ -204,6 +229,7 @@ describe('VehicleName', () => {
 │   ├── app/                 # React frontend
 │   │   └── src/
 │   │       ├── components/ # React components
+│   │       ├── pages/      # Page components (Home, Vehicles, LineUpBuilder)
 │   │       ├── lib/        # Apollo client
 │   │       └── App.tsx     # Main app component
 │   ├── scraper/            # TypeScript scraper
@@ -234,3 +260,9 @@ describe('VehicleName', () => {
 - Keep functions small and focused (single responsibility)
 - Export helper functions from parser.ts for reuse in tests to avoid code duplication
 - Consider any documentation and/or diagrams that may need updating when planning your changes
+
+### Documentation Updates
+
+- Update README files when changing folder structure, adding new dependencies, or modifying tech stack
+- Update AGENTS.md when introducing new patterns, conventions, or project-specific rules
+- Treat documentation as part of the code change - do not defer
