@@ -5,7 +5,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"npm run dev:server\" \"npm run dev:app\"",
+    "dev": "docker compose up -d && concurrently \"npm run dev:server\" \"npm run dev:app\"",
     "dev:app": "cd src/app && npm run dev",
     "dev:server": "cd src/server && npm run dev",
     "build": "npm run build:app && npm run build:server",
