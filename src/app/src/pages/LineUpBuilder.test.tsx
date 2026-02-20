@@ -182,7 +182,7 @@ describe('LineUpBuilder', () => {
     });
   });
 
-  it('should reset vehicle type when nation changes', async () => {
+  it('should NOT reset vehicle type when nation changes', async () => {
     // Arrange
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
@@ -209,10 +209,10 @@ describe('LineUpBuilder', () => {
     // Act - change nation
     fireEvent.click(screen.getByTestId('filter-card-germany'));
 
-    // Assert - vehicle type should be deselected (no ring class, but still not disabled since nation is set)
+    // Assert - vehicle type should remain selected (not deselected)
     await waitFor(() => {
       const aviationCard = screen.getByTestId('filter-card-aviation');
-      expect(aviationCard).not.toHaveClass('ring-2');
+      expect(aviationCard).toHaveClass('ring-2');
     });
   });
 
@@ -280,6 +280,83 @@ describe('LineUpBuilder', () => {
     await waitFor(() => {
       expect(screen.getByTestId('br-range-slider')).toBeVisible();
       expect(screen.getByTestId('br-range-slider')).not.toHaveAttribute('aria-disabled', 'true');
+    });
+  });
+
+  it('should render Reset button', async () => {
+    // Arrange/Act
+    render(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <LineUpBuilder />
+      </MockedProvider>
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText('United States')).toBeVisible();
+    });
+
+    // Assert - Reset button should be visible
+    expect(screen.getByTestId('reset-filters-button')).toBeVisible();
+    expect(screen.getByText('Reset Filters')).toBeVisible();
+  });
+
+  it('should disable Reset button when filters are at default', async () => {
+    // Arrange/Act
+    render(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <LineUpBuilder />
+      </MockedProvider>
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText('United States')).toBeVisible();
+    });
+
+    // Assert - Reset button should be disabled at default
+    const resetButton = screen.getByTestId('reset-filters-button');
+    expect(resetButton).toBeDisabled();
+  });
+
+  it('should reset all filters when Reset button clicked', async () => {
+    // Arrange
+    render(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <LineUpBuilder />
+      </MockedProvider>
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText('United States')).toBeVisible();
+    });
+
+    // Act - select all filters
+    fireEvent.click(screen.getByTestId('filter-card-usa'));
+    await waitFor(() => {
+      expect(screen.getByTestId('filter-card-aviation')).not.toBeDisabled();
+    });
+    fireEvent.click(screen.getByTestId('filter-card-aviation'));
+    await waitFor(() => {
+      expect(screen.getByTestId('filter-card-arcade')).not.toBeDisabled();
+    });
+    fireEvent.click(screen.getByTestId('filter-card-arcade'));
+
+    // Assert - vehicle type is selected
+    await waitFor(() => {
+      expect(screen.getByTestId('filter-card-aviation')).toHaveClass('ring-2');
+    });
+
+    // Act - click Reset button
+    const resetButton = screen.getByTestId('reset-filters-button');
+    fireEvent.click(resetButton);
+
+    // Assert - vehicle type should be deselected
+    await waitFor(() => {
+      expect(screen.getByTestId('filter-card-aviation')).not.toHaveClass('ring-2');
+    });
+
+    // Assert - vehicle type filter should be disabled again
+    await waitFor(() => {
+      expect(screen.getByTestId('filter-card-aviation')).toBeDisabled();
     });
   });
 });

@@ -91,19 +91,32 @@ type FilterAction =
   | { type: 'SET_NATION'; payload: string }
   | { type: 'SET_VEHICLE_TYPE'; payload: string }
   | { type: 'SET_GAME_MODE'; payload: string }
-  | { type: 'SET_BR_RANGE'; payload: [number, number] };
+  | { type: 'SET_BR_RANGE'; payload: [number, number] }
+  | { type: 'RESET_ALL' };
 
 function filterReducer(state: FilterState, action: FilterAction): FilterState {
   switch (action.type) {
     case 'SET_NATION':
-      return { nation: action.payload, vehicleType: null, gameMode: null, brRange: state.brRange };
+      return { ...state, nation: action.payload };
     case 'SET_VEHICLE_TYPE':
-      return { ...state, vehicleType: action.payload, gameMode: null, brRange: state.brRange };
+      return { ...state, vehicleType: action.payload };
     case 'SET_GAME_MODE':
-      return { ...state, gameMode: action.payload, brRange: state.brRange };
+      return { ...state, gameMode: action.payload };
     case 'SET_BR_RANGE':
       return { ...state, brRange: action.payload };
+    case 'RESET_ALL':
+      return initialState;
   }
+}
+
+function isAtDefault(state: FilterState): boolean {
+  return (
+    state.nation === null &&
+    state.vehicleType === null &&
+    state.gameMode === null &&
+    state.brRange[0] === DEFAULT_BR_RANGE[0] &&
+    state.brRange[1] === DEFAULT_BR_RANGE[1]
+  );
 }
 
 const initialState: FilterState = {
@@ -162,9 +175,26 @@ export function LineUpBuilder(): React.ReactElement {
       icon: CATEGORY_ICONS[c.id],
     })) ?? [];
 
+  const atDefault = isAtDefault(state);
+
   return (
     <div className="flex flex-col gap-6 p-4 max-w-4xl mx-auto">
-      <h1 className="text-2xl font-bold text-gray-900">Line Up Builder</h1>
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold text-gray-900">Line Up Builder</h1>
+        <button
+          type="button"
+          onClick={() => dispatch({ type: 'RESET_ALL' })}
+          disabled={atDefault}
+          data-testid="reset-filters-button"
+          className={`border rounded-lg px-4 py-2 text-sm font-medium ${
+            atDefault
+              ? 'opacity-50 cursor-not-allowed border-gray-200 text-gray-400'
+              : 'border-gray-300 text-gray-700 hover:bg-gray-100 cursor-pointer'
+          }`}
+        >
+          Reset Filters
+        </button>
+      </div>
 
       <div className="flex flex-col gap-4">
         <FilterCardGroup
