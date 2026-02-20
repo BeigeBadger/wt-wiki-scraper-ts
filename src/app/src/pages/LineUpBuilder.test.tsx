@@ -244,4 +244,42 @@ describe('LineUpBuilder', () => {
       expect(screen.getByText('P-51 Mustang')).toBeVisible();
     });
   });
+
+  it('should persist BR range when filters change', async () => {
+    // Arrange
+    render(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <LineUpBuilder />
+      </MockedProvider>
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText('United States')).toBeVisible();
+    });
+
+    // Act - select all filters
+    fireEvent.click(screen.getByTestId('filter-card-usa'));
+    await waitFor(() => {
+      expect(screen.getByTestId('filter-card-aviation')).not.toBeDisabled();
+    });
+    fireEvent.click(screen.getByTestId('filter-card-aviation'));
+    await waitFor(() => {
+      expect(screen.getByTestId('filter-card-arcade')).not.toBeDisabled();
+    });
+    fireEvent.click(screen.getByTestId('filter-card-arcade'));
+
+    // Assert - BR range slider is visible after all filters selected
+    await waitFor(() => {
+      expect(screen.getByTestId('br-range-slider')).toBeVisible();
+    });
+
+    // Act - change nation
+    fireEvent.click(screen.getByTestId('filter-card-germany'));
+
+    // Assert - BR range slider is still visible and enabled after filter change
+    await waitFor(() => {
+      expect(screen.getByTestId('br-range-slider')).toBeVisible();
+      expect(screen.getByTestId('br-range-slider')).not.toHaveAttribute('aria-disabled', 'true');
+    });
+  });
 });

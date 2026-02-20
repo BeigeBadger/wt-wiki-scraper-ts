@@ -96,11 +96,11 @@ type FilterAction =
 function filterReducer(state: FilterState, action: FilterAction): FilterState {
   switch (action.type) {
     case 'SET_NATION':
-      return { nation: action.payload, vehicleType: null, gameMode: null, brRange: DEFAULT_BR_RANGE };
+      return { nation: action.payload, vehicleType: null, gameMode: null, brRange: state.brRange };
     case 'SET_VEHICLE_TYPE':
-      return { ...state, vehicleType: action.payload, gameMode: null, brRange: DEFAULT_BR_RANGE };
+      return { ...state, vehicleType: action.payload, gameMode: null, brRange: state.brRange };
     case 'SET_GAME_MODE':
-      return { ...state, gameMode: action.payload, brRange: DEFAULT_BR_RANGE };
+      return { ...state, gameMode: action.payload, brRange: state.brRange };
     case 'SET_BR_RANGE':
       return { ...state, brRange: action.payload };
   }
