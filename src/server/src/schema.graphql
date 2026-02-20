@@ -1,5 +1,5 @@
 type Query {
-  vehicles(country: String, category: String, gameMode: String): [Vehicle!]!
+  vehicles(country: String, category: String, gameMode: String, minBr: Float, maxBr: Float): [Vehicle!]!
   vehicle(id: ID!): Vehicle
   countries: [Country!]!
   categories: [VehicleCategory!]!

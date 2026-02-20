@@ -73,13 +73,13 @@ export const resolvers = {
   Query: {
     vehicles: async (
       _parent: unknown,
-      args: { country?: string; category?: string; gameMode?: string }
+      args: { country?: string; category?: string; gameMode?: string; minBr?: number; maxBr?: number }
     ): Promise<VehicleDocument[]> => {
       if (!db) {
         throw new Error('Database not connected');
       }
 
-      const filter: Record<string, string> = {};
+      const filter: Record<string, unknown> = {};
       if (args.country) {
         filter.country = args.country;
       }
@@ -88,7 +88,21 @@ export const resolvers = {
       }
 
       const collection = getVehiclesCollection(db);
-      const vehicles = await collection.find(filter).toArray();
+      let cursor = collection.find(filter);
+
+      if (args.gameMode && (args.minBr !== undefined || args.maxBr !== undefined)) {
+        const brField = `battleRating.${args.gameMode}`;
+        const brFilter: Record<string, unknown> = {};
+        if (args.minBr !== undefined) {
+          brFilter['$gte'] = args.minBr;
+        }
+        if (args.maxBr !== undefined) {
+          brFilter['$lte'] = args.maxBr;
+        }
+        cursor = collection.find({ ...filter, [brField]: brFilter });
+      }
+
+      const vehicles = await cursor.toArray();
 
       return vehicles.map(transformVehicle);
     },
