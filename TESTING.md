@@ -1,11 +1,15 @@
 # Testing
 
+**Tests are first-class citizens** - always write/update tests when adding or changing code. Treat test files with the same care as production code.
+
 ## Vitest (Backend)
 
 - Test files: `*.test.ts` in `test/` directory
 - Use `describe` blocks for grouping related tests
 - Name tests descriptively: "should extract vehicle name from table row"
 - Use AAA pattern: use `// Arrange/Act` when there is no setup, otherwise use `// Arrange` and `// Act` as separate comments
+- Place AAA comments on their own line to help them stand out
+- Additional explanatory comments should be on a new line underneath the AAA comment
 - Place // Act comment immediately before the action being tested
 
 ```typescript
@@ -25,6 +29,21 @@ describe('parser', () => {
     expect(rows.length).toBeGreaterThan(0);
   });
 });
+```
+
+**Good example (do this):**
+```typescript
+// Assert
+// Role tags should be disabled (game mode not selected yet)
+const fighterTag = screen.getByText('Fighter').closest('div[class*="cursor-"]');
+expect(fighterTag).toHaveAttribute('data-disabled', 'true');
+```
+
+**Bad example (don't do this):**
+```typescript
+// Assert - Role tags should be disabled (game mode not selected yet)
+const fighterTag = screen.getByText('Fighter').closest('div[class*="cursor-"]');
+expect(fighterTag).toHaveAttribute('data-disabled', 'true');
 ```
 
 ### Running Tests
@@ -58,6 +77,8 @@ npx vitest run -t "should extract vehicle name from table row"
 - Use React Testing Library for all component tests
 - Prefer `findBy*` queries over `getBy*` and `queryBy*` for async element finding
 - Use AAA pattern: use `// Arrange/Act` when there is no setup, otherwise use `// Arrange` and `// Act` as separate comments
+- Place AAA comments on their own line to help them stand out
+- Additional explanatory comments should be on a new line underneath the AAA comment
 - Mock Apollo Client with in-memory data for GraphQL queries
 - Prefer finding by roles where possible as it's more semantic
 - Use `toBeVisible()` for elements that should be visible, rather than `toBeInTheDocument()`
@@ -92,4 +113,19 @@ describe('VehicleName', () => {
     expect(vehicleName).toBeInTheDocument();
   });
 });
+```
+
+**Good example (do this):**
+```typescript
+// Assert
+// Role tags should be disabled (game mode not selected yet)
+const fighterTag = screen.getByText('Fighter').closest('div[class*="cursor-"]');
+expect(fighterTag).toHaveAttribute('data-disabled', 'true');
+```
+
+**Bad example (don't do this):**
+```typescript
+// Assert - Role tags should be disabled (game mode not selected yet)
+const fighterTag = screen.getByText('Fighter').closest('div[class*="cursor-"]');
+expect(fighterTag).toHaveAttribute('data-disabled', 'true');
 ```
