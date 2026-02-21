@@ -118,7 +118,6 @@ describe('VehicleList', () => {
 
     const vehicleRows = await within(tableBody).findAllByRole("row");
 
-    // Assert
     expect(vehicleRows.length).toBe(mockVehicles.length);
   });
 });
