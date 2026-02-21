@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
 import { FilterCardGroup, FilterCardOption } from './FilterCardGroup';
 
@@ -45,7 +46,7 @@ describe('FilterCardGroup', () => {
     expect(selectedCard).toHaveClass('ring-blue-500');
   });
 
-  it('should call onChange when option is clicked', () => {
+  it('should call onChange when option is clicked', async () => {
     // Arrange
     const handleChange = vi.fn();
     render(
@@ -58,13 +59,13 @@ describe('FilterCardGroup', () => {
     );
 
     // Act
-    fireEvent.click(screen.getByTestId('filter-card-germany'));
+    await userEvent.click(screen.getByTestId('filter-card-germany'));
 
     // Assert
     expect(handleChange).toHaveBeenCalledWith('germany');
   });
 
-  it('should not call onChange when disabled', () => {
+  it('should not call onChange when disabled', async () => {
     // Arrange
     const handleChange = vi.fn();
     render(
@@ -78,7 +79,7 @@ describe('FilterCardGroup', () => {
     );
 
     // Act
-    fireEvent.click(screen.getByTestId('filter-card-germany'));
+    await userEvent.click(screen.getByTestId('filter-card-germany'));
 
     // Assert
     expect(handleChange).not.toHaveBeenCalled();

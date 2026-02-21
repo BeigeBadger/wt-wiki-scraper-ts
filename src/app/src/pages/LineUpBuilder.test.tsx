@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { MockedProvider } from '@apollo/client/testing';
 import { LineUpBuilder } from './LineUpBuilder';
 import { gql } from '@apollo/client';
@@ -197,7 +198,7 @@ describe('LineUpBuilder', () => {
     });
 
     // Act
-    fireEvent.click(screen.getByTestId('filter-card-usa'));
+    await userEvent.click(screen.getByTestId('filter-card-usa'));
 
     // Assert
     await waitFor(() => {
@@ -219,11 +220,11 @@ describe('LineUpBuilder', () => {
 
     // Act
     // Select nation, then vehicle type
-    fireEvent.click(screen.getByTestId('filter-card-usa'));
+    await userEvent.click(screen.getByTestId('filter-card-usa'));
     await waitFor(() => {
       expect(screen.getByTestId('filter-card-aviation')).not.toBeDisabled();
     });
-    fireEvent.click(screen.getByTestId('filter-card-aviation'));
+    await userEvent.click(screen.getByTestId('filter-card-aviation'));
 
     // Assert
     // Vehicle type selected
@@ -233,7 +234,7 @@ describe('LineUpBuilder', () => {
 
     // Act
     // Change nation
-    fireEvent.click(screen.getByTestId('filter-card-germany'));
+    await userEvent.click(screen.getByTestId('filter-card-germany'));
 
     // Assert
     // Vehicle type should remain selected (not deselected)
@@ -257,15 +258,15 @@ describe('LineUpBuilder', () => {
 
     // Act
     // Select all filters
-    fireEvent.click(screen.getByTestId('filter-card-usa'));
+    await userEvent.click(screen.getByTestId('filter-card-usa'));
     await waitFor(() => {
       expect(screen.getByTestId('filter-card-aviation')).not.toBeDisabled();
     });
-    fireEvent.click(screen.getByTestId('filter-card-aviation'));
+    await userEvent.click(screen.getByTestId('filter-card-aviation'));
     await waitFor(() => {
       expect(screen.getByTestId('filter-card-arcade')).not.toBeDisabled();
     });
-    fireEvent.click(screen.getByTestId('filter-card-arcade'));
+    await userEvent.click(screen.getByTestId('filter-card-arcade'));
 
     // Assert
     await waitFor(() => {
@@ -287,15 +288,15 @@ describe('LineUpBuilder', () => {
 
     // Act
     // Select all filters
-    fireEvent.click(screen.getByTestId('filter-card-usa'));
+    await userEvent.click(screen.getByTestId('filter-card-usa'));
     await waitFor(() => {
       expect(screen.getByTestId('filter-card-aviation')).not.toBeDisabled();
     });
-    fireEvent.click(screen.getByTestId('filter-card-aviation'));
+    await userEvent.click(screen.getByTestId('filter-card-aviation'));
     await waitFor(() => {
       expect(screen.getByTestId('filter-card-arcade')).not.toBeDisabled();
     });
-    fireEvent.click(screen.getByTestId('filter-card-arcade'));
+    await userEvent.click(screen.getByTestId('filter-card-arcade'));
 
     // Assert
     // BR range slider is visible after all filters selected
@@ -305,7 +306,7 @@ describe('LineUpBuilder', () => {
 
     // Act
     // Change nation
-    fireEvent.click(screen.getByTestId('filter-card-germany'));
+    await userEvent.click(screen.getByTestId('filter-card-germany'));
 
     // Assert
     // BR range slider is still visible and enabled after filter change
@@ -365,15 +366,15 @@ describe('LineUpBuilder', () => {
 
     // Act
     // Select all filters
-    fireEvent.click(screen.getByTestId('filter-card-usa'));
+    await userEvent.click(screen.getByTestId('filter-card-usa'));
     await waitFor(() => {
       expect(screen.getByTestId('filter-card-aviation')).not.toBeDisabled();
     });
-    fireEvent.click(screen.getByTestId('filter-card-aviation'));
+    await userEvent.click(screen.getByTestId('filter-card-aviation'));
     await waitFor(() => {
       expect(screen.getByTestId('filter-card-arcade')).not.toBeDisabled();
     });
-    fireEvent.click(screen.getByTestId('filter-card-arcade'));
+    await userEvent.click(screen.getByTestId('filter-card-arcade'));
 
     // Assert
     // Vehicle type is selected
@@ -384,7 +385,7 @@ describe('LineUpBuilder', () => {
     // Act
     // Click Reset button
     const resetButton = screen.getByTestId('reset-filters-button');
-    fireEvent.click(resetButton);
+    await userEvent.click(resetButton);
 
     // Assert
     // Vehicle type should be deselected
@@ -429,15 +430,15 @@ describe('LineUpBuilder', () => {
 
     // Act
     // Select nation and vehicle type to enable game mode
-    fireEvent.click(screen.getByTestId('filter-card-usa'));
+    await userEvent.click(screen.getByTestId('filter-card-usa'));
     await waitFor(() => {
       expect(screen.getByTestId('filter-card-aviation')).not.toBeDisabled();
     });
-    fireEvent.click(screen.getByTestId('filter-card-aviation'));
+    await userEvent.click(screen.getByTestId('filter-card-aviation'));
     await waitFor(() => {
       expect(screen.getByTestId('filter-card-arcade')).not.toBeDisabled();
     });
-    fireEvent.click(screen.getByTestId('filter-card-arcade'));
+    await userEvent.click(screen.getByTestId('filter-card-arcade'));
 
     // Assert
     // Vehicles should be fetched with all roles selected by default
@@ -459,11 +460,11 @@ describe('LineUpBuilder', () => {
     });
 
     // Select nation and vehicle type but not game mode
-    fireEvent.click(screen.getByTestId('filter-card-usa'));
+    await userEvent.click(screen.getByTestId('filter-card-usa'));
     await waitFor(() => {
       expect(screen.getByTestId('filter-card-aviation')).not.toBeDisabled();
     });
-    fireEvent.click(screen.getByTestId('filter-card-aviation'));
+    await userEvent.click(screen.getByTestId('filter-card-aviation'));
 
     // Assert
     // Role tags should be disabled (game mode not selected yet)
@@ -485,15 +486,15 @@ describe('LineUpBuilder', () => {
 
     // Act
     // Select nation, vehicle type, and game mode
-    fireEvent.click(screen.getByTestId('filter-card-usa'));
+    await userEvent.click(screen.getByTestId('filter-card-usa'));
     await waitFor(() => {
       expect(screen.getByTestId('filter-card-aviation')).not.toBeDisabled();
     });
-    fireEvent.click(screen.getByTestId('filter-card-aviation'));
+    await userEvent.click(screen.getByTestId('filter-card-aviation'));
     await waitFor(() => {
       expect(screen.getByTestId('filter-card-arcade')).not.toBeDisabled();
     });
-    fireEvent.click(screen.getByTestId('filter-card-arcade'));
+    await userEvent.click(screen.getByTestId('filter-card-arcade'));
 
     // Wait for vehicles to load
     await waitFor(() => {
@@ -507,7 +508,7 @@ describe('LineUpBuilder', () => {
     // The tag element (not the label) should be inside a button or have specific class
     const bomberTag = bomberElements.find(el => el.closest('button') || el.parentElement?.getAttribute('role') === 'option');
     if (bomberTag) {
-      fireEvent.click(bomberTag);
+      await userEvent.click(bomberTag);
     }
 
     // Assert
@@ -532,15 +533,15 @@ describe('LineUpBuilder', () => {
     });
 
     // Select nation, vehicle type, and game mode
-    fireEvent.click(screen.getByTestId('filter-card-usa'));
+    await userEvent.click(screen.getByTestId('filter-card-usa'));
     await waitFor(() => {
       expect(screen.getByTestId('filter-card-aviation')).not.toBeDisabled();
     });
-    fireEvent.click(screen.getByTestId('filter-card-aviation'));
+    await userEvent.click(screen.getByTestId('filter-card-aviation'));
     await waitFor(() => {
       expect(screen.getByTestId('filter-card-arcade')).not.toBeDisabled();
     });
-    fireEvent.click(screen.getByTestId('filter-card-arcade'));
+    await userEvent.click(screen.getByTestId('filter-card-arcade'));
 
     // Wait for vehicles to load
     await waitFor(() => {
@@ -558,21 +559,21 @@ describe('LineUpBuilder', () => {
     // Try to deselect all roles by clicking each tag
     // With disallowEmptySelection=true, at least one tag must remain selected
     const fighterTag = screen.getByRole('row', { name: 'Fighter' });
-    fireEvent.click(fighterTag);
+    await userEvent.click(fighterTag);
 
     // After clicking Fighter, 2 should remain selected
     expect(getSelectedTags().length).toBe(2);
 
     // Click Bomber to try to deselect it
     const bomberTag = screen.getByRole('row', { name: 'Bomber' });
-    fireEvent.click(bomberTag);
+    await userEvent.click(bomberTag);
 
     // After clicking Bomber, 1 should remain selected (cannot deselect the last one)
     expect(getSelectedTags().length).toBe(1);
 
     // Try to click the last remaining tag - it should NOT deselect
     const lastTag = getSelectedTags()[0];
-    fireEvent.click(lastTag);
+    await userEvent.click(lastTag);
 
     // Should still have 1 selected (last tag cannot be deselected due to disallowEmptySelection=true)
     expect(getSelectedTags().length).toBe(1);
