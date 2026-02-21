@@ -35,14 +35,14 @@ describe('parser', () => {
 ```typescript
 // Assert
 // Role tags should be disabled (game mode not selected yet)
-const fighterTag = screen.getByText('Fighter').closest('div[class*="cursor-"]');
+const fighterTag = (await screen.findByText('Fighter')).closest('div[class*="cursor-"]');
 expect(fighterTag).toHaveAttribute('data-disabled', 'true');
 ```
 
 **Bad example (don't do this):**
 ```typescript
 // Assert - Role tags should be disabled (game mode not selected yet)
-const fighterTag = screen.getByText('Fighter').closest('div[class*="cursor-"]');
+const fighterTag = (await screen.findByText('Fighter')).closest('div[class*="cursor-"]');
 expect(fighterTag).toHaveAttribute('data-disabled', 'true');
 ```
 
@@ -80,12 +80,23 @@ npx vitest run -t "should extract vehicle name from table row"
 - Place AAA comments on their own line to help them stand out
 - Additional explanatory comments should be on a new line underneath the AAA comment
 - Mock Apollo Client with in-memory data for GraphQL queries
-- Prefer finding by roles where possible as it's more semantic
 - Use `toBeVisible()` for elements that should be visible, rather than `toBeInTheDocument()`
 - **Do not use snapshot testing** for frontend components
 - **Minimize mocks** - only mock the bare essentials (e.g., Apollo Client for GraphQL queries)
 - **Test behavior, not implementation** - prefer testing user interactions and accessibility
 - When adding new components, add basic test coverage for rendering and basic behavior
+
+### Selecting Elements
+
+- NEVER select elements using id or CSS classes
+- Prefer `data-test-id` only as a last resort when no semantic role or text is available
+- ALWAYS attempt to select elements using their WAI-ARIA (semantic) roles, fall back to selecting by text if this is not possible
+- IF you are unsure about how to select an element or can't follow the rules above, then ask a human to provide guidance or the rendered HTML
+- Query priority: `findByRole` → `findByLabelText` → `findByText` → `findByTestId`
+
+### Interacting with Elements
+
+- ALWAYS use `userEvent` from React Testing Library, NEVER use `fireEvent`
 
 ```typescript
 import { describe, it, expect } from 'vitest';
@@ -119,13 +130,13 @@ describe('VehicleName', () => {
 ```typescript
 // Assert
 // Role tags should be disabled (game mode not selected yet)
-const fighterTag = screen.getByText('Fighter').closest('div[class*="cursor-"]');
+const fighterTag = (await screen.findByText('Fighter')).closest('div[class*="cursor-"]');
 expect(fighterTag).toHaveAttribute('data-disabled', 'true');
 ```
 
 **Bad example (don't do this):**
 ```typescript
 // Assert - Role tags should be disabled (game mode not selected yet)
-const fighterTag = screen.getByText('Fighter').closest('div[class*="cursor-"]');
+const fighterTag = (await screen.findByText('Fighter')).closest('div[class*="cursor-"]');
 expect(fighterTag).toHaveAttribute('data-disabled', 'true');
 ```
