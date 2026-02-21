@@ -11,7 +11,7 @@ describe('FilterCardGroup', () => {
     { id: 'ussr', name: 'USSR', icon: '🇷🇺' },
   ];
 
-  it('should render label and all options', () => {
+  it('should render label and all options', async () => {
     // Arrange/Act
     render(
       <FilterCardGroup
@@ -23,13 +23,13 @@ describe('FilterCardGroup', () => {
     );
 
     // Assert
-    expect(screen.getByText('Nation')).toBeVisible();
-    expect(screen.getByText('USA')).toBeVisible();
-    expect(screen.getByText('Germany')).toBeVisible();
-    expect(screen.getByText('USSR')).toBeVisible();
+    expect(await screen.findByText('Nation')).toBeVisible();
+    expect(await screen.findByText('USA')).toBeVisible();
+    expect(await screen.findByText('Germany')).toBeVisible();
+    expect(await screen.findByText('USSR')).toBeVisible();
   });
 
-  it('should highlight selected option', () => {
+  it('should highlight selected option', async () => {
     // Arrange/Act
     render(
       <FilterCardGroup
@@ -41,7 +41,7 @@ describe('FilterCardGroup', () => {
     );
 
     // Assert
-    const selectedCard = screen.getByTestId('filter-card-germany');
+    const selectedCard = await screen.findByRole('button', { name: 'Germany' });
     expect(selectedCard).toHaveClass('ring-2');
     expect(selectedCard).toHaveClass('ring-blue-500');
   });
@@ -59,7 +59,7 @@ describe('FilterCardGroup', () => {
     );
 
     // Act
-    await userEvent.click(screen.getByTestId('filter-card-germany'));
+    await userEvent.click(await screen.findByRole('button', { name: 'Germany' }));
 
     // Assert
     expect(handleChange).toHaveBeenCalledWith('germany');
@@ -79,13 +79,13 @@ describe('FilterCardGroup', () => {
     );
 
     // Act
-    await userEvent.click(screen.getByTestId('filter-card-germany'));
+    await userEvent.click(await screen.findByRole('button', { name: 'Germany' }));
 
     // Assert
     expect(handleChange).not.toHaveBeenCalled();
   });
 
-  it('should show disabled styling when disabled', () => {
+  it('should show disabled styling when disabled', async () => {
     // Arrange/Act
     render(
       <FilterCardGroup
@@ -98,7 +98,7 @@ describe('FilterCardGroup', () => {
     );
 
     // Assert
-    const card = screen.getByTestId('filter-card-usa');
+    const card = await screen.findByRole('button', { name: 'USA' });
     expect(card).toHaveClass('opacity-50');
     expect(card).toBeDisabled();
   });
