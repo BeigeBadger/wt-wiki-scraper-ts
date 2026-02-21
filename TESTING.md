@@ -9,8 +9,8 @@
 - Name tests descriptively: "should extract vehicle name from table row"
 - Use AAA pattern: use `// Arrange/Act` when there is no setup, otherwise use `// Arrange` and `// Act` as separate comments
 - Place AAA comments on their own line to help them stand out
-- Additional explanatory comments should be on a new line underneath the AAA comment
-- Place // Act comment immediately before the action being tested
+- Additional explanatory comments should be on a new line underneath the AAA comment and use sentence case
+- Place the // Act comment immediately before the action being tested
 
 ```typescript
 import { describe, it, expect } from 'vitest';
