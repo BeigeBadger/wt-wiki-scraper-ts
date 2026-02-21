@@ -82,6 +82,18 @@ export class ScraperError extends Error {
 - Place sub-components at the top of the file, main export function at the bottom
 - Example: `Loading`, `ErrorOnLoad`, `PageHeader` as separate const arrow functions
 
+### Matching Existing Component Styles
+
+When adding new UI components to pages with existing components, always match the styling of those components:
+
+- **Labels**: Always use `text-sm font-medium text-gray-700`
+- **Option text**: Use `text-sm font-medium text-gray-800`
+- **Button/card padding**: Use `px-4 py-3` or similar
+- **Border radius**: Use `rounded-lg` (not `rounded-full` for buttons)
+- **Horizontal layouts**: Use `flex flex-row flex-wrap gap-2`
+
+Check existing components like `FilterCardGroup` and `BrRangeSlider` for reference before adding new UI elements.
+
 ## General Patterns
 
 - Use `async/await` over raw promises
