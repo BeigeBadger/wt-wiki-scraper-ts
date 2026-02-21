@@ -47,6 +47,12 @@ import { logInfo } from '../utils/logger.js';
 - **Space inside self-closing JSX tags** - use `<Component />` not `<Component/>`
 - **One blank line between logical sections** - imports → constants → sub-components → main function
 - **Always use curly braces** around blocks even when not required (e.g., `if (condition) { return value }`)
+- **Comments** should use sentence case
+
+```typescript
+// This is a good comment that uses sentence case
+// this is a bad comment that does not use sentence case
+```
 
 ## Error Handling
 
