@@ -34,16 +34,14 @@ describe('parser', () => {
 **Good example (do this):**
 ```typescript
 // Assert
-// Role tags should be disabled (game mode not selected yet)
-const fighterTag = (await screen.findByText('Fighter')).closest('div[class*="cursor-"]');
-expect(fighterTag).toHaveAttribute('data-disabled', 'true');
+// Reset button should be visible
+expect(await screen.findByText('Reset Filters')).toBeVisible();
 ```
 
 **Bad example (don't do this):**
 ```typescript
-// Assert - Role tags should be disabled (game mode not selected yet)
-const fighterTag = (await screen.findByText('Fighter')).closest('div[class*="cursor-"]');
-expect(fighterTag).toHaveAttribute('data-disabled', 'true');
+// Assert - Reset button should be visible
+expect(await screen.findByText('Reset Filters')).toBeVisible();
 ```
 
 ### Running Tests
@@ -129,14 +127,12 @@ describe('VehicleName', () => {
 **Good example (do this):**
 ```typescript
 // Assert
-// Role tags should be disabled (game mode not selected yet)
-const fighterTag = (await screen.findByText('Fighter')).closest('div[class*="cursor-"]');
-expect(fighterTag).toHaveAttribute('data-disabled', 'true');
+// Reset button should be visible
+expect(await screen.findByText('Reset Filters')).toBeVisible();
 ```
 
 **Bad example (don't do this):**
 ```typescript
-// Assert - Role tags should be disabled (game mode not selected yet)
-const fighterTag = (await screen.findByText('Fighter')).closest('div[class*="cursor-"]');
-expect(fighterTag).toHaveAttribute('data-disabled', 'true');
+// Assert - Reset button should be visible
+expect(await screen.findByText('Reset Filters')).toBeVisible();
 ```
