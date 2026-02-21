@@ -19,6 +19,7 @@
     "graphql": "^16.10.0",
     "react": "^19.0.0",
     "react-aria": "^3.38.1",
+    "react-aria-components": "^1.15.1",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.13.0"
   },

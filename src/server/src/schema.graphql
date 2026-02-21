@@ -1,8 +1,14 @@
 type Query {
-  vehicles(country: String, category: String, gameMode: String, minBr: Float, maxBr: Float): [Vehicle!]!
+  vehicles(country: String, category: String, gameMode: String, minBr: Float, maxBr: Float, roles: [String!]): [Vehicle!]!
   vehicle(id: ID!): Vehicle
   countries: [Country!]!
   categories: [VehicleCategory!]!
+  roles: [Role!]!
+}
+
+type Role {
+  id: String!
+  name: String!
 }
 
 type Vehicle {

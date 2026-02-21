@@ -3,6 +3,8 @@ import { useQuery, gql } from '@apollo/client';
 import { FilterCardGroup, FilterCardOption } from '../components/FilterCardGroup';
 import { BrRangeSlider } from '../components/BrRangeSlider';
 import { VehicleList } from '../components/VehicleList';
+import { TagGroup, Tag, TagList, composeRenderProps } from 'react-aria-components';
+import type { Selection } from 'react-aria-components';
 
 const LINE_UP_VEHICLES = gql`
   query LineUpVehicles(
@@ -11,6 +13,7 @@ const LINE_UP_VEHICLES = gql`
     $gameMode: String
     $minBr: Float
     $maxBr: Float
+    $roles: [String!]
   ) {
     vehicles(
       country: $country
@@ -18,6 +21,7 @@ const LINE_UP_VEHICLES = gql`
       gameMode: $gameMode
       minBr: $minBr
       maxBr: $maxBr
+      roles: $roles
     ) {
       id
       name
@@ -46,6 +50,15 @@ const NATIONS_QUERY = gql`
 const CATEGORIES_QUERY = gql`
   query Categories {
     categories {
+      id
+      name
+    }
+  }
+`;
+
+const ROLES_QUERY = gql`
+  query Roles {
+    roles {
       id
       name
     }
@@ -84,6 +97,7 @@ type FilterState = {
   nation: string | null;
   vehicleType: string | null;
   gameMode: string | null;
+  roles: string[];
   brRange: [number, number];
 };
 
@@ -91,6 +105,7 @@ type FilterAction =
   | { type: 'SET_NATION'; payload: string }
   | { type: 'SET_VEHICLE_TYPE'; payload: string }
   | { type: 'SET_GAME_MODE'; payload: string }
+  | { type: 'SET_ROLES'; payload: string[] }
   | { type: 'SET_BR_RANGE'; payload: [number, number] }
   | { type: 'RESET_ALL' };
 
@@ -102,18 +117,23 @@ function filterReducer(state: FilterState, action: FilterAction): FilterState {
       return { ...state, vehicleType: action.payload };
     case 'SET_GAME_MODE':
       return { ...state, gameMode: action.payload };
+    case 'SET_ROLES':
+      return { ...state, roles: action.payload };
     case 'SET_BR_RANGE':
       return { ...state, brRange: action.payload };
     case 'RESET_ALL':
       return initialState;
+    default:
+      return state;
   }
 }
 
-function isAtDefault(state: FilterState): boolean {
+function isAtDefault(state: FilterState, rolesCount: number): boolean {
   return (
     state.nation === null &&
     state.vehicleType === null &&
     state.gameMode === null &&
+    state.roles.length === rolesCount &&
     state.brRange[0] === DEFAULT_BR_RANGE[0] &&
     state.brRange[1] === DEFAULT_BR_RANGE[1]
   );
@@ -123,6 +143,7 @@ const initialState: FilterState = {
   nation: null,
   vehicleType: null,
   gameMode: null,
+  roles: [],
   brRange: DEFAULT_BR_RANGE,
 };
 
@@ -147,14 +168,24 @@ export function LineUpBuilder(): React.ReactElement {
 
   const { data: nationsData } = useQuery(NATIONS_QUERY);
   const { data: categoriesData } = useQuery(CATEGORIES_QUERY);
+  const { data: rolesData } = useQuery(ROLES_QUERY);
 
-  const shouldFetchVehicles = state.nation && state.vehicleType && state.gameMode;
+  const roleOptions = rolesData?.roles ?? [];
+
+  React.useEffect(() => {
+    if (roleOptions.length > 0 && state.roles.length === 0) {
+      dispatch({ type: 'SET_ROLES', payload: roleOptions.map((r: { id: string }) => r.id) });
+    }
+  }, [roleOptions]);
+
+  const shouldFetchVehicles = state.nation && state.vehicleType && state.gameMode && state.roles.length > 0;
 
   const { data: vehiclesData, loading: vehiclesLoading, error: vehiclesError } = useQuery(LINE_UP_VEHICLES, {
     variables: {
       country: state.nation,
       category: state.vehicleType,
       gameMode: state.gameMode,
+      roles: state.roles,
       minBr: shouldFetchVehicles ? state.brRange[0] : undefined,
       maxBr: shouldFetchVehicles ? state.brRange[1] : undefined,
     },
@@ -175,7 +206,7 @@ export function LineUpBuilder(): React.ReactElement {
       icon: CATEGORY_ICONS[c.id],
     })) ?? [];
 
-  const atDefault = isAtDefault(state);
+  const atDefault = isAtDefault(state, roleOptions.length);
 
   return (
     <div className="flex flex-col gap-6 p-4 max-w-4xl mx-auto">
@@ -186,11 +217,10 @@ export function LineUpBuilder(): React.ReactElement {
           onClick={() => dispatch({ type: 'RESET_ALL' })}
           disabled={atDefault}
           data-testid="reset-filters-button"
-          className={`border rounded-lg px-4 py-2 text-sm font-medium ${
-            atDefault
+          className={`border rounded-lg px-4 py-2 text-sm font-medium ${atDefault
               ? 'opacity-50 cursor-not-allowed border-gray-200 text-gray-400'
               : 'border-gray-300 text-gray-700 hover:bg-gray-100 cursor-pointer'
-          }`}
+            }`}
         >
           Reset Filters
         </button>
@@ -219,6 +249,39 @@ export function LineUpBuilder(): React.ReactElement {
           onChange={(id) => dispatch({ type: 'SET_GAME_MODE', payload: id })}
           disabled={!state.vehicleType}
         />
+
+        <label className="block text-sm font-medium text-gray-700 mb-2">Vehicle Role</label>
+        <TagGroup
+          disallowEmptySelection={true}
+          className="flex flex-col gap-2"
+          selectionMode="multiple"
+          selectedKeys={new Set(state.roles) as Selection}
+          onSelectionChange={(keys) =>
+            dispatch({ type: 'SET_ROLES', payload: [...keys] as string[] })
+          }
+          disabledKeys={!state.gameMode ? roleOptions.map((r: { id: string }) => r.id) : []}
+        >
+          <TagList className="flex flex-wrap gap-1">
+            {roleOptions.map((role: { id: string; name: string }) => (
+              <Tag
+                key={role.id}
+                id={role.id}
+                className={composeRenderProps(
+                  '',
+                  (_, renderProps) =>
+                    `cursor-default text-sm font-medium rounded-lg border px-4 py-2 flex items-center max-w-fit transition ${renderProps.isDisabled
+                      ? 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed'
+                      : renderProps.isSelected
+                        ? 'bg-blue-600 text-white border-transparent'
+                        : 'bg-white text-gray-800 border-gray-200 hover:border-gray-400'
+                    }`
+                )}
+              >
+                {role.name}
+              </Tag>
+            ))}
+          </TagList>
+        </TagGroup>
 
         <BrRangeSlider
           value={state.brRange}

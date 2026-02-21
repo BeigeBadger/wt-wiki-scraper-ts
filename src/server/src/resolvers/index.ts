@@ -73,7 +73,7 @@ export const resolvers = {
   Query: {
     vehicles: async (
       _parent: unknown,
-      args: { country?: string; category?: string; gameMode?: string; minBr?: number; maxBr?: number }
+      args: { country?: string; category?: string; gameMode?: string; minBr?: number; maxBr?: number; roles?: string[] }
     ): Promise<VehicleDocument[]> => {
       if (!db) {
         throw new Error('Database not connected');
@@ -85,6 +85,9 @@ export const resolvers = {
       }
       if (args.category) {
         filter.category = args.category;
+      }
+      if (args.roles && args.roles.length > 0) {
+        filter.role = { $in: args.roles };
       }
 
       const collection = getVehiclesCollection(db);
@@ -129,6 +132,17 @@ export const resolvers = {
 
     categories: (): { id: string; name: string }[] => {
       return Object.entries(categoryNames).map(([id, name]) => ({ id, name }));
+    },
+
+    roles: async (): Promise<{ id: string; name: string }[]> => {
+      if (!db) {
+        throw new Error('Database not connected');
+      }
+      const collection = getVehiclesCollection(db);
+      const roleDocs = await collection.distinct('role');
+      return roleDocs
+        .filter((r): r is string => r != null)
+        .map((r) => ({ id: r, name: r }));
     },
   },
 
