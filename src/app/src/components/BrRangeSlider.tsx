@@ -65,7 +65,7 @@ export function BrRangeSlider({
   );
 
   return (
-    <div {...groupProps} className="flex flex-col gap-2" data-testid="br-range-slider">
+    <div {...groupProps} className="flex flex-col gap-2">
       <div className="flex justify-between items-center">
         <label {...labelProps} className="text-sm font-medium text-gray-700">
           Battle Rating Range

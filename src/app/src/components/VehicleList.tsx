@@ -35,10 +35,9 @@ export function VehicleList({ vehicles }: VehicleListProps): React.ReactElement 
             <tr
               key={vehicle.id}
               className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50' + ' hover:bg-gray-100'}
-              data-testid={`vehicle-${vehicle.id}`}
             >
-              <td className="border px-4 py-2" data-testid="vehicle-name">{vehicle.name}</td>
-              <td className="border px-4 py-2" data-testid="vehicle-country">{vehicle.country}</td>
+              <td className="border px-4 py-2">{vehicle.name}</td>
+              <td className="border px-4 py-2">{vehicle.country}</td>
               <td className="border px-4 py-2">{vehicle.category}</td>
               <td className="border px-4 py-2">{vehicle.rank}</td>
               <td className="border px-4 py-2">{vehicle.role}</td>

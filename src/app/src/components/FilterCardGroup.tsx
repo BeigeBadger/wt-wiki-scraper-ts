@@ -34,7 +34,6 @@ export function FilterCardGroup({
               type="button"
               disabled={disabled}
               onClick={() => onChange(option.id)}
-              data-testid={`filter-card-${option.id}`}
               className={[
                 'flex flex-col items-center justify-center',
                 'border rounded-lg px-4 py-3 min-w-[80px]',

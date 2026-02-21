@@ -216,7 +216,6 @@ export function LineUpBuilder(): React.ReactElement {
           type="button"
           onClick={() => dispatch({ type: 'RESET_ALL' })}
           disabled={atDefault}
-          data-testid="reset-filters-button"
           className={`border rounded-lg px-4 py-2 text-sm font-medium ${atDefault
               ? 'opacity-50 cursor-not-allowed border-gray-200 text-gray-400'
               : 'border-gray-300 text-gray-700 hover:bg-gray-100 cursor-pointer'

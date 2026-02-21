@@ -87,10 +87,10 @@ npx vitest run -t "should extract vehicle name from table row"
 ### Selecting Elements
 
 - NEVER select elements using id or CSS classes
-- Prefer `data-test-id` only as a last resort when no semantic role or text is available
+- NEVER add `data-test-id` attributes to components - write tests that select elements using WAI-ARIA roles or text content instead
 - ALWAYS attempt to select elements using their WAI-ARIA (semantic) roles, fall back to selecting by text if this is not possible
 - IF you are unsure about how to select an element or can't follow the rules above, then ask a human to provide guidance or the rendered HTML
-- Query priority: `findByRole` → `findByLabelText` → `findByText` → `findByTestId`
+- Query priority: `findByRole` → `findByLabelText` → `findByText`
 
 ### Interacting with Elements
 
