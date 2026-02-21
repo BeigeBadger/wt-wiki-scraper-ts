@@ -20,7 +20,8 @@ describe('BrRangeSlider', () => {
       <BrRangeSlider value={[3.0, 5.0]} onChange={vi.fn()} />
     );
 
-    // Assert - slider snaps to step increments, so 3.0 becomes 3.1, 5.0 becomes 5.1
+    // Assert
+    // Slider snaps to step increments, so 3.0 becomes 3.1, 5.0 becomes 5.1
     expect(screen.getByText('3.1 - 5.1')).toBeVisible();
   });
 
@@ -30,7 +31,8 @@ describe('BrRangeSlider', () => {
       <BrRangeSlider value={[1.0, 11.7]} onChange={vi.fn()} disabled={true} />
     );
 
-    // Assert - check that the track has disabled styling
+    // Assert
+    // Check that the track has disabled styling
     const track = screen.getByTestId('br-range-slider').querySelector('.bg-gray-100');
     expect(track).toBeInTheDocument();
   });

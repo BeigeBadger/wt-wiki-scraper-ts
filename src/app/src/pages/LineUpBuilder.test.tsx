@@ -217,22 +217,26 @@ describe('LineUpBuilder', () => {
       expect(screen.getByText('United States')).toBeVisible();
     });
 
-    // Act - select nation, then vehicle type
+    // Act
+    // Select nation, then vehicle type
     fireEvent.click(screen.getByTestId('filter-card-usa'));
     await waitFor(() => {
       expect(screen.getByTestId('filter-card-aviation')).not.toBeDisabled();
     });
     fireEvent.click(screen.getByTestId('filter-card-aviation'));
 
-    // Assert - vehicle type selected
+    // Assert
+    // Vehicle type selected
     await waitFor(() => {
       expect(screen.getByTestId('filter-card-aviation')).toHaveClass('ring-2');
     });
 
-    // Act - change nation
+    // Act
+    // Change nation
     fireEvent.click(screen.getByTestId('filter-card-germany'));
 
-    // Assert - vehicle type should remain selected (not deselected)
+    // Assert
+    // Vehicle type should remain selected (not deselected)
     await waitFor(() => {
       const aviationCard = screen.getByTestId('filter-card-aviation');
       expect(aviationCard).toHaveClass('ring-2');
@@ -251,7 +255,8 @@ describe('LineUpBuilder', () => {
       expect(screen.getByText('United States')).toBeVisible();
     });
 
-    // Act - select all filters
+    // Act
+    // Select all filters
     fireEvent.click(screen.getByTestId('filter-card-usa'));
     await waitFor(() => {
       expect(screen.getByTestId('filter-card-aviation')).not.toBeDisabled();
@@ -280,7 +285,8 @@ describe('LineUpBuilder', () => {
       expect(screen.getByText('United States')).toBeVisible();
     });
 
-    // Act - select all filters
+    // Act
+    // Select all filters
     fireEvent.click(screen.getByTestId('filter-card-usa'));
     await waitFor(() => {
       expect(screen.getByTestId('filter-card-aviation')).not.toBeDisabled();
@@ -291,15 +297,18 @@ describe('LineUpBuilder', () => {
     });
     fireEvent.click(screen.getByTestId('filter-card-arcade'));
 
-    // Assert - BR range slider is visible after all filters selected
+    // Assert
+    // BR range slider is visible after all filters selected
     await waitFor(() => {
       expect(screen.getByTestId('br-range-slider')).toBeVisible();
     });
 
-    // Act - change nation
+    // Act
+    // Change nation
     fireEvent.click(screen.getByTestId('filter-card-germany'));
 
-    // Assert - BR range slider is still visible and enabled after filter change
+    // Assert
+    // BR range slider is still visible and enabled after filter change
     await waitFor(() => {
       expect(screen.getByTestId('br-range-slider')).toBeVisible();
       expect(screen.getByTestId('br-range-slider')).not.toHaveAttribute('aria-disabled', 'true');
@@ -318,7 +327,8 @@ describe('LineUpBuilder', () => {
       expect(screen.getByText('United States')).toBeVisible();
     });
 
-    // Assert - Reset button should be visible
+    // Assert
+    // Reset button should be visible
     expect(screen.getByTestId('reset-filters-button')).toBeVisible();
     expect(screen.getByText('Reset Filters')).toBeVisible();
   });
@@ -335,7 +345,8 @@ describe('LineUpBuilder', () => {
       expect(screen.getByText('United States')).toBeVisible();
     });
 
-    // Assert - Reset button should be disabled at default
+    // Assert
+    // Reset button should be disabled at default
     const resetButton = screen.getByTestId('reset-filters-button');
     expect(resetButton).toBeDisabled();
   });
@@ -352,7 +363,8 @@ describe('LineUpBuilder', () => {
       expect(screen.getByText('United States')).toBeVisible();
     });
 
-    // Act - select all filters
+    // Act
+    // Select all filters
     fireEvent.click(screen.getByTestId('filter-card-usa'));
     await waitFor(() => {
       expect(screen.getByTestId('filter-card-aviation')).not.toBeDisabled();
@@ -363,21 +375,25 @@ describe('LineUpBuilder', () => {
     });
     fireEvent.click(screen.getByTestId('filter-card-arcade'));
 
-    // Assert - vehicle type is selected
+    // Assert
+    // Vehicle type is selected
     await waitFor(() => {
       expect(screen.getByTestId('filter-card-aviation')).toHaveClass('ring-2');
     });
 
-    // Act - click Reset button
+    // Act
+    // Click Reset button
     const resetButton = screen.getByTestId('reset-filters-button');
     fireEvent.click(resetButton);
 
-    // Assert - vehicle type should be deselected
+    // Assert
+    // Vehicle type should be deselected
     await waitFor(() => {
       expect(screen.getByTestId('filter-card-aviation')).not.toHaveClass('ring-2');
     });
 
-    // Assert - vehicle type filter should be disabled again
+    // Assert
+    // Vehicle type filter should be disabled again
     await waitFor(() => {
       expect(screen.getByTestId('filter-card-aviation')).toBeDisabled();
     });
@@ -503,7 +519,7 @@ describe('LineUpBuilder', () => {
 
   it('should not allow unselecting the last role tag due to disallowEmptySelection', async () => {
     // Arrange
-    // disallowEmptySelection is set to true on the TagGroup
+    // The disallowEmptySelection is set to true on the TagGroup
     // This test verifies that attempting to deselect all roles keeps at least one selected
     render(
       <MockedProvider mocks={mocks} addTypename={false}>

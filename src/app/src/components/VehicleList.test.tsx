@@ -113,7 +113,7 @@ describe('VehicleList', () => {
     // Assert
     const table = await screen.findByRole("table")
     const rowGroups = await within(table).findAllByRole("rowgroup")
-    // rowGroups[0] is the thead element
+    // NOTE: rowGroups[0] is the thead element
     const tableBody = rowGroups[1]
 
     const vehicleRows = await within(tableBody).findAllByRole("row");
