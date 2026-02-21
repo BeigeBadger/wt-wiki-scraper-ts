@@ -56,7 +56,7 @@ describe('VehicleList', () => {
     render(<VehicleList vehicles={[mockVehicles[0]]} />);
 
     // Assert
-    const vehicleName = await screen.findByTestId('vehicle-name');
+    const vehicleName = await screen.findByRole('cell', { name: /\[sweden\]bf 109 g\-2/i })
 
     expect(vehicleName).toBeVisible()
     expect(vehicleName.textContent).toBe('[Sweden]Bf 109 G-2');
@@ -67,7 +67,7 @@ describe('VehicleList', () => {
     render(<VehicleList vehicles={[mockVehicles[1]]} />);
 
     // Assert
-    const vehicleName = await screen.findByTestId('vehicle-name');
+    const vehicleName = await screen.findByRole('cell', { name: /\[china\]a6m2/i })
 
     expect(vehicleName).toBeVisible();
     expect(vehicleName.textContent).toBe('[China]A6M2');
@@ -78,7 +78,7 @@ describe('VehicleList', () => {
     render(<VehicleList vehicles={[mockVehicles[2]]} />);
 
     // Assert
-    const vehicleName = await screen.findByTestId('vehicle-name');
+    const vehicleName = await screen.findByRole('cell', { name: /\[japan\]f\-86f\-40/i })
 
     expect(vehicleName).toBeVisible();
     expect(vehicleName.textContent).toBe('[Japan]F-86F-40');
@@ -89,7 +89,7 @@ describe('VehicleList', () => {
     render(<VehicleList vehicles={[mockVehicles[3]]} />);
 
     // Assert
-    const vehicleName = await screen.findByTestId('vehicle-name');
+    const vehicleName = await screen.findByRole('cell', { name: /\[usa\]bf 109 f\-4/i })
 
     expect(vehicleName).toBeVisible();
     expect(vehicleName.textContent).toBe('[USA]Bf 109 F-4');
@@ -100,7 +100,8 @@ describe('VehicleList', () => {
     render(<VehicleList vehicles={[mockVehicles[4]]} />);
 
     // Assert
-    const vehicleName = await screen.findByTestId('vehicle-name');
+    const vehicleName = await screen.findByRole('cell', { name: /bf 109 g\-2/i })
+
 
     expect(vehicleName).toBeVisible();
     expect(vehicleName.textContent).toBe('Bf 109 G-2');

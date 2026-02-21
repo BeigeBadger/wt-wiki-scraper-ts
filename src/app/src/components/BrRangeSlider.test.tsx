@@ -11,7 +11,7 @@ describe('BrRangeSlider', () => {
 
     // Assert
     expect(await screen.findByText('Battle Rating Range')).toBeVisible();
-    expect(await screen.findByTestId('br-range-slider')).toBeVisible();
+    expect(await screen.findByRole('group', { name: /battle rating range/i })).toBeVisible();
   });
 
   it('should display current values', async () => {
@@ -33,7 +33,7 @@ describe('BrRangeSlider', () => {
 
     // Assert
     // Check that the track has disabled styling
-    const slider = await screen.findByTestId('br-range-slider');
+    const slider = await screen.findByRole('group', { name: /battle rating range/i });
     const track = slider.querySelector('.bg-gray-100');
     expect(track).toBeInTheDocument();
   });
