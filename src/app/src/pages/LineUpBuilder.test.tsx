@@ -180,8 +180,8 @@ describe('LineUpBuilder', () => {
     );
 
     // Assert
-    await waitFor(() => {
-      expect(screen.getByTestId('filter-card-aviation')).toBeDisabled();
+    await waitFor(async () => {
+      expect(await screen.findByRole('button', { name: /aviation/i })).toBeDisabled();
     });
   });
 
@@ -198,11 +198,11 @@ describe('LineUpBuilder', () => {
     });
 
     // Act
-    await userEvent.click(screen.getByTestId('filter-card-usa'));
+    await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
 
     // Assert
-    await waitFor(() => {
-      expect(screen.getByTestId('filter-card-aviation')).not.toBeDisabled();
+    await waitFor(async () => {
+      expect(await screen.findByRole('button', { name: /aviation/i })).not.toBeDisabled();
     });
   });
 
@@ -220,26 +220,26 @@ describe('LineUpBuilder', () => {
 
     // Act
     // Select nation, then vehicle type
-    await userEvent.click(screen.getByTestId('filter-card-usa'));
-    await waitFor(() => {
-      expect(screen.getByTestId('filter-card-aviation')).not.toBeDisabled();
+    await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
+    await waitFor(async () => {
+      expect(await screen.findByRole('button', { name: /aviation/i })).not.toBeDisabled();
     });
-    await userEvent.click(screen.getByTestId('filter-card-aviation'));
+    await userEvent.click(await screen.findByRole('button', { name: /aviation/i }));
 
     // Assert
     // Vehicle type selected
-    await waitFor(() => {
-      expect(screen.getByTestId('filter-card-aviation')).toHaveClass('ring-2');
+    await waitFor(async () => {
+      expect(await screen.findByRole('button', { name: /aviation/i })).toHaveClass('ring-2');
     });
 
     // Act
     // Change nation
-    await userEvent.click(screen.getByTestId('filter-card-germany'));
+    await userEvent.click(await screen.findByRole('button', { name: /germany/i }));
 
     // Assert
     // Vehicle type should remain selected (not deselected)
-    await waitFor(() => {
-      const aviationCard = screen.getByTestId('filter-card-aviation');
+    await waitFor(async () => {
+      const aviationCard = await screen.findByRole('button', { name: /aviation/i });
       expect(aviationCard).toHaveClass('ring-2');
     });
   });
@@ -258,15 +258,15 @@ describe('LineUpBuilder', () => {
 
     // Act
     // Select all filters
-    await userEvent.click(screen.getByTestId('filter-card-usa'));
-    await waitFor(() => {
-      expect(screen.getByTestId('filter-card-aviation')).not.toBeDisabled();
+    await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
+    await waitFor(async () => {
+      expect(await screen.findByRole('button', { name: /aviation/i })).not.toBeDisabled();
     });
-    await userEvent.click(screen.getByTestId('filter-card-aviation'));
-    await waitFor(() => {
-      expect(screen.getByTestId('filter-card-arcade')).not.toBeDisabled();
+    await userEvent.click(await screen.findByRole('button', { name: /aviation/i }));
+    await waitFor(async () => {
+      expect(await screen.findByRole('button', { name: /arcade/i })).not.toBeDisabled();
     });
-    await userEvent.click(screen.getByTestId('filter-card-arcade'));
+    await userEvent.click(await screen.findByRole('button', { name: /arcade/i }));
 
     // Assert
     await waitFor(() => {
@@ -288,31 +288,33 @@ describe('LineUpBuilder', () => {
 
     // Act
     // Select all filters
-    await userEvent.click(screen.getByTestId('filter-card-usa'));
-    await waitFor(() => {
-      expect(screen.getByTestId('filter-card-aviation')).not.toBeDisabled();
+    await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
+    await waitFor(async () => {
+      expect(await screen.findByRole('button', { name: /aviation/i })).not.toBeDisabled();
     });
-    await userEvent.click(screen.getByTestId('filter-card-aviation'));
-    await waitFor(() => {
-      expect(screen.getByTestId('filter-card-arcade')).not.toBeDisabled();
+    await userEvent.click(await screen.findByRole('button', { name: /aviation/i }));
+    await waitFor(async () => {
+      expect(await screen.findByRole('button', { name: /arcade/i })).not.toBeDisabled();
     });
-    await userEvent.click(screen.getByTestId('filter-card-arcade'));
+    await userEvent.click(await screen.findByRole('button', { name: /arcade/i }));
+
+    screen.logTestingPlaygroundURL()
 
     // Assert
     // BR range slider is visible after all filters selected
-    await waitFor(() => {
-      expect(screen.getByTestId('br-range-slider')).toBeVisible();
+    await waitFor(async () => {
+      expect(await screen.findByRole('group', { name: /battle rating range/i })).toBeVisible();
     });
 
     // Act
     // Change nation
-    await userEvent.click(screen.getByTestId('filter-card-germany'));
+    await userEvent.click(await screen.findByRole('button', { name: /germany/i }));
 
     // Assert
     // BR range slider is still visible and enabled after filter change
-    await waitFor(() => {
-      expect(screen.getByTestId('br-range-slider')).toBeVisible();
-      expect(screen.getByTestId('br-range-slider')).not.toHaveAttribute('aria-disabled', 'true');
+    await waitFor(async () => {
+      expect(await screen.findByRole('group', { name: /battle rating range/i })).toBeVisible();
+      expect(await screen.findByRole('group', { name: /battle rating range/i })).not.toHaveAttribute('aria-disabled', 'true');
     });
   });
 
@@ -330,7 +332,7 @@ describe('LineUpBuilder', () => {
 
     // Assert
     // Reset button should be visible
-    expect(screen.getByTestId('reset-filters-button')).toBeVisible();
+    expect(await screen.findByRole('button', { name: /reset filters/i })).toBeVisible();
     expect(screen.getByText('Reset Filters')).toBeVisible();
   });
 
@@ -348,7 +350,7 @@ describe('LineUpBuilder', () => {
 
     // Assert
     // Reset button should be disabled at default
-    const resetButton = screen.getByTestId('reset-filters-button');
+    const resetButton = await screen.findByRole('button', { name: /reset filters/i });
     expect(resetButton).toBeDisabled();
   });
 
@@ -366,37 +368,37 @@ describe('LineUpBuilder', () => {
 
     // Act
     // Select all filters
-    await userEvent.click(screen.getByTestId('filter-card-usa'));
-    await waitFor(() => {
-      expect(screen.getByTestId('filter-card-aviation')).not.toBeDisabled();
+    await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
+    await waitFor(async () => {
+      expect(await screen.findByRole('button', { name: /aviation/i })).not.toBeDisabled();
     });
-    await userEvent.click(screen.getByTestId('filter-card-aviation'));
-    await waitFor(() => {
-      expect(screen.getByTestId('filter-card-arcade')).not.toBeDisabled();
+    await userEvent.click(await screen.findByRole('button', { name: /aviation/i }));
+    await waitFor(async () => {
+      expect(await screen.findByRole('button', { name: /arcade/i })).not.toBeDisabled();
     });
-    await userEvent.click(screen.getByTestId('filter-card-arcade'));
+    await userEvent.click(await screen.findByRole('button', { name: /arcade/i }));
 
     // Assert
     // Vehicle type is selected
-    await waitFor(() => {
-      expect(screen.getByTestId('filter-card-aviation')).toHaveClass('ring-2');
+    await waitFor(async () => {
+      expect(await screen.findByRole('button', { name: /aviation/i })).toHaveClass('ring-2');
     });
 
     // Act
     // Click Reset button
-    const resetButton = screen.getByTestId('reset-filters-button');
+    const resetButton = await screen.findByRole('button', { name: /reset filters/i });
     await userEvent.click(resetButton);
 
     // Assert
     // Vehicle type should be deselected
-    await waitFor(() => {
-      expect(screen.getByTestId('filter-card-aviation')).not.toHaveClass('ring-2');
+    await waitFor(async () => {
+      expect(await screen.findByRole('button', { name: /aviation/i })).not.toHaveClass('ring-2');
     });
 
     // Assert
     // Vehicle type filter should be disabled again
-    await waitFor(() => {
-      expect(screen.getByTestId('filter-card-aviation')).toBeDisabled();
+    await waitFor(async () => {
+      expect(await screen.findByRole('button', { name: /aviation/i })).toBeDisabled();
     });
   });
 
@@ -430,15 +432,15 @@ describe('LineUpBuilder', () => {
 
     // Act
     // Select nation and vehicle type to enable game mode
-    await userEvent.click(screen.getByTestId('filter-card-usa'));
-    await waitFor(() => {
-      expect(screen.getByTestId('filter-card-aviation')).not.toBeDisabled();
+    await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
+    await waitFor(async () => {
+      expect(await screen.findByRole('button', { name: /aviation/i })).not.toBeDisabled();
     });
-    await userEvent.click(screen.getByTestId('filter-card-aviation'));
-    await waitFor(() => {
-      expect(screen.getByTestId('filter-card-arcade')).not.toBeDisabled();
+    await userEvent.click(await screen.findByRole('button', { name: /aviation/i }));
+    await waitFor(async () => {
+      expect(await screen.findByRole('button', { name: /arcade/i })).not.toBeDisabled();
     });
-    await userEvent.click(screen.getByTestId('filter-card-arcade'));
+    await userEvent.click(await screen.findByRole('button', { name: /arcade/i }));
 
     // Assert
     // Vehicles should be fetched with all roles selected by default
@@ -460,11 +462,11 @@ describe('LineUpBuilder', () => {
     });
 
     // Select nation and vehicle type but not game mode
-    await userEvent.click(screen.getByTestId('filter-card-usa'));
-    await waitFor(() => {
-      expect(screen.getByTestId('filter-card-aviation')).not.toBeDisabled();
+    await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
+    await waitFor(async () => {
+      expect(await screen.findByRole('button', { name: /aviation/i })).not.toBeDisabled();
     });
-    await userEvent.click(screen.getByTestId('filter-card-aviation'));
+    await userEvent.click(await screen.findByRole('button', { name: /aviation/i }));
 
     // Assert
     // Role tags should be disabled (game mode not selected yet)
@@ -486,15 +488,15 @@ describe('LineUpBuilder', () => {
 
     // Act
     // Select nation, vehicle type, and game mode
-    await userEvent.click(screen.getByTestId('filter-card-usa'));
-    await waitFor(() => {
-      expect(screen.getByTestId('filter-card-aviation')).not.toBeDisabled();
+    await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
+    await waitFor(async () => {
+      expect(await screen.findByRole('button', { name: /aviation/i })).not.toBeDisabled();
     });
-    await userEvent.click(screen.getByTestId('filter-card-aviation'));
-    await waitFor(() => {
-      expect(screen.getByTestId('filter-card-arcade')).not.toBeDisabled();
+    await userEvent.click(await screen.findByRole('button', { name: /aviation/i }));
+    await waitFor(async () => {
+      expect(await screen.findByRole('button', { name: /arcade/i })).not.toBeDisabled();
     });
-    await userEvent.click(screen.getByTestId('filter-card-arcade'));
+    await userEvent.click(await screen.findByRole('button', { name: /arcade/i }));
 
     // Wait for vehicles to load
     await waitFor(() => {
@@ -533,15 +535,15 @@ describe('LineUpBuilder', () => {
     });
 
     // Select nation, vehicle type, and game mode
-    await userEvent.click(screen.getByTestId('filter-card-usa'));
-    await waitFor(() => {
-      expect(screen.getByTestId('filter-card-aviation')).not.toBeDisabled();
+    await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
+    await waitFor(async () => {
+      expect(await screen.findByRole('button', { name: /aviation/i })).not.toBeDisabled();
     });
-    await userEvent.click(screen.getByTestId('filter-card-aviation'));
-    await waitFor(() => {
-      expect(screen.getByTestId('filter-card-arcade')).not.toBeDisabled();
+    await userEvent.click(await screen.findByRole('button', { name: /aviation/i }));
+    await waitFor(async () => {
+      expect(await screen.findByRole('button', { name: /arcade/i })).not.toBeDisabled();
     });
-    await userEvent.click(screen.getByTestId('filter-card-arcade'));
+    await userEvent.click(await screen.findByRole('button', { name: /arcade/i }));
 
     // Wait for vehicles to load
     await waitFor(() => {
