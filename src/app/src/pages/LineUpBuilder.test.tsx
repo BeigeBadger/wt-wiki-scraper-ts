@@ -153,7 +153,7 @@ describe('LineUpBuilder', () => {
     );
 
     // Assert
-    expect(screen.getByText('Line Up Builder')).toBeVisible();
+    expect(screen.getByText(/line up builder/i)).toBeVisible();
   });
 
   it('should render nation options after loading', async () => {
@@ -166,10 +166,10 @@ describe('LineUpBuilder', () => {
 
     // Assert
     await waitFor(() => {
-      expect(screen.getByText('United States')).toBeVisible();
+      expect(screen.getByText(/united states/i)).toBeVisible();
     });
 
-    expect(screen.getByText('Germany')).toBeVisible();
+    expect(screen.getByText(/germany/i)).toBeVisible();
   });
 
   it('should disable vehicle type filter until nation is selected', async () => {
@@ -195,7 +195,7 @@ describe('LineUpBuilder', () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByText('United States')).toBeVisible();
+      expect(screen.getByText(/united states/i)).toBeVisible();
     });
 
     // Act
@@ -218,7 +218,7 @@ describe('LineUpBuilder', () => {
     // Act
     // Select nation, then vehicle type
     await waitFor(() => {
-      expect(screen.getByText('United States')).toBeVisible();
+      expect(screen.getByText(/united states/i)).toBeVisible();
     });
     await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
 
@@ -257,7 +257,7 @@ describe('LineUpBuilder', () => {
     // Act
     // Select all filters
     await waitFor(() => {
-      expect(screen.getByText('United States')).toBeVisible();
+      expect(screen.getByText(/united states/i)).toBeVisible();
     });
 
     await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
@@ -274,7 +274,7 @@ describe('LineUpBuilder', () => {
 
     // Assert
     await waitFor(() => {
-      expect(screen.getByText('P-51 Mustang')).toBeVisible();
+      expect(screen.getByText(/p-51 mustang/i)).toBeVisible();
     });
   });
 
@@ -289,7 +289,7 @@ describe('LineUpBuilder', () => {
     // Act
     // Select all filters
     await waitFor(() => {
-      expect(screen.getByText('United States')).toBeVisible();
+      expect(screen.getByText(/united states/i)).toBeVisible();
     });
     await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
 
@@ -330,13 +330,13 @@ describe('LineUpBuilder', () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByText('United States')).toBeVisible();
+      expect(screen.getByText(/united states/i)).toBeVisible();
     });
 
     // Assert
     // Reset button should be visible
     expect(await screen.findByRole('button', { name: /reset filters/i })).toBeVisible();
-    expect(screen.getByText('Reset Filters')).toBeVisible();
+    expect(screen.getByText(/reset filters/i)).toBeVisible();
   });
 
   it('should disable Reset button when filters are at default', async () => {
@@ -348,7 +348,7 @@ describe('LineUpBuilder', () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByText('United States')).toBeVisible();
+      expect(screen.getByText(/united states/i)).toBeVisible();
     });
 
     // Assert
@@ -369,7 +369,7 @@ describe('LineUpBuilder', () => {
     // Act
     // Select all filters
     await waitFor(() => {
-      expect(screen.getByText('United States')).toBeVisible();
+      expect(screen.getByText(/united states/i)).toBeVisible();
     });
     await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
 
@@ -417,9 +417,9 @@ describe('LineUpBuilder', () => {
 
     // Assert
     await waitFor(() => {
-      expect(screen.getByText('Fighter')).toBeVisible();
-      expect(screen.getByText('Bomber')).toBeVisible();
-      expect(screen.getByText('Strike Aircraft')).toBeVisible();
+      expect(screen.getByText(/fighter/i)).toBeVisible();
+      expect(screen.getByText(/bomber/i)).toBeVisible();
+      expect(screen.getByText(/strike aircraft/i)).toBeVisible();
     });
   });
 
@@ -434,7 +434,7 @@ describe('LineUpBuilder', () => {
     // Act
     // Select nation and vehicle type to enable game mode
     await waitFor(() => {
-      expect(screen.getByText('Fighter')).toBeVisible();
+      expect(screen.getByText(/fighter/i)).toBeVisible();
     });
     await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
 
@@ -451,7 +451,7 @@ describe('LineUpBuilder', () => {
     // Assert
     // Vehicles should be fetched with all roles selected by default
     await waitFor(() => {
-      expect(screen.getByText('P-51 Mustang')).toBeVisible();
+      expect(screen.getByText(/p-51 mustang/i)).toBeVisible();
     });
   });
 
@@ -464,7 +464,7 @@ describe('LineUpBuilder', () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByText('Fighter')).toBeVisible();
+      expect(screen.getByText(/fighter/i)).toBeVisible();
     });
 
     // Act
@@ -477,7 +477,7 @@ describe('LineUpBuilder', () => {
 
     // Assert
     // Role tags should be disabled (game mode not selected yet)
-    const fighterTag = screen.getByText('Fighter').closest('div[class*="cursor-"]');
+    const fighterTag = screen.getByText(/fighter/i).closest('div[class*="cursor-"]');
     expect(fighterTag).toHaveAttribute('data-disabled', 'true');
   });
 
@@ -491,7 +491,7 @@ describe('LineUpBuilder', () => {
 
     // Select nation, vehicle type, and game mode
     await waitFor(() => {
-      expect(screen.getByText('Fighter')).toBeVisible();
+      expect(screen.getByText(/fighter/i)).toBeVisible();
     });
     await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
 
@@ -507,7 +507,7 @@ describe('LineUpBuilder', () => {
 
     // Wait for vehicles to load
     await waitFor(() => {
-      expect(screen.getByText('P-51 Mustang')).toBeVisible();
+      expect(screen.getByText(/p-51 mustang/i)).toBeVisible();
     });
 
     // Act
@@ -524,7 +524,7 @@ describe('LineUpBuilder', () => {
     // Assert
     // Vehicles should still be visible (other roles still selected)
     await waitFor(() => {
-      expect(screen.getByText('P-51 Mustang')).toBeVisible();
+      expect(screen.getByText(/p-51 mustang/i)).toBeVisible();
     });
   });
 
@@ -540,7 +540,7 @@ describe('LineUpBuilder', () => {
 
     // Select nation, vehicle type, and game mode
     await waitFor(() => {
-      expect(screen.getByText('Fighter')).toBeVisible();
+      expect(screen.getByText(/fighter/i)).toBeVisible();
     });
     await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
 
@@ -556,7 +556,7 @@ describe('LineUpBuilder', () => {
 
     // Wait for vehicles to load
     await waitFor(() => {
-      expect(screen.getByText('P-51 Mustang')).toBeVisible();
+      expect(screen.getByText(/p-51 mustang/i)).toBeVisible();
     });
 
     // Get all role tags initially (they should all have data-selected="true")
