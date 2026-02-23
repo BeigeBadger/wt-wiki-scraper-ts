@@ -111,8 +111,8 @@ describe('VehicleList', () => {
     render(<VehicleList vehicles={mockVehicles} />);
 
     // Assert
-    const table = await screen.findByRole("table")
-    const rowGroups = await within(table).findAllByRole("rowgroup")
+    const table = await screen.findByRole("table", { name: /vehicle list/i })
+    const rowGroups = await within(table).findAllByRole("rowgroup", { name: /vehicle list/i })
     // NOTE: rowGroups[0] is the thead element
     const tableBody = rowGroups[1]
 
