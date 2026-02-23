@@ -70,7 +70,7 @@ export function BrRangeSlider({
         <label {...labelProps} className="text-sm font-medium text-gray-700">
           Battle Rating Range
         </label>
-        <output {...outputProps} className="text-sm font-medium text-gray-800">
+        <output {...outputProps} aria-label="Battle rating value" className="text-sm font-medium text-gray-800">
           {state.values.map((v, i) => state.getThumbValueLabel(i)).join(' - ')}
         </output>
       </div>

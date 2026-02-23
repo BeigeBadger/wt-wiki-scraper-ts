@@ -214,6 +214,7 @@ export function LineUpBuilder(): React.ReactElement {
         <h1 className="text-2xl font-bold text-gray-900">Line Up Builder</h1>
         <button
           type="button"
+          aria-label="Reset Filters"
           onClick={() => dispatch({ type: 'RESET_ALL' })}
           disabled={atDefault}
           className={`border rounded-lg px-4 py-2 text-sm font-medium ${atDefault

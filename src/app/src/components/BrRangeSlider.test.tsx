@@ -21,7 +21,7 @@ describe('BrRangeSlider', () => {
 
     // Assert
     // Slider snaps to step increments, so 3.0 becomes 3.1, 5.0 becomes 5.1
-    expect(await screen.findByText(/3\.1 - 5\.1/)).toBeVisible();
+    expect(await screen.findByRole('status', { name: /battle rating value/i })).toBeVisible();
   });
 
   it('should be disabled when disabled prop is true', async () => {

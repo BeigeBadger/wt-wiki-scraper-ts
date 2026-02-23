@@ -35,13 +35,13 @@ describe('parser', () => {
 ```typescript
 // Assert
 // Reset button should be visible
-expect(await screen.findByText('Reset Filters')).toBeVisible();
+expect(await screen.findByRole('button', { name: /reset filters/i })).toBeVisible();
 ```
 
 **Bad example (don't do this):**
 ```typescript
 // Assert - Reset button should be visible
-expect(await screen.findByText('Reset Filters')).toBeVisible();
+expect(await screen.findByRole('button', { name: /reset filters/i })).toBeVisible();
 ```
 
 ### Running Tests
@@ -114,42 +114,24 @@ await screen.findByRole('button')
 - ALWAYS use `userEvent` from React Testing Library, NEVER use `fireEvent`
 
 ```typescript
-import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import { MockedProvider } from '@apollo/client/testing';
-import { VehicleList } from './VehicleList';
+it('should enable vehicle type filter after nation is selected', async () => {
+  // Arrange
+  render(
+    <MockedProvider mocks={mocks} addTypename={false}>
+      <LineUpBuilder />
+    </MockedProvider>
+  );
 
-describe('VehicleName', () => {
-  const mockVehicles = [
-    { id: '1', name: '[Sweden]Bf 109 G-2', country: 'sweden', rank: 3, role: 'Fighter', battleRating: { arcade: 3.0, realistic: 3.7, simulator: 4.0 } },
-  ];
+  await waitFor(async () => {
+    expect(await screen.findByRole('button', { name: /united states/i })).toBeVisible();
+  });
 
-  it('should render vehicle name with country tag', async () => {
-    // Arrange
-    render(
-      <MockedProvider>
-        <VehicleList vehicles={mockVehicles} />
-      </MockedProvider>
-    );
+  // Act
+  await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
 
-    // Act
-    const vehicleName = await screen.findByText('[Sweden]Bf 109 G-2');
-
-    // Assert
-    expect(vehicleName).toBeInTheDocument();
+  // Assert
+  await waitFor(async () => {
+    expect(await screen.findByRole('button', { name: /aviation/i })).not.toBeDisabled();
   });
 });
-```
-
-**Good example (do this):**
-```typescript
-// Assert
-// Reset button should be visible
-expect(await screen.findByText('Reset Filters')).toBeVisible();
-```
-
-**Bad example (don't do this):**
-```typescript
-// Assert - Reset button should be visible
-expect(await screen.findByText('Reset Filters')).toBeVisible();
 ```

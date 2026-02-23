@@ -36,12 +36,12 @@ export function VehicleList({ vehicles }: VehicleListProps): React.ReactElement 
               key={vehicle.id}
               className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50' + ' hover:bg-gray-100'}
             >
-              <td className="border px-4 py-2">{vehicle.name}</td>
-              <td className="border px-4 py-2">{vehicle.country}</td>
-              <td className="border px-4 py-2">{vehicle.category}</td>
-              <td className="border px-4 py-2">{vehicle.rank}</td>
-              <td className="border px-4 py-2">{vehicle.role}</td>
-              <td className="border px-4 py-2">
+              <td aria-label={vehicle.name || undefined} className="border px-4 py-2">{vehicle.name}</td>
+              <td aria-label={vehicle.country || undefined} className="border px-4 py-2">{vehicle.country}</td>
+              <td aria-label={vehicle.category || undefined} className="border px-4 py-2">{vehicle.category}</td>
+              <td aria-label={String(vehicle.rank ?? '')} className="border px-4 py-2">{vehicle.rank}</td>
+              <td aria-label={vehicle.role || undefined} className="border px-4 py-2">{vehicle.role}</td>
+              <td aria-label={`${vehicle.battleRating.arcade ?? '-'} / ${vehicle.battleRating.realistic ?? '-'} / ${vehicle.battleRating.simulator ?? '-'}`} className="border px-4 py-2">
                 {vehicle.battleRating.arcade ?? '-'} / {vehicle.battleRating.realistic ?? '-'} /{' '}
                 {vehicle.battleRating.simulator ?? '-'}
               </td>
