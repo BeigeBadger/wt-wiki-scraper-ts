@@ -21,9 +21,11 @@ export function FilterCardGroup({
   onChange,
   disabled = false,
 }: FilterCardGroupProps): React.ReactElement {
+  const labelId = `filter-card-group-label-${label.toLowerCase()}`;
+
   return (
-    <div className="flex flex-col gap-2">
-      <label className="text-sm font-medium text-gray-700">{label}</label>
+    <div className="flex flex-col gap-2" role="group" aria-labelledby={labelId}>
+      <label id={labelId} className="text-sm font-medium text-gray-700">{label}</label>
       <div className="flex flex-row flex-wrap gap-2">
         {options.map((option) => {
           const isSelected = value === option.id;
