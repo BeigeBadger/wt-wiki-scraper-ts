@@ -35,6 +35,6 @@ describe('BrRangeSlider', () => {
     // Check that the track has disabled styling
     const slider = await screen.findByRole('group', { name: /battle rating range/i });
     const track = slider.querySelector('.bg-gray-100');
-    expect(track).toBeInTheDocument();
+    expect(track).toBeVisible();
   });
 });
