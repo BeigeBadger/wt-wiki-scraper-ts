@@ -31,9 +31,9 @@ describe('Navbar', () => {
     );
 
     // Assert
-    expect(await screen.findByRole('link', { name: 'Home' })).toBeVisible();
-    expect(await screen.findByRole('link', { name: 'Vehicles' })).toBeVisible();
-    expect(await screen.findByRole('link', { name: 'Line-up Builder' })).toBeVisible();
+    expect(await screen.findByRole('link', { name: /home/i })).toBeVisible();
+    expect(await screen.findByRole('link', { name: /vehicles/i })).toBeVisible();
+    expect(await screen.findByRole('link', { name: /line-up builder/i })).toBeVisible();
   });
 
   it('should set aria-current="page" on active link', async () => {
@@ -45,13 +45,13 @@ describe('Navbar', () => {
     );
 
     // Assert
-    const vehiclesLink = await screen.findByRole('link', { name: 'Vehicles' });
+    const vehiclesLink = await screen.findByRole('link', { name: /vehicles/i });
     expect(vehiclesLink).toHaveAttribute('aria-current', 'page');
 
-    const homeLink = await screen.findByRole('link', { name: 'Home' });
+    const homeLink = await screen.findByRole('link', { name: /home/i });
     expect(homeLink).not.toHaveAttribute('aria-current');
 
-    const lineupLink = await screen.findByRole('link', { name: 'Line-up Builder' });
+    const lineupLink = await screen.findByRole('link', { name: /line-up builder/i });
     expect(lineupLink).not.toHaveAttribute('aria-current');
   });
 
@@ -64,7 +64,7 @@ describe('Navbar', () => {
     );
 
     // Assert
-    const homeLink = await screen.findByRole('link', { name: 'Home' });
+    const homeLink = await screen.findByRole('link', { name: /home/i });
     expect(homeLink).toHaveAttribute('aria-current', 'page');
   });
 });

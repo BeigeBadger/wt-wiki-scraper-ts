@@ -22,10 +22,10 @@ describe('FilterCardGroup', () => {
     );
 
     // Assert
-    expect(await screen.findByText('Nation')).toBeVisible();
-    expect(await screen.findByText('USA')).toBeVisible();
-    expect(await screen.findByText('Germany')).toBeVisible();
-    expect(await screen.findByText('USSR')).toBeVisible();
+    expect(await screen.findByText(/nation/i)).toBeVisible();
+    expect(await screen.findByText(/usa/i)).toBeVisible();
+    expect(await screen.findByText(/germany/i)).toBeVisible();
+    expect(await screen.findByText(/ussr/i)).toBeVisible();
   });
 
   it('should highlight selected option', async () => {
@@ -40,7 +40,7 @@ describe('FilterCardGroup', () => {
     );
 
     // Assert
-    const selectedCard = await screen.findByRole('button', { name: 'Germany' });
+    const selectedCard = await screen.findByRole('button', { name: /germany/i });
 
     expect(selectedCard).toHaveClass('ring-2');
     expect(selectedCard).toHaveClass('ring-blue-500');
@@ -60,7 +60,7 @@ describe('FilterCardGroup', () => {
     );
 
     // Act
-    await userEvent.click(await screen.findByRole('button', { name: 'Germany' }));
+    await userEvent.click(await screen.findByRole('button', { name: /germany/i }));
 
     // Assert
     expect(handleChange).toHaveBeenCalledWith('germany');
@@ -81,7 +81,7 @@ describe('FilterCardGroup', () => {
     );
 
     // Act
-    await userEvent.click(await screen.findByRole('button', { name: 'Germany' }));
+    await userEvent.click(await screen.findByRole('button', { name: /germany/i }));
 
     // Assert
     expect(handleChange).not.toHaveBeenCalled();
@@ -100,7 +100,7 @@ describe('FilterCardGroup', () => {
     );
 
     // Assert
-    const card = await screen.findByRole('button', { name: 'USA' });
+    const card = await screen.findByRole('button', { name: /usa/i });
 
     expect(card).toHaveClass('opacity-50');
     expect(card).toBeDisabled();
