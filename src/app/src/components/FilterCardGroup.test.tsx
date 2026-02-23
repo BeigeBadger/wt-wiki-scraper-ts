@@ -22,10 +22,10 @@ describe('FilterCardGroup', () => {
     );
 
     // Assert
-    expect(await screen.findByText(/nation/i)).toBeVisible();
-    expect(await screen.findByText(/usa/i)).toBeVisible();
-    expect(await screen.findByText(/germany/i)).toBeVisible();
-    expect(await screen.findByText(/ussr/i)).toBeVisible();
+    expect(await screen.findByLabelText(/nation/i)).toBeVisible();
+    expect(await screen.findByRole('button', { name: /usa/i })).toBeVisible();
+    expect(await screen.findByRole('button', { name: /germany/i })).toBeVisible();
+    expect(await screen.findByRole('button', { name: /ussr/i })).toBeVisible();
   });
 
   it('should highlight selected option', async () => {
