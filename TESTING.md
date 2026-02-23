@@ -88,9 +88,25 @@ npx vitest run -t "should extract vehicle name from table row"
 
 - NEVER select elements using id or CSS classes
 - NEVER add `data-test-id` attributes to components - write tests that select elements using WAI-ARIA roles or text content instead
-- ALWAYS attempt to select elements using their WAI-ARIA (semantic) roles, fall back to selecting by text if this is not possible
-- IF you are unsure about how to select an element or can't follow the rules above, then ask a human to provide guidance or the rendered HTML
+- ALWAYS use at least 2 filters when selecting elements (e.g., role + name)
+- Use regex with the case-insensitive flag (`/pattern/i`) for name and text queries instead of exact strings
+- When encountering multiple matches, first try using start/end anchors (`/^match this$/i`), then ask a human for guidance if needed
+- Use `{ hidden: true }` option for elements with `aria-hidden="true"`
 - Query priority: `findByRole` → `findByLabelText` → `findByText`
+
+```typescript
+// Preferred - role + regex name
+await screen.findByRole('button', { name: /hello world/i })
+
+// Okay - role + regex with variable
+await screen.findByRole('button', { name: new RegExp(myNameVariable, 'i') })
+
+// Bad - exact string
+await screen.findByRole('button', { name: 'Hello World' })
+
+// Bad - single filter only
+await screen.findByRole('button')
+```
 
 ### Interacting with Elements
 
