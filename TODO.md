@@ -13,5 +13,4 @@
 - Better icons for the vehicle types
 - Split out filters into their own files
 - Instead of duplicating the queries in the component and tests, add a hook the exports the query, so that it can be used in tests. Tests can always use a cut-down version of the query if they want
-- Replaces uses of getByTestId
 
