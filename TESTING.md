@@ -88,7 +88,8 @@ npx vitest run -t "should extract vehicle name from table row"
 
 - NEVER select elements using id or CSS classes
 - NEVER add `data-test-id` attributes to components - write tests that select elements using WAI-ARIA roles or text content instead
-- ALWAYS use at least 2 filters when selecting elements (e.g., role + name)
+- ALWAYS use at least 2 filters when selecting elements (e.g. role + name)
+  - You may add the `aria-label` attribute to elements to help achieve this.
 - Use regex with the case-insensitive flag (`/pattern/i`) for name and text queries instead of exact strings
 - When encountering multiple matches, first try using start/end anchors (`/^match this$/i`), then ask a human for guidance if needed
 - Use `{ hidden: true }` option for elements with `aria-hidden="true"`
