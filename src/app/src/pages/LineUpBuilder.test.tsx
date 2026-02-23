@@ -298,8 +298,6 @@ describe('LineUpBuilder', () => {
     });
     await userEvent.click(await screen.findByRole('button', { name: /arcade/i }));
 
-    screen.logTestingPlaygroundURL()
-
     // Assert
     // BR range slider is visible after all filters selected
     await waitFor(async () => {
