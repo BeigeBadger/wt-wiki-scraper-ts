@@ -168,6 +168,7 @@ describe('LineUpBuilder', () => {
     await waitFor(() => {
       expect(screen.getByText('United States')).toBeVisible();
     });
+
     expect(screen.getByText('Germany')).toBeVisible();
   });
 
@@ -214,13 +215,13 @@ describe('LineUpBuilder', () => {
       </MockedProvider>
     );
 
+    // Act
+    // Select nation, then vehicle type
     await waitFor(() => {
       expect(screen.getByText('United States')).toBeVisible();
     });
-
-    // Act
-    // Select nation, then vehicle type
     await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
+
     await waitFor(async () => {
       expect(await screen.findByRole('button', { name: /aviation/i })).not.toBeDisabled();
     });
@@ -240,6 +241,7 @@ describe('LineUpBuilder', () => {
     // Vehicle type should remain selected (not deselected)
     await waitFor(async () => {
       const aviationCard = await screen.findByRole('button', { name: /aviation/i });
+
       expect(aviationCard).toHaveClass('ring-2');
     });
   });
@@ -252,17 +254,19 @@ describe('LineUpBuilder', () => {
       </MockedProvider>
     );
 
+    // Act
+    // Select all filters
     await waitFor(() => {
       expect(screen.getByText('United States')).toBeVisible();
     });
 
-    // Act
-    // Select all filters
     await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
+
     await waitFor(async () => {
       expect(await screen.findByRole('button', { name: /aviation/i })).not.toBeDisabled();
     });
     await userEvent.click(await screen.findByRole('button', { name: /aviation/i }));
+
     await waitFor(async () => {
       expect(await screen.findByRole('button', { name: /arcade/i })).not.toBeDisabled();
     });
@@ -282,17 +286,18 @@ describe('LineUpBuilder', () => {
       </MockedProvider>
     );
 
+    // Act
+    // Select all filters
     await waitFor(() => {
       expect(screen.getByText('United States')).toBeVisible();
     });
-
-    // Act
-    // Select all filters
     await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
+
     await waitFor(async () => {
       expect(await screen.findByRole('button', { name: /aviation/i })).not.toBeDisabled();
     });
     await userEvent.click(await screen.findByRole('button', { name: /aviation/i }));
+
     await waitFor(async () => {
       expect(await screen.findByRole('button', { name: /arcade/i })).not.toBeDisabled();
     });
@@ -349,6 +354,7 @@ describe('LineUpBuilder', () => {
     // Assert
     // Reset button should be disabled at default
     const resetButton = await screen.findByRole('button', { name: /reset filters/i });
+
     expect(resetButton).toBeDisabled();
   });
 
@@ -360,17 +366,18 @@ describe('LineUpBuilder', () => {
       </MockedProvider>
     );
 
+    // Act
+    // Select all filters
     await waitFor(() => {
       expect(screen.getByText('United States')).toBeVisible();
     });
-
-    // Act
-    // Select all filters
     await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
+
     await waitFor(async () => {
       expect(await screen.findByRole('button', { name: /aviation/i })).not.toBeDisabled();
     });
     await userEvent.click(await screen.findByRole('button', { name: /aviation/i }));
+
     await waitFor(async () => {
       expect(await screen.findByRole('button', { name: /arcade/i })).not.toBeDisabled();
     });
@@ -424,17 +431,18 @@ describe('LineUpBuilder', () => {
       </MockedProvider>
     );
 
+    // Act
+    // Select nation and vehicle type to enable game mode
     await waitFor(() => {
       expect(screen.getByText('Fighter')).toBeVisible();
     });
-
-    // Act
-    // Select nation and vehicle type to enable game mode
     await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
+
     await waitFor(async () => {
       expect(await screen.findByRole('button', { name: /aviation/i })).not.toBeDisabled();
     });
     await userEvent.click(await screen.findByRole('button', { name: /aviation/i }));
+
     await waitFor(async () => {
       expect(await screen.findByRole('button', { name: /arcade/i })).not.toBeDisabled();
     });
@@ -459,6 +467,7 @@ describe('LineUpBuilder', () => {
       expect(screen.getByText('Fighter')).toBeVisible();
     });
 
+    // Act
     // Select nation and vehicle type but not game mode
     await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
     await waitFor(async () => {
@@ -480,17 +489,17 @@ describe('LineUpBuilder', () => {
       </MockedProvider>
     );
 
+    // Select nation, vehicle type, and game mode
     await waitFor(() => {
       expect(screen.getByText('Fighter')).toBeVisible();
     });
-
-    // Act
-    // Select nation, vehicle type, and game mode
     await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
+
     await waitFor(async () => {
       expect(await screen.findByRole('button', { name: /aviation/i })).not.toBeDisabled();
     });
     await userEvent.click(await screen.findByRole('button', { name: /aviation/i }));
+
     await waitFor(async () => {
       expect(await screen.findByRole('button', { name: /arcade/i })).not.toBeDisabled();
     });
@@ -507,6 +516,7 @@ describe('LineUpBuilder', () => {
     const bomberElements = screen.getAllByText('Bomber');
     // The tag element (not the label) should be inside a button or have specific class
     const bomberTag = bomberElements.find(el => el.closest('button') || el.parentElement?.getAttribute('role') === 'option');
+
     if (bomberTag) {
       await userEvent.click(bomberTag);
     }
@@ -528,16 +538,17 @@ describe('LineUpBuilder', () => {
       </MockedProvider>
     );
 
+    // Select nation, vehicle type, and game mode
     await waitFor(() => {
       expect(screen.getByText('Fighter')).toBeVisible();
     });
-
-    // Select nation, vehicle type, and game mode
     await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
+
     await waitFor(async () => {
       expect(await screen.findByRole('button', { name: /aviation/i })).not.toBeDisabled();
     });
     await userEvent.click(await screen.findByRole('button', { name: /aviation/i }));
+
     await waitFor(async () => {
       expect(await screen.findByRole('button', { name: /arcade/i })).not.toBeDisabled();
     });
@@ -556,6 +567,7 @@ describe('LineUpBuilder', () => {
     // Initially all 3 should be selected
     expect(getSelectedTags().length).toBe(3);
 
+    // Act
     // Try to deselect all roles by clicking each tag
     // With disallowEmptySelection=true, at least one tag must remain selected
     const fighterTag = screen.getByRole('row', { name: 'Fighter' });
@@ -575,6 +587,7 @@ describe('LineUpBuilder', () => {
     const lastTag = getSelectedTags()[0];
     await userEvent.click(lastTag);
 
+    // Asset
     // Should still have 1 selected (last tag cannot be deselected due to disallowEmptySelection=true)
     expect(getSelectedTags().length).toBe(1);
   });
