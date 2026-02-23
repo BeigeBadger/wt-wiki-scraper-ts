@@ -102,7 +102,6 @@ describe('VehicleList', () => {
     // Assert
     const vehicleName = await screen.findByRole('cell', { name: /bf 109 g\-2/i })
 
-
     expect(vehicleName).toBeVisible();
     expect(vehicleName.textContent).toBe('Bf 109 G-2');
   });

@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
@@ -18,7 +17,7 @@ describe('FilterCardGroup', () => {
         label="Nation"
         options={defaultOptions}
         value={null}
-        onChange={() => {}}
+        onChange={() => { }}
       />
     );
 
@@ -36,12 +35,13 @@ describe('FilterCardGroup', () => {
         label="Nation"
         options={defaultOptions}
         value="germany"
-        onChange={() => {}}
+        onChange={() => { }}
       />
     );
 
     // Assert
     const selectedCard = await screen.findByRole('button', { name: 'Germany' });
+
     expect(selectedCard).toHaveClass('ring-2');
     expect(selectedCard).toHaveClass('ring-blue-500');
   });
@@ -49,6 +49,7 @@ describe('FilterCardGroup', () => {
   it('should call onChange when option is clicked', async () => {
     // Arrange
     const handleChange = vi.fn();
+
     render(
       <FilterCardGroup
         label="Nation"
@@ -68,6 +69,7 @@ describe('FilterCardGroup', () => {
   it('should not call onChange when disabled', async () => {
     // Arrange
     const handleChange = vi.fn();
+
     render(
       <FilterCardGroup
         label="Nation"
@@ -92,13 +94,14 @@ describe('FilterCardGroup', () => {
         label="Nation"
         options={defaultOptions}
         value={null}
-        onChange={() => {}}
+        onChange={() => { }}
         disabled={true}
       />
     );
 
     // Assert
     const card = await screen.findByRole('button', { name: 'USA' });
+
     expect(card).toHaveClass('opacity-50');
     expect(card).toBeDisabled();
   });
