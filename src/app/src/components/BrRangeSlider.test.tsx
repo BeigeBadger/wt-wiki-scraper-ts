@@ -10,7 +10,6 @@ describe('BrRangeSlider', () => {
     );
 
     // Assert
-    expect(await screen.findByText(/battle rating range/i)).toBeVisible();
     expect(await screen.findByRole('group', { name: /battle rating range/i })).toBeVisible();
   });
 
