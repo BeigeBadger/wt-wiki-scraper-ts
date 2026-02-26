@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MockedProvider } from '@apollo/client/testing';
+import { InMemoryCache } from '@apollo/client/cache';
 import { LineUpBuilder } from './LineUpBuilder';
 import { gql } from '@apollo/client';
 
@@ -70,8 +71,8 @@ const mocks = [
     result: {
       data: {
         countries: [
-          { id: 'usa', name: 'United States' },
-          { id: 'germany', name: 'Germany' },
+          { __typename: 'Country', id: 'usa', name: 'United States' },
+          { __typename: 'Country', id: 'germany', name: 'Germany' },
         ],
       },
     },
@@ -81,8 +82,8 @@ const mocks = [
     result: {
       data: {
         categories: [
-          { id: 'aviation', name: 'Aviation' },
-          { id: 'ground', name: 'Ground Vehicles' },
+          { __typename: 'Category', id: 'aviation', name: 'Aviation' },
+          { __typename: 'Category', id: 'ground', name: 'Ground Vehicles' },
         ],
       },
     },
@@ -92,9 +93,9 @@ const mocks = [
     result: {
       data: {
         roles: [
-          { id: 'Fighter', name: 'Fighter' },
-          { id: 'Bomber', name: 'Bomber' },
-          { id: 'Strike aircraft', name: 'Strike Aircraft' },
+          { __typename: 'Role', id: 'Fighter', name: 'Fighter' },
+          { __typename: 'Role', id: 'Bomber', name: 'Bomber' },
+          { __typename: 'Role', id: 'Strike aircraft', name: 'Strike Aircraft' },
         ],
       },
     },
@@ -108,13 +109,14 @@ const mocks = [
       data: {
         vehicles: [
           {
+            __typename: 'Vehicle',
             id: 'usa-aviation-p-51',
             name: 'P-51 Mustang',
             country: 'usa',
             category: 'aviation',
             rank: 4,
             role: 'Fighter',
-            battleRating: { arcade: 4.0, realistic: 4.3, simulator: 4.7 },
+            battleRating: { __typename: 'BattleRating', arcade: 4.0, realistic: 4.3, simulator: 4.7 },
           },
         ],
       },
@@ -129,13 +131,135 @@ const mocks = [
       data: {
         vehicles: [
           {
+            __typename: 'Vehicle',
             id: 'germany-aviation-bf-109',
             name: 'Bf 109 G-2',
             country: 'germany',
             category: 'aviation',
             rank: 3,
             role: 'Fighter',
-            battleRating: { arcade: 3.0, realistic: 3.7, simulator: 4.0 },
+            battleRating: { __typename: 'BattleRating', arcade: 3.0, realistic: 3.7, simulator: 4.0 },
+          },
+        ],
+      },
+    },
+  },
+  {
+    request: {
+      query: LINE_UP_VEHICLES,
+      variables: { country: 'usa', category: 'aviation', gameMode: 'arcade', minBr: 1.0, maxBr: 11.7, roles: ['Fighter', 'Strike aircraft'] },
+    },
+    result: {
+      data: {
+        vehicles: [
+          {
+            __typename: 'Vehicle',
+            id: 'usa-aviation-p-51',
+            name: 'P-51 Mustang',
+            country: 'usa',
+            category: 'aviation',
+            rank: 4,
+            role: 'Fighter',
+            battleRating: { __typename: 'BattleRating', arcade: 4.0, realistic: 4.3, simulator: 4.7 },
+          },
+        ],
+      },
+    },
+  },
+  {
+    request: {
+      query: LINE_UP_VEHICLES,
+      variables: { country: 'usa', category: 'aviation', gameMode: 'arcade', minBr: 1.0, maxBr: 11.7, roles: ['Fighter', 'Bomber'] },
+    },
+    result: {
+      data: {
+        vehicles: [
+          {
+            __typename: 'Vehicle',
+            id: 'usa-aviation-p-51',
+            name: 'P-51 Mustang',
+            country: 'usa',
+            category: 'aviation',
+            rank: 4,
+            role: 'Fighter',
+            battleRating: { __typename: 'BattleRating', arcade: 4.0, realistic: 4.3, simulator: 4.7 },
+          },
+        ],
+      },
+    },
+  },
+  {
+    request: {
+      query: LINE_UP_VEHICLES,
+      variables: { country: 'usa', category: 'aviation', gameMode: 'arcade', minBr: 1.0, maxBr: 11.7, roles: ['Bomber', 'Strike aircraft'] },
+    },
+    result: {
+      data: {
+        vehicles: [
+          {
+            __typename: 'Vehicle',
+            id: 'usa-aviation-p-51',
+            name: 'P-51 Mustang',
+            country: 'usa',
+            category: 'aviation',
+            rank: 4,
+            role: 'Fighter',
+            battleRating: { __typename: 'BattleRating', arcade: 4.0, realistic: 4.3, simulator: 4.7 },
+          },
+        ],
+      },
+    },
+  },
+  {
+    request: {
+      query: LINE_UP_VEHICLES,
+      variables: { country: 'usa', category: 'aviation', gameMode: 'arcade', minBr: 1.0, maxBr: 11.7, roles: ['Fighter'] },
+    },
+    result: {
+      data: {
+        vehicles: [
+          {
+            __typename: 'Vehicle',
+            id: 'usa-aviation-p-51',
+            name: 'P-51 Mustang',
+            country: 'usa',
+            category: 'aviation',
+            rank: 4,
+            role: 'Fighter',
+            battleRating: { __typename: 'BattleRating', arcade: 4.0, realistic: 4.3, simulator: 4.7 },
+          },
+        ],
+      },
+    },
+  },
+  {
+    request: {
+      query: LINE_UP_VEHICLES,
+      variables: { country: 'usa', category: 'aviation', gameMode: 'arcade', minBr: 1.0, maxBr: 11.7, roles: ['Bomber'] },
+    },
+    result: {
+      data: {
+        vehicles: [],
+      },
+    },
+  },
+  {
+    request: {
+      query: LINE_UP_VEHICLES,
+      variables: { country: 'usa', category: 'aviation', gameMode: 'arcade', minBr: 1.0, maxBr: 11.7, roles: ['Strike aircraft'] },
+    },
+    result: {
+      data: {
+        vehicles: [
+          {
+            __typename: 'Vehicle',
+            id: 'usa-aviation-p-51',
+            name: 'P-51 Mustang',
+            country: 'usa',
+            category: 'aviation',
+            rank: 4,
+            role: 'Fighter',
+            battleRating: { __typename: 'BattleRating', arcade: 4.0, realistic: 4.3, simulator: 4.7 },
           },
         ],
       },
@@ -143,11 +267,13 @@ const mocks = [
   },
 ];
 
+const mockCache = new InMemoryCache();
+
 describe('LineUpBuilder', () => {
   it('should render page title', async () => {
     // Arrange/Act
     render(
-      <MockedProvider mocks={mocks} addTypename={false}>
+      <MockedProvider mocks={mocks} cache={mockCache}>
         <LineUpBuilder />
       </MockedProvider>
     );
@@ -159,7 +285,7 @@ describe('LineUpBuilder', () => {
   it('should render nation options after loading', async () => {
     // Arrange/Act
     render(
-      <MockedProvider mocks={mocks} addTypename={false}>
+      <MockedProvider mocks={mocks} cache={mockCache}>
         <LineUpBuilder />
       </MockedProvider>
     );
@@ -175,7 +301,7 @@ describe('LineUpBuilder', () => {
   it('should disable vehicle type filter until nation is selected', async () => {
     // Arrange/Act
     render(
-      <MockedProvider mocks={mocks} addTypename={false}>
+      <MockedProvider mocks={mocks} cache={mockCache}>
         <LineUpBuilder />
       </MockedProvider>
     );
@@ -189,7 +315,7 @@ describe('LineUpBuilder', () => {
   it('should enable vehicle type filter after nation is selected', async () => {
     // Arrange
     render(
-      <MockedProvider mocks={mocks} addTypename={false}>
+      <MockedProvider mocks={mocks} cache={mockCache}>
         <LineUpBuilder />
       </MockedProvider>
     );
@@ -210,7 +336,7 @@ describe('LineUpBuilder', () => {
   it('should NOT reset vehicle type when nation changes', async () => {
     // Arrange
     render(
-      <MockedProvider mocks={mocks} addTypename={false}>
+      <MockedProvider mocks={mocks} cache={mockCache}>
         <LineUpBuilder />
       </MockedProvider>
     );
@@ -249,7 +375,7 @@ describe('LineUpBuilder', () => {
   it('should show vehicles when all filters are selected', async () => {
     // Arrange
     render(
-      <MockedProvider mocks={mocks} addTypename={false}>
+      <MockedProvider mocks={mocks} cache={mockCache}>
         <LineUpBuilder />
       </MockedProvider>
     );
@@ -276,14 +402,12 @@ describe('LineUpBuilder', () => {
     await waitFor(async () => {
       expect(await screen.findByRole('cell', { name: /p-51 mustang/i })).toBeVisible();
     });
-
-    screen.logTestingPlaygroundURL()
   });
 
   it('should persist BR range when filters change', async () => {
     // Arrange
     render(
-      <MockedProvider mocks={mocks} addTypename={false}>
+      <MockedProvider mocks={mocks} cache={mockCache}>
         <LineUpBuilder />
       </MockedProvider>
     );
@@ -326,7 +450,7 @@ describe('LineUpBuilder', () => {
   it('should render Reset button', async () => {
     // Arrange/Act
     render(
-      <MockedProvider mocks={mocks} addTypename={false}>
+      <MockedProvider mocks={mocks} cache={mockCache}>
         <LineUpBuilder />
       </MockedProvider>
     );
@@ -343,7 +467,7 @@ describe('LineUpBuilder', () => {
   it('should disable Reset button when filters are at default', async () => {
     // Arrange/Act
     render(
-      <MockedProvider mocks={mocks} addTypename={false}>
+      <MockedProvider mocks={mocks} cache={mockCache}>
         <LineUpBuilder />
       </MockedProvider>
     );
@@ -362,7 +486,7 @@ describe('LineUpBuilder', () => {
   it('should reset all filters when Reset button clicked', async () => {
     // Arrange
     render(
-      <MockedProvider mocks={mocks} addTypename={false}>
+      <MockedProvider mocks={mocks} cache={mockCache}>
         <LineUpBuilder />
       </MockedProvider>
     );
@@ -411,7 +535,7 @@ describe('LineUpBuilder', () => {
   it('should render role TagGroup with fetched roles', async () => {
     // Arrange/Act
     render(
-      <MockedProvider mocks={mocks} addTypename={false}>
+      <MockedProvider mocks={mocks} cache={mockCache}>
         <LineUpBuilder />
       </MockedProvider>
     );
@@ -427,7 +551,7 @@ describe('LineUpBuilder', () => {
   it('should select all roles by default when roleOptions are loaded', async () => {
     // Arrange
     render(
-      <MockedProvider mocks={mocks} addTypename={false}>
+      <MockedProvider mocks={mocks} cache={mockCache}>
         <LineUpBuilder />
       </MockedProvider>
     );
@@ -459,7 +583,7 @@ describe('LineUpBuilder', () => {
   it('should disable role TagGroup when gameMode is not selected', async () => {
     // Arrange
     render(
-      <MockedProvider mocks={mocks} addTypename={false}>
+      <MockedProvider mocks={mocks} cache={mockCache}>
         <LineUpBuilder />
       </MockedProvider>
     );
@@ -485,7 +609,7 @@ describe('LineUpBuilder', () => {
   it('should allow deselecting a role tag when multiple roles are selected', async () => {
     // Arrange
     render(
-      <MockedProvider mocks={mocks} addTypename={false}>
+      <MockedProvider mocks={mocks} cache={mockCache}>
         <LineUpBuilder />
       </MockedProvider>
     );
@@ -535,7 +659,7 @@ describe('LineUpBuilder', () => {
     // The disallowEmptySelection is set to true on the TagGroup
     // This test verifies that attempting to deselect all roles keeps at least one selected
     render(
-      <MockedProvider mocks={mocks} addTypename={false}>
+      <MockedProvider mocks={mocks} cache={mockCache}>
         <LineUpBuilder />
       </MockedProvider>
     );
