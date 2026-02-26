@@ -34,6 +34,7 @@ export function FilterCardGroup({
             <button
               key={option.id}
               type="button"
+              aria-label={option.name}
               disabled={disabled}
               onClick={() => onChange(option.id)}
               className={[

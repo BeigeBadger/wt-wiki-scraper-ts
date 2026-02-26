@@ -250,8 +250,9 @@ export function LineUpBuilder(): React.ReactElement {
           disabled={!state.vehicleType}
         />
 
-        <label className="block text-sm font-medium text-gray-700 mb-2">Vehicle Role</label>
+        <label id="vehicle-role-label" className="block text-sm font-medium text-gray-700 mb-2">Vehicle Role</label>
         <TagGroup
+          aria-labelledby="vehicle-role-label"
           disallowEmptySelection={true}
           className="flex flex-col gap-2"
           selectionMode="multiple"
@@ -266,6 +267,7 @@ export function LineUpBuilder(): React.ReactElement {
               <Tag
                 key={role.id}
                 id={role.id}
+                aria-label={role.name}
                 className={composeRenderProps(
                   '',
                   (_, renderProps) =>
