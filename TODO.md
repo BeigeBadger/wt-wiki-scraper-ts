@@ -17,8 +17,4 @@
 
 ### Tests
 
-- Make selector functions to reduce duplicated logic in tests (update MD file once done)
-  - Helper functions too
-- Another pass on FE tests:
-  - Add vars
-  - Helper methods
+- 
