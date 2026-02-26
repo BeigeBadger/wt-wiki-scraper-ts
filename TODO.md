@@ -22,4 +22,3 @@
 - Another pass on FE tests:
   - Add vars
   - Helper methods
-- Fix errors in FE test logs
