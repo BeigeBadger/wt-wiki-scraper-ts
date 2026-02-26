@@ -2,6 +2,29 @@
 
 **Tests are first-class citizens** - always write/update tests when adding or changing code. Treat test files with the same care as production code.
 
+## Preserving Comments
+
+When refactoring tests (e.g., extracting selectors to constants, creating helper functions), **never remove comments**:
+
+- **Keep AAA comments** (`// Arrange`, `// Act`, `// Assert`) - they help future developers understand test structure
+- **Keep explanatory comments** - comments that provide context or insight to future developers are valuable
+- **Only remove comments** that are:
+  - Plainly wrong or incorrect
+  - Addressed (e.g., `// TODO: fix this`, `// BUG: this fails`)
+- When extracting code to helpers, keep the AAA comments in the test file to preserve the structure
+
+```typescript
+// Good - keep comments when refactoring
+// Arrange
+render(<MyComponent />);
+
+// Act
+await userEvent.click(button);
+
+// Assert
+expect(button).toBeDisabled();
+```
+
 ## Vitest (Backend)
 
 - Test files: `*.test.ts` in `test/` directory
