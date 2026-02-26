@@ -13,17 +13,58 @@ When refactoring tests (e.g., extracting selectors to constants, creating helper
   - Addressed (e.g., `// TODO: fix this`, `// BUG: this fails`)
 - When extracting code to helpers, keep the AAA comments in the test file to preserve the structure
 
-```typescript
-// Good - keep comments when refactoring
-// Arrange
-render(<MyComponent />);
+## Test Fixtures & Patterns
 
-// Act
-await userEvent.click(button);
+When tests become complex with repeated selectors, mock data, or interaction patterns, extract these into a `__fixtures__` directory colocated with the test file.
 
-// Assert
-expect(button).toBeDisabled();
+### Fixture Directory Structure
+
 ```
+pages/
+├── __fixtures__/
+│   └── LineUpBuilder/
+│       ├── selectors.ts     # Regex constants for element selection
+│       ├── mocks.ts         # GraphQL mocks and test data
+│       └── interactions.ts  # Helper functions for user actions
+├── LineUpBuilder.tsx
+└── LineUpBuilder.test.tsx
+```
+
+### When to Extract
+
+- **Selectors**: When the same regex pattern is used 3+ times across tests
+- **Mocks**: When GraphQL queries or test data are reused across tests
+- **Interactions**: When the same sequence of user actions is repeated
+
+### Example: selectors.ts
+
+```typescript
+export const SELECTORS = {
+  PAGE_TITLE: /line up builder/i,
+  NATION_UNITED_STATES: /united states/i,
+  RESET_BUTTON: /reset filters/i,
+} as const;
+```
+
+### Example: interactions.ts
+
+```typescript
+import { SELECTORS } from './selectors';
+
+export async function selectAllFilters(nation, category, gameMode) {
+  await waitForNationToBeVisible(nation);
+  await selectNation(nation);
+  await waitForCategoryToBeEnabled(category);
+  await selectCategory(category);
+}
+```
+
+### Best Practices
+
+- Keep AAA comments in the test file even when using interaction helpers
+- Name interaction helpers semantically (e.g., `selectNation` not `clickNationButton`)
+- Use TypeScript `as const` for selector patterns
+- Export shared mock data objects for reuse
 
 ## Vitest (Backend)
 
