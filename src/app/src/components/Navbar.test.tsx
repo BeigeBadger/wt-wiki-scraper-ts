@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
+import { SELECTORS } from './__fixtures__/Navbar/selectors';
 
 describe('Navbar', () => {
   it('should render the expected number of navigation links', async () => {
@@ -31,9 +32,9 @@ describe('Navbar', () => {
     );
 
     // Assert
-    expect(await screen.findByRole('link', { name: /home/i })).toBeVisible();
-    expect(await screen.findByRole('link', { name: /vehicles/i })).toBeVisible();
-    expect(await screen.findByRole('link', { name: /line-up builder/i })).toBeVisible();
+    expect(await screen.findByRole('link', { name: SELECTORS.HOME_LINK })).toBeVisible();
+    expect(await screen.findByRole('link', { name: SELECTORS.VEHICLES_LINK })).toBeVisible();
+    expect(await screen.findByRole('link', { name: SELECTORS.LINEUP_BUILDER_LINK })).toBeVisible();
   });
 
   it('should set aria-current="page" on active link', async () => {
@@ -45,13 +46,13 @@ describe('Navbar', () => {
     );
 
     // Assert
-    const vehiclesLink = await screen.findByRole('link', { name: /vehicles/i });
+    const vehiclesLink = await screen.findByRole('link', { name: SELECTORS.VEHICLES_LINK });
     expect(vehiclesLink).toHaveAttribute('aria-current', 'page');
 
-    const homeLink = await screen.findByRole('link', { name: /home/i });
+    const homeLink = await screen.findByRole('link', { name: SELECTORS.HOME_LINK });
     expect(homeLink).not.toHaveAttribute('aria-current');
 
-    const lineupLink = await screen.findByRole('link', { name: /line-up builder/i });
+    const lineupLink = await screen.findByRole('link', { name: SELECTORS.LINEUP_BUILDER_LINK });
     expect(lineupLink).not.toHaveAttribute('aria-current');
   });
 
@@ -64,7 +65,7 @@ describe('Navbar', () => {
     );
 
     // Assert
-    const homeLink = await screen.findByRole('link', { name: /home/i });
+    const homeLink = await screen.findByRole('link', { name: SELECTORS.HOME_LINK });
     expect(homeLink).toHaveAttribute('aria-current', 'page');
   });
 });
