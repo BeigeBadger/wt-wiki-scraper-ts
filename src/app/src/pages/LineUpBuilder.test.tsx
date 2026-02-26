@@ -1,10 +1,20 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MockedProvider } from '@apollo/client/testing';
 import { InMemoryCache } from '@apollo/client/cache';
 import { LineUpBuilder } from './LineUpBuilder';
 import { gql } from '@apollo/client';
+import { SELECTORS } from './__fixtures__/LineUpBuilder/selectors';
+import {
+  selectNation,
+  selectCategory,
+  resetAllFilters,
+  waitForNationToBeVisible,
+  waitForCategoryToBeEnabled,
+  waitForVehicleToBeVisible,
+  selectAllFilters,
+} from './__fixtures__/LineUpBuilder/interactions';
 
 const NATIONS_QUERY = gql`
   query Nations {
@@ -291,11 +301,8 @@ describe('LineUpBuilder', () => {
     );
 
     // Assert
-    await waitFor(async () => {
-      expect(await screen.findByRole('button', { name: /united states/i })).toBeVisible();
-    });
-
-    expect(await screen.findByRole('button', { name: /germany/i })).toBeVisible();
+    await waitForNationToBeVisible(SELECTORS.NATION_UNITED_STATES);
+    expect(await screen.findByRole('button', { name: SELECTORS.NATION_GERMANY })).toBeVisible();
   });
 
   it('should disable vehicle type filter until nation is selected', async () => {
@@ -307,9 +314,7 @@ describe('LineUpBuilder', () => {
     );
 
     // Assert
-    await waitFor(async () => {
-      expect(await screen.findByRole('button', { name: /aviation/i })).toBeDisabled();
-    });
+    expect(await screen.findByRole('button', { name: SELECTORS.CATEGORY_AVIATION })).toBeDisabled();
   });
 
   it('should enable vehicle type filter after nation is selected', async () => {
@@ -320,17 +325,13 @@ describe('LineUpBuilder', () => {
       </MockedProvider>
     );
 
-    await waitFor(async () => {
-      expect(await screen.findByRole('button', { name: /united states/i })).toBeVisible();
-    });
+    await waitForNationToBeVisible(SELECTORS.NATION_UNITED_STATES);
 
     // Act
-    await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
+    await selectNation(SELECTORS.NATION_UNITED_STATES);
 
     // Assert
-    await waitFor(async () => {
-      expect(await screen.findByRole('button', { name: /aviation/i })).not.toBeDisabled();
-    });
+    await waitForCategoryToBeEnabled(SELECTORS.CATEGORY_AVIATION);
   });
 
   it('should NOT reset vehicle type when nation changes', async () => {
@@ -343,33 +344,22 @@ describe('LineUpBuilder', () => {
 
     // Act
     // Select nation, then vehicle type
-    await waitFor(async () => {
-      expect(await screen.findByRole('button', { name: /united states/i })).toBeVisible();
-    });
-    await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
-
-    await waitFor(async () => {
-      expect(await screen.findByRole('button', { name: /aviation/i })).not.toBeDisabled();
-    });
-    await userEvent.click(await screen.findByRole('button', { name: /aviation/i }));
+    await waitForNationToBeVisible(SELECTORS.NATION_UNITED_STATES);
+    await selectNation(SELECTORS.NATION_UNITED_STATES);
+    await waitForCategoryToBeEnabled(SELECTORS.CATEGORY_AVIATION);
 
     // Assert
     // Vehicle type selected
-    await waitFor(async () => {
-      expect(await screen.findByRole('button', { name: /aviation/i })).toHaveClass('ring-2');
-    });
+    await selectCategory(SELECTORS.CATEGORY_AVIATION);
+
+    expect(await screen.findByRole('button', { name: SELECTORS.CATEGORY_AVIATION })).toHaveClass('ring-2');
 
     // Act
-    // Change nation
-    await userEvent.click(await screen.findByRole('button', { name: /germany/i }));
+    await selectNation(SELECTORS.NATION_GERMANY);
 
     // Assert
     // Vehicle type should remain selected (not deselected)
-    await waitFor(async () => {
-      const aviationCard = await screen.findByRole('button', { name: /aviation/i });
-
-      expect(aviationCard).toHaveClass('ring-2');
-    });
+    expect(await screen.findByRole('button', { name: SELECTORS.CATEGORY_AVIATION })).toHaveClass('ring-2');
   });
 
   it('should show vehicles when all filters are selected', async () => {
@@ -381,27 +371,10 @@ describe('LineUpBuilder', () => {
     );
 
     // Act
-    // Select all filters
-    await waitFor(async () => {
-      expect(await screen.findByRole('button', { name: /united states/i })).toBeVisible();
-    });
-
-    await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
-
-    await waitFor(async () => {
-      expect(await screen.findByRole('button', { name: /aviation/i })).not.toBeDisabled();
-    });
-    await userEvent.click(await screen.findByRole('button', { name: /aviation/i }));
-
-    await waitFor(async () => {
-      expect(await screen.findByRole('button', { name: /arcade/i })).not.toBeDisabled();
-    });
-    await userEvent.click(await screen.findByRole('button', { name: /arcade/i }));
+    await selectAllFilters(SELECTORS.NATION_UNITED_STATES, SELECTORS.CATEGORY_AVIATION, SELECTORS.GAME_MODE_ARCADE);
 
     // Assert
-    await waitFor(async () => {
-      expect(await screen.findByRole('cell', { name: /p-51 mustang/i })).toBeVisible();
-    });
+    await waitForVehicleToBeVisible(SELECTORS.VEHICLE_P51);
   });
 
   it('should persist BR range when filters change', async () => {
@@ -413,38 +386,19 @@ describe('LineUpBuilder', () => {
     );
 
     // Act
-    // Select all filters
-    await waitFor(async () => {
-      expect(await screen.findByRole('button', { name: /united states/i })).toBeVisible();
-    });
-    await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
-
-    await waitFor(async () => {
-      expect(await screen.findByRole('button', { name: /aviation/i })).not.toBeDisabled();
-    });
-    await userEvent.click(await screen.findByRole('button', { name: /aviation/i }));
-
-    await waitFor(async () => {
-      expect(await screen.findByRole('button', { name: /arcade/i })).not.toBeDisabled();
-    });
-    await userEvent.click(await screen.findByRole('button', { name: /arcade/i }));
+    await selectAllFilters(SELECTORS.NATION_UNITED_STATES, SELECTORS.CATEGORY_AVIATION, SELECTORS.GAME_MODE_ARCADE);
 
     // Assert
     // BR range slider is visible after all filters selected
-    await waitFor(async () => {
-      expect(await screen.findByRole('group', { name: /battle rating range/i })).toBeVisible();
-    });
+    expect(await screen.findByRole('group', { name: SELECTORS.BR_RANGE_GROUP })).toBeVisible();
 
     // Act
-    // Change nation
-    await userEvent.click(await screen.findByRole('button', { name: /germany/i }));
+    await selectNation(SELECTORS.NATION_GERMANY);
 
     // Assert
     // BR range slider is still visible and enabled after filter change
-    await waitFor(async () => {
-      expect(await screen.findByRole('group', { name: /battle rating range/i })).toBeVisible();
-      expect(await screen.findByRole('group', { name: /battle rating range/i })).not.toHaveAttribute('aria-disabled', 'true');
-    });
+    expect(await screen.findByRole('group', { name: SELECTORS.BR_RANGE_GROUP })).toBeVisible();
+    expect(await screen.findByRole('group', { name: SELECTORS.BR_RANGE_GROUP })).not.toHaveAttribute('aria-disabled', 'true');
   });
 
   it('should render Reset button', async () => {
@@ -455,13 +409,11 @@ describe('LineUpBuilder', () => {
       </MockedProvider>
     );
 
-    await waitFor(async () => {
-      expect(await screen.findByRole('button', { name: /united states/i })).toBeVisible();
-    });
+    await waitForNationToBeVisible(SELECTORS.NATION_UNITED_STATES);
 
     // Assert
     // Reset button should be visible
-    expect(await screen.findByRole('button', { name: /reset filters/i })).toBeVisible();
+    expect(await screen.findByRole('button', { name: SELECTORS.RESET_BUTTON })).toBeVisible();
   });
 
   it('should disable Reset button when filters are at default', async () => {
@@ -472,13 +424,11 @@ describe('LineUpBuilder', () => {
       </MockedProvider>
     );
 
-    await waitFor(async () => {
-      expect(await screen.findByRole('button', { name: /united states/i })).toBeVisible();
-    });
+    await waitForNationToBeVisible(SELECTORS.NATION_UNITED_STATES);
 
     // Assert
     // Reset button should be disabled at default
-    const resetButton = await screen.findByRole('button', { name: /reset filters/i });
+    const resetButton = await screen.findByRole('button', { name: SELECTORS.RESET_BUTTON });
 
     expect(resetButton).toBeDisabled();
   });
@@ -492,44 +442,22 @@ describe('LineUpBuilder', () => {
     );
 
     // Act
-    // Select all filters
-    await waitFor(async () => {
-      expect(await screen.findByRole('button', { name: /united states/i })).toBeVisible();
-    });
-    await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
-
-    await waitFor(async () => {
-      expect(await screen.findByRole('button', { name: /aviation/i })).not.toBeDisabled();
-    });
-    await userEvent.click(await screen.findByRole('button', { name: /aviation/i }));
-
-    await waitFor(async () => {
-      expect(await screen.findByRole('button', { name: /arcade/i })).not.toBeDisabled();
-    });
-    await userEvent.click(await screen.findByRole('button', { name: /arcade/i }));
+    await selectAllFilters(SELECTORS.NATION_UNITED_STATES, SELECTORS.CATEGORY_AVIATION, SELECTORS.GAME_MODE_ARCADE);
 
     // Assert
     // Vehicle type is selected
-    await waitFor(async () => {
-      expect(await screen.findByRole('button', { name: /aviation/i })).toHaveClass('ring-2');
-    });
+    expect(await screen.findByRole('button', { name: SELECTORS.CATEGORY_AVIATION })).toHaveClass('ring-2');
 
     // Act
     // Click Reset button
-    const resetButton = await screen.findByRole('button', { name: /reset filters/i });
-    await userEvent.click(resetButton);
+    await resetAllFilters();
 
     // Assert
     // Vehicle type should be deselected
-    await waitFor(async () => {
-      expect(await screen.findByRole('button', { name: /aviation/i })).not.toHaveClass('ring-2');
-    });
+    expect(await screen.findByRole('button', { name: SELECTORS.CATEGORY_AVIATION })).not.toHaveClass('ring-2');
 
-    // Assert
     // Vehicle type filter should be disabled again
-    await waitFor(async () => {
-      expect(await screen.findByRole('button', { name: /aviation/i })).toBeDisabled();
-    });
+    expect(await screen.findByRole('button', { name: SELECTORS.CATEGORY_AVIATION })).toBeDisabled();
   });
 
   it('should render role TagGroup with fetched roles', async () => {
@@ -541,11 +469,9 @@ describe('LineUpBuilder', () => {
     );
 
     // Assert
-    await waitFor(async () => {
-      expect(await screen.findByRole('gridcell', { name: /fighter/i })).toBeVisible();
-      expect(await screen.findByRole('gridcell', { name: /bomber/i })).toBeVisible();
-      expect(await screen.findByRole('gridcell', { name: /strike aircraft/i })).toBeVisible();
-    });
+    expect(await screen.findByRole('gridcell', { name: SELECTORS.ROLE_FIGHTER })).toBeVisible();
+    expect(await screen.findByRole('gridcell', { name: SELECTORS.ROLE_BOMBER })).toBeVisible();
+    expect(await screen.findByRole('gridcell', { name: SELECTORS.ROLE_STRIKE_AIRCRAFT })).toBeVisible();
   });
 
   it('should select all roles by default when roleOptions are loaded', async () => {
@@ -556,28 +482,14 @@ describe('LineUpBuilder', () => {
       </MockedProvider>
     );
 
+    expect(await screen.findByRole('gridcell', { name: SELECTORS.ROLE_FIGHTER })).toBeVisible();
+
     // Act
-    // Select nation and vehicle type to enable game mode
-    await waitFor(async () => {
-      expect(await screen.findByRole('gridcell', { name: /fighter/i })).toBeVisible();
-    });
-    await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
-
-    await waitFor(async () => {
-      expect(await screen.findByRole('button', { name: /aviation/i })).not.toBeDisabled();
-    });
-    await userEvent.click(await screen.findByRole('button', { name: /aviation/i }));
-
-    await waitFor(async () => {
-      expect(await screen.findByRole('button', { name: /arcade/i })).not.toBeDisabled();
-    });
-    await userEvent.click(await screen.findByRole('button', { name: /arcade/i }));
+    await selectAllFilters(SELECTORS.NATION_UNITED_STATES, SELECTORS.CATEGORY_AVIATION, SELECTORS.GAME_MODE_ARCADE);
 
     // Assert
     // Vehicles should be fetched with all roles selected by default
-    await waitFor(async () => {
-      expect(await screen.findByRole('cell', { name: /p-51 mustang/i })).toBeVisible();
-    });
+    await waitForVehicleToBeVisible(SELECTORS.VEHICLE_P51);
   });
 
   it('should disable role TagGroup when gameMode is not selected', async () => {
@@ -588,21 +500,17 @@ describe('LineUpBuilder', () => {
       </MockedProvider>
     );
 
-    await waitFor(async () => {
-      expect(await screen.findByRole('gridcell', { name: /fighter/i })).toBeVisible();
-    });
+    expect(await screen.findByRole('gridcell', { name: SELECTORS.ROLE_FIGHTER })).toBeVisible();
 
     // Act
     // Select nation and vehicle type but not game mode
-    await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
-    await waitFor(async () => {
-      expect(await screen.findByRole('button', { name: /aviation/i })).not.toBeDisabled();
-    });
-    await userEvent.click(await screen.findByRole('button', { name: /aviation/i }));
+    await selectNation(SELECTORS.NATION_UNITED_STATES);
+    await waitForCategoryToBeEnabled(SELECTORS.CATEGORY_AVIATION);
+    await selectCategory(SELECTORS.CATEGORY_AVIATION);
 
     // Assert
     // Role tags should be disabled (game mode not selected yet)
-    const fighterTag = (await screen.findByRole('gridcell', { name: /fighter/i })).closest('div[class*="cursor-"]');
+    const fighterTag = (await screen.findByRole('gridcell', { name: SELECTORS.ROLE_FIGHTER })).closest('div[class*="cursor-"]');
     expect(fighterTag).toHaveAttribute('data-disabled', 'true');
   });
 
@@ -614,30 +522,14 @@ describe('LineUpBuilder', () => {
       </MockedProvider>
     );
 
-    // Select nation, vehicle type, and game mode
-    await waitFor(async () => {
-      expect(await screen.findByRole('gridcell', { name: /fighter/i })).toBeVisible();
-    });
-    await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
+    expect(await screen.findByRole('gridcell', { name: SELECTORS.ROLE_FIGHTER })).toBeVisible();
 
-    await waitFor(async () => {
-      expect(await screen.findByRole('button', { name: /aviation/i })).not.toBeDisabled();
-    });
-    await userEvent.click(await screen.findByRole('button', { name: /aviation/i }));
-
-    await waitFor(async () => {
-      expect(await screen.findByRole('button', { name: /arcade/i })).not.toBeDisabled();
-    });
-    await userEvent.click(await screen.findByRole('button', { name: /arcade/i }));
-
-    // Wait for vehicles to load
-    await waitFor(async () => {
-      expect(await screen.findByRole('cell', { name: /p-51 mustang/i })).toBeVisible();
-    });
+    await selectAllFilters(SELECTORS.NATION_UNITED_STATES, SELECTORS.CATEGORY_AVIATION, SELECTORS.GAME_MODE_ARCADE);
+    await waitForVehicleToBeVisible(SELECTORS.VEHICLE_P51);
 
     // Act
     // Deselect Bomber role by clicking on the tag
-    const bomberTag = await screen.findByRole('gridcell', { name: /bomber/i });
+    const bomberTag = await screen.findByRole('gridcell', { name: SELECTORS.ROLE_BOMBER });
 
     if (bomberTag) {
       await userEvent.click(bomberTag);
@@ -646,12 +538,11 @@ describe('LineUpBuilder', () => {
     // Assert
     // Vehicles should still be visible (other roles still selected)
     // Note: This may be in a loading state after role change, so we check for visibility
-    await waitFor(() => {
-      const vehicleCell = screen.queryByRole('cell', { name: /p-51 mustang/i });
-      // Vehicle may or may not be visible depending on Apollo cache/state
-      // Just verify the test doesn't error out
-      expect(vehicleCell === null || vehicleCell === undefined || vehicleCell).toBeTruthy();
-    });
+    const vehicleCell = screen.queryByRole('cell', { name: SELECTORS.VEHICLE_P51 });
+
+    // Vehicle may or may not be visible depending on Apollo cache/state
+    // Just verify the test doesn't error out
+    expect(vehicleCell === null || vehicleCell === undefined || vehicleCell).toBeTruthy();
   });
 
   it('should not allow unselecting the last role tag due to disallowEmptySelection', async () => {
@@ -664,34 +555,17 @@ describe('LineUpBuilder', () => {
       </MockedProvider>
     );
 
-    // Select nation, vehicle type, and game mode
-    await waitFor(async () => {
-      expect(await screen.findByRole('gridcell', { name: /fighter/i })).toBeVisible();
-    });
-    await userEvent.click(await screen.findByRole('button', { name: /united states/i }));
+    expect(await screen.findByRole('gridcell', { name: SELECTORS.ROLE_FIGHTER })).toBeVisible();
 
-    await waitFor(async () => {
-      expect(await screen.findByRole('button', { name: /aviation/i })).not.toBeDisabled();
-    });
-    await userEvent.click(await screen.findByRole('button', { name: /aviation/i }));
+    await selectAllFilters(SELECTORS.NATION_UNITED_STATES, SELECTORS.CATEGORY_AVIATION, SELECTORS.GAME_MODE_ARCADE);
+    await waitForVehicleToBeVisible(SELECTORS.VEHICLE_P51);
 
-    await waitFor(async () => {
-      expect(await screen.findByRole('button', { name: /arcade/i })).not.toBeDisabled();
-    });
-    await userEvent.click(await screen.findByRole('button', { name: /arcade/i }));
-
-    // Wait for vehicles to load
-    await waitFor(async () => {
-      expect(await screen.findByRole('cell', { name: /p-51 mustang/i })).toBeVisible();
-    });
-
-    // Get all role tags initially (they should all have data-selected="true")
-    // Use getAllByText and filter by finding elements that have data-selected on their parent
     const getSelectedTags = () => {
-      const fighterElements = screen.getAllByText(/fighter/i);
-      const bomberElements = screen.getAllByText(/bomber/i);
-      const strikeAircraftElements = screen.getAllByText(/strike aircraft/i);
+      const fighterElements = screen.getAllByText(SELECTORS.ROLE_FIGHTER);
+      const bomberElements = screen.getAllByText(SELECTORS.ROLE_BOMBER);
+      const strikeAircraftElements = screen.getAllByText(SELECTORS.ROLE_STRIKE_AIRCRAFT);
       const allElements = [...fighterElements, ...bomberElements, ...strikeAircraftElements];
+
       return allElements.filter(el => el.closest('[data-selected="true"]'));
     };
 
