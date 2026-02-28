@@ -1,63 +1,7 @@
-import { gql } from '@apollo/client';
-
-export const NATIONS_QUERY = gql`
-  query Nations {
-    countries {
-      id
-      name
-    }
-  }
-`;
-
-export const CATEGORIES_QUERY = gql`
-  query Categories {
-    categories {
-      id
-      name
-    }
-  }
-`;
-
-export const ROLES_QUERY = gql`
-  query Roles {
-    roles {
-      id
-      name
-    }
-  }
-`;
-
-export const LINE_UP_VEHICLES = gql`
-  query LineUpVehicles(
-    $country: String
-    $category: String
-    $gameMode: String
-    $minBr: Float
-    $maxBr: Float
-    $roles: [String!]
-  ) {
-    vehicles(
-      country: $country
-      category: $category
-      gameMode: $gameMode
-      minBr: $minBr
-      maxBr: $maxBr
-      roles: $roles
-    ) {
-      id
-      name
-      country
-      category
-      rank
-      role
-      battleRating {
-        arcade
-        realistic
-        simulator
-      }
-    }
-  }
-`;
+import { NATIONS_QUERY } from '../../../hooks/data/useQueryNations';
+import { CATEGORIES_QUERY } from '../../../hooks/data/useQueryVehicleCategories';
+import { ROLES_QUERY } from '../../../hooks/data/useQueryVehicleRoles';
+import { LINE_UP_VEHICLES_QUERY } from '../../../hooks/data/useQueryVehiclesWithFilter';
 
 export const P51_MUSTANG_VEHICLE = {
   __typename: 'Vehicle',
@@ -118,7 +62,7 @@ export const mocks = [
   },
   {
     request: {
-      query: LINE_UP_VEHICLES,
+      query: LINE_UP_VEHICLES_QUERY,
       variables: { country: 'usa', category: 'aviation', gameMode: 'arcade', minBr: 1.0, maxBr: 11.7, roles: ['Fighter', 'Bomber', 'Strike aircraft'] },
     },
     result: {
@@ -129,7 +73,7 @@ export const mocks = [
   },
   {
     request: {
-      query: LINE_UP_VEHICLES,
+      query: LINE_UP_VEHICLES_QUERY,
       variables: { country: 'germany', category: 'aviation', gameMode: 'arcade', minBr: 1.0, maxBr: 11.7, roles: ['Fighter', 'Bomber', 'Strike aircraft'] },
     },
     result: {
@@ -140,7 +84,7 @@ export const mocks = [
   },
   {
     request: {
-      query: LINE_UP_VEHICLES,
+      query: LINE_UP_VEHICLES_QUERY,
       variables: { country: 'usa', category: 'aviation', gameMode: 'arcade', minBr: 1.0, maxBr: 11.7, roles: ['Fighter', 'Strike aircraft'] },
     },
     result: {
@@ -151,7 +95,7 @@ export const mocks = [
   },
   {
     request: {
-      query: LINE_UP_VEHICLES,
+      query: LINE_UP_VEHICLES_QUERY,
       variables: { country: 'usa', category: 'aviation', gameMode: 'arcade', minBr: 1.0, maxBr: 11.7, roles: ['Fighter', 'Bomber'] },
     },
     result: {
@@ -162,7 +106,7 @@ export const mocks = [
   },
   {
     request: {
-      query: LINE_UP_VEHICLES,
+      query: LINE_UP_VEHICLES_QUERY,
       variables: { country: 'usa', category: 'aviation', gameMode: 'arcade', minBr: 1.0, maxBr: 11.7, roles: ['Bomber', 'Strike aircraft'] },
     },
     result: {
@@ -173,7 +117,7 @@ export const mocks = [
   },
   {
     request: {
-      query: LINE_UP_VEHICLES,
+      query: LINE_UP_VEHICLES_QUERY,
       variables: { country: 'usa', category: 'aviation', gameMode: 'arcade', minBr: 1.0, maxBr: 11.7, roles: ['Fighter'] },
     },
     result: {
@@ -184,7 +128,7 @@ export const mocks = [
   },
   {
     request: {
-      query: LINE_UP_VEHICLES,
+      query: LINE_UP_VEHICLES_QUERY,
       variables: { country: 'usa', category: 'aviation', gameMode: 'arcade', minBr: 1.0, maxBr: 11.7, roles: ['Bomber'] },
     },
     result: {
@@ -195,7 +139,7 @@ export const mocks = [
   },
   {
     request: {
-      query: LINE_UP_VEHICLES,
+      query: LINE_UP_VEHICLES_QUERY,
       variables: { country: 'usa', category: 'aviation', gameMode: 'arcade', minBr: 1.0, maxBr: 11.7, roles: ['Strike aircraft'] },
     },
     result: {

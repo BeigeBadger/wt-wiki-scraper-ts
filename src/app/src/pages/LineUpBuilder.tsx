@@ -1,69 +1,13 @@
 import React from 'react';
-import { useQuery, gql } from '@apollo/client';
 import { FilterCardGroup, FilterCardOption } from '../components/FilterCardGroup';
 import { BrRangeSlider } from '../components/BrRangeSlider';
 import { VehicleList } from '../components/VehicleList';
 import { TagGroup, Tag, TagList, composeRenderProps } from 'react-aria-components';
 import type { Selection } from 'react-aria-components';
-
-const LINE_UP_VEHICLES = gql`
-  query LineUpVehicles(
-    $country: String
-    $category: String
-    $gameMode: String
-    $minBr: Float
-    $maxBr: Float
-    $roles: [String!]
-  ) {
-    vehicles(
-      country: $country
-      category: $category
-      gameMode: $gameMode
-      minBr: $minBr
-      maxBr: $maxBr
-      roles: $roles
-    ) {
-      id
-      name
-      country
-      category
-      rank
-      role
-      battleRating {
-        arcade
-        realistic
-        simulator
-      }
-    }
-  }
-`;
-
-const NATIONS_QUERY = gql`
-  query Nations {
-    countries {
-      id
-      name
-    }
-  }
-`;
-
-const CATEGORIES_QUERY = gql`
-  query Categories {
-    categories {
-      id
-      name
-    }
-  }
-`;
-
-const ROLES_QUERY = gql`
-  query Roles {
-    roles {
-      id
-      name
-    }
-  }
-`;
+import { useQueryNations } from '../hooks/data/useQueryNations';
+import { useQueryVehicleCategories } from '../hooks/data/useQueryVehicleCategories';
+import { useQueryVehicleRoles } from '../hooks/data/useQueryVehicleRoles';
+import { useQueryVehiclesWithFilter } from '../hooks/data/useQueryVehiclesWithFilter';
 
 const NATION_FLAGS: Record<string, string> = {
   usa: '🇺🇸',
@@ -166,9 +110,9 @@ function ErrorDisplay({ message }: { message: string }) {
 export function LineUpBuilder(): React.ReactElement {
   const [state, dispatch] = React.useReducer(filterReducer, initialState);
 
-  const { data: nationsData } = useQuery(NATIONS_QUERY);
-  const { data: categoriesData } = useQuery(CATEGORIES_QUERY);
-  const { data: rolesData } = useQuery(ROLES_QUERY);
+  const { data: nationsData } = useQueryNations();
+  const { data: categoriesData } = useQueryVehicleCategories();
+  const { data: rolesData } = useQueryVehicleRoles();
 
   const roleOptions = rolesData?.roles ?? [];
 
@@ -180,15 +124,13 @@ export function LineUpBuilder(): React.ReactElement {
 
   const shouldFetchVehicles = state.nation && state.vehicleType && state.gameMode && state.roles.length > 0;
 
-  const { data: vehiclesData, loading: vehiclesLoading, error: vehiclesError } = useQuery(LINE_UP_VEHICLES, {
-    variables: {
-      country: state.nation,
-      category: state.vehicleType,
-      gameMode: state.gameMode,
-      roles: state.roles,
-      minBr: shouldFetchVehicles ? state.brRange[0] : undefined,
-      maxBr: shouldFetchVehicles ? state.brRange[1] : undefined,
-    },
+  const { data: vehiclesData, loading: vehiclesLoading, error: vehiclesError } = useQueryVehiclesWithFilter({
+    country: state.nation,
+    category: state.vehicleType,
+    gameMode: state.gameMode,
+    roles: state.roles,
+    minBr: shouldFetchVehicles ? state.brRange[0] : undefined,
+    maxBr: shouldFetchVehicles ? state.brRange[1] : undefined,
     skip: !shouldFetchVehicles,
   });
 

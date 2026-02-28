@@ -1,37 +1,6 @@
-import { useQuery, gql, ApolloError } from '@apollo/client';
+import { ApolloError } from '@apollo/client';
 import { VehicleList } from '../components/VehicleList';
-
-const GET_VEHICLES = gql`
-  query GetVehicles {
-    vehicles {
-      id
-      name
-      country
-      category
-      rank
-      role
-      battleRating {
-        arcade
-        realistic
-        simulator
-      }
-    }
-  }
-`;
-
-export interface Vehicle {
-  id: string;
-  name: string;
-  country: string;
-  category: string;
-  rank: number | null;
-  role: string | null;
-  battleRating: {
-    arcade: number | null;
-    realistic: number | null;
-    simulator: number | null;
-  };
-}
+import { useQueryVehicles, Vehicle } from '../hooks/data/useQueryVehicles';
 
 const Loading = () => (
   <div className="flex items-center justify-center min-h-screen">
@@ -63,7 +32,7 @@ const TitleAndVehicleCount = ({ vehicles }: { vehicles: Vehicle[] }) => (
 );
 
 export function Vehicles() {
-  const { loading, error, data } = useQuery<{ vehicles: Vehicle[] }>(GET_VEHICLES);
+  const { loading, error, data } = useQueryVehicles();
   const vehicles = data ? [...data.vehicles].sort((a, b) => a.name.localeCompare(b.name)) : [];
 
   if (loading) {
