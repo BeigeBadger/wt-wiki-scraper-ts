@@ -1,23 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
 
-export const GET_VEHICLES_QUERY = gql`
-  query GetVehicles {
-    vehicles {
-      id
-      name
-      country
-      category
-      rank
-      role
-      battleRating {
-        arcade
-        realistic
-        simulator
-      }
-    }
-  }
-`;
-
 export interface VehicleBattleRating {
   arcade: number | null;
   realistic: number | null;
@@ -38,6 +20,60 @@ export interface VehiclesQueryResult {
   vehicles: Vehicle[];
 }
 
-export function useQueryVehicles() {
-  return useQuery<VehiclesQueryResult>(GET_VEHICLES_QUERY);
+export const GET_VEHICLES_QUERY = gql`
+  query GetVehicles(
+    $country: String
+    $category: String
+    $gameMode: String
+    $minBr: Float
+    $maxBr: Float
+    $roles: [String!]
+  ) {
+    vehicles(
+      country: $country
+      category: $category
+      gameMode: $gameMode
+      minBr: $minBr
+      maxBr: $maxBr
+      roles: $roles
+    ) {
+      id
+      name
+      country
+      category
+      rank
+      role
+      battleRating {
+        arcade
+        realistic
+        simulator
+      }
+    }
+  }
+`;
+
+export interface UseQueryVehiclesOptions {
+  country?: string | null;
+  category?: string | null;
+  gameMode?: string | null;
+  minBr?: number | null;
+  maxBr?: number | null;
+  roles?: string[];
+  skip?: boolean;
+}
+
+export function useQueryVehicles(options: UseQueryVehiclesOptions = {}) {
+  const { country, category, gameMode, minBr, maxBr, roles, skip = false } = options;
+
+  return useQuery<VehiclesQueryResult>(GET_VEHICLES_QUERY, {
+    variables: {
+      country: country ?? undefined,
+      category: category ?? undefined,
+      gameMode: gameMode ?? undefined,
+      minBr: minBr ?? undefined,
+      maxBr: maxBr ?? undefined,
+      roles,
+    },
+    skip,
+  });
 }

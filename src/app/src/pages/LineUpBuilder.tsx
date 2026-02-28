@@ -7,7 +7,7 @@ import type { Selection } from 'react-aria-components';
 import { useQueryNations } from '../hooks/data/useQueryNations';
 import { useQueryVehicleCategories } from '../hooks/data/useQueryVehicleCategories';
 import { useQueryVehicleRoles } from '../hooks/data/useQueryVehicleRoles';
-import { useQueryVehiclesWithFilter } from '../hooks/data/useQueryVehiclesWithFilter';
+import { useQueryVehicles } from '../hooks/data/useQueryVehicles';
 
 const NATION_FLAGS: Record<string, string> = {
   usa: '🇺🇸',
@@ -124,7 +124,7 @@ export function LineUpBuilder(): React.ReactElement {
 
   const shouldFetchVehicles = state.nation && state.vehicleType && state.gameMode && state.roles.length > 0;
 
-  const { data: vehiclesData, loading: vehiclesLoading, error: vehiclesError } = useQueryVehiclesWithFilter({
+  const { data: vehiclesData, loading: vehiclesLoading, error: vehiclesError } = useQueryVehicles({
     country: state.nation,
     category: state.vehicleType,
     gameMode: state.gameMode,

@@ -1,7 +1,7 @@
 import { NATIONS_QUERY } from '../../../hooks/data/useQueryNations';
 import { CATEGORIES_QUERY } from '../../../hooks/data/useQueryVehicleCategories';
 import { ROLES_QUERY } from '../../../hooks/data/useQueryVehicleRoles';
-import { LINE_UP_VEHICLES_QUERY } from '../../../hooks/data/useQueryVehiclesWithFilter';
+import { GET_VEHICLES_QUERY } from '../../../hooks/data/useQueryVehicles';
 
 export const P51_MUSTANG_VEHICLE = {
   __typename: 'Vehicle',
@@ -62,7 +62,7 @@ export const mocks = [
   },
   {
     request: {
-      query: LINE_UP_VEHICLES_QUERY,
+      query: GET_VEHICLES_QUERY,
       variables: { country: 'usa', category: 'aviation', gameMode: 'arcade', minBr: 1.0, maxBr: 11.7, roles: ['Fighter', 'Bomber', 'Strike aircraft'] },
     },
     result: {
@@ -73,7 +73,7 @@ export const mocks = [
   },
   {
     request: {
-      query: LINE_UP_VEHICLES_QUERY,
+      query: GET_VEHICLES_QUERY,
       variables: { country: 'germany', category: 'aviation', gameMode: 'arcade', minBr: 1.0, maxBr: 11.7, roles: ['Fighter', 'Bomber', 'Strike aircraft'] },
     },
     result: {
@@ -84,7 +84,7 @@ export const mocks = [
   },
   {
     request: {
-      query: LINE_UP_VEHICLES_QUERY,
+      query: GET_VEHICLES_QUERY,
       variables: { country: 'usa', category: 'aviation', gameMode: 'arcade', minBr: 1.0, maxBr: 11.7, roles: ['Fighter', 'Strike aircraft'] },
     },
     result: {
@@ -95,7 +95,7 @@ export const mocks = [
   },
   {
     request: {
-      query: LINE_UP_VEHICLES_QUERY,
+      query: GET_VEHICLES_QUERY,
       variables: { country: 'usa', category: 'aviation', gameMode: 'arcade', minBr: 1.0, maxBr: 11.7, roles: ['Fighter', 'Bomber'] },
     },
     result: {
@@ -106,7 +106,7 @@ export const mocks = [
   },
   {
     request: {
-      query: LINE_UP_VEHICLES_QUERY,
+      query: GET_VEHICLES_QUERY,
       variables: { country: 'usa', category: 'aviation', gameMode: 'arcade', minBr: 1.0, maxBr: 11.7, roles: ['Bomber', 'Strike aircraft'] },
     },
     result: {
@@ -117,7 +117,7 @@ export const mocks = [
   },
   {
     request: {
-      query: LINE_UP_VEHICLES_QUERY,
+      query: GET_VEHICLES_QUERY,
       variables: { country: 'usa', category: 'aviation', gameMode: 'arcade', minBr: 1.0, maxBr: 11.7, roles: ['Fighter'] },
     },
     result: {
@@ -128,7 +128,7 @@ export const mocks = [
   },
   {
     request: {
-      query: LINE_UP_VEHICLES_QUERY,
+      query: GET_VEHICLES_QUERY,
       variables: { country: 'usa', category: 'aviation', gameMode: 'arcade', minBr: 1.0, maxBr: 11.7, roles: ['Bomber'] },
     },
     result: {
@@ -139,7 +139,7 @@ export const mocks = [
   },
   {
     request: {
-      query: LINE_UP_VEHICLES_QUERY,
+      query: GET_VEHICLES_QUERY,
       variables: { country: 'usa', category: 'aviation', gameMode: 'arcade', minBr: 1.0, maxBr: 11.7, roles: ['Strike aircraft'] },
     },
     result: {
