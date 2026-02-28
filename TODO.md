@@ -9,7 +9,6 @@
 
 ## Fixes
 
-- Better disabled styling for the battle rating range
 - More era appropriate flags, especially for Soviet Union
 - Better icons for the vehicle types
 - Split out filters into their own files
