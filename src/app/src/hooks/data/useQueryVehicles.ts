@@ -20,7 +20,7 @@ export interface VehiclesQueryResult {
   vehicles: Vehicle[];
 }
 
-export const GET_VEHICLES_QUERY = gql`
+export const VEHICLES_QUERY = gql`
   query GetVehicles(
     $country: String
     $category: String
@@ -65,7 +65,7 @@ export interface UseQueryVehiclesOptions {
 export function useQueryVehicles(options: UseQueryVehiclesOptions = {}) {
   const { country, category, gameMode, minBr, maxBr, roles, skip = false } = options;
 
-  return useQuery<VehiclesQueryResult>(GET_VEHICLES_QUERY, {
+  return useQuery<VehiclesQueryResult>(VEHICLES_QUERY, {
     variables: {
       country: country ?? undefined,
       category: category ?? undefined,
