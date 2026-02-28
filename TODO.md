@@ -11,7 +11,6 @@
 
 - More era appropriate flags, especially for Soviet Union
 - Better icons for the vehicle types
-- Split out filters into their own files
 
 ### Tests
 
