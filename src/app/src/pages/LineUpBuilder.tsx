@@ -192,7 +192,7 @@ export function LineUpBuilder(): React.ReactElement {
           disabled={!state.vehicleType}
         />
 
-        <label id="vehicle-role-label" className="block text-sm font-medium text-gray-700 mb-2">Vehicle Role</label>
+        <label id="vehicle-role-label" className="block text-sm font-medium text-gray-700 -mb-2">Vehicle Role</label>
         <TagGroup
           aria-labelledby="vehicle-role-label"
           disallowEmptySelection={true}
