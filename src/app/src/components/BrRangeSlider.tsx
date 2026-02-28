@@ -77,10 +77,10 @@ export function BrRangeSlider({
       <div
         {...trackProps}
         ref={trackRef}
-        className={`relative h-2 rounded-full ${state.isDisabled ? 'bg-gray-100' : 'bg-gray-200'}`}
+        className={`relative h-2 rounded-full ${state.isDisabled ? 'bg-gray-100 cursor-not-allowed' : 'bg-gray-200'}`}
       >
         <div
-          className="absolute h-full bg-blue-500 rounded-full"
+          className={`absolute h-full rounded-full ${state.isDisabled ? 'bg-gray-400' : 'bg-blue-500'}`}
           style={{
             left: `${state.getThumbPercent(0) * 100}%`,
             width: `${(state.getThumbPercent(1) - state.getThumbPercent(0)) * 100}%`,
