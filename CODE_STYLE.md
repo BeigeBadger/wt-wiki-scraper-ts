@@ -21,6 +21,7 @@
 - Use ES modules with `.js` extension for local imports
 - Group imports in order: external libs → internal modules → relative imports
 - Use path aliases if configured (`@/` for src/)
+- **Avoid barrel files (index.ts)** for exports - import directly from the file
 
 ```typescript
 // Example import order
