@@ -1,4 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
+import { handleGqlError } from '../../lib/toastUtils';
 
 export const NATIONS_QUERY = gql`
   query Nations {
@@ -19,5 +20,7 @@ export interface NationsQueryResult {
 }
 
 export function useQueryNations() {
-  return useQuery<NationsQueryResult>(NATIONS_QUERY);
+  return useQuery<NationsQueryResult>(NATIONS_QUERY, {
+    onError: handleGqlError,
+  });
 }

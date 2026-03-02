@@ -1,4 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
+import { handleGqlError } from '../../lib/toastUtils';
 
 export const ROLES_QUERY = gql`
   query Roles {
@@ -19,5 +20,7 @@ export interface VehicleRolesQueryResult {
 }
 
 export function useQueryVehicleRoles() {
-  return useQuery<VehicleRolesQueryResult>(ROLES_QUERY);
+  return useQuery<VehicleRolesQueryResult>(ROLES_QUERY, {
+    onError: handleGqlError,
+  });
 }

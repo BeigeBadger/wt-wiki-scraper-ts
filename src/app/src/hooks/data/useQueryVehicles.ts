@@ -1,4 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
+import { handleGqlError } from '../../lib/toastUtils';
 
 export interface VehicleBattleRating {
   arcade: number | null;
@@ -75,5 +76,6 @@ export function useQueryVehicles(options: UseQueryVehiclesOptions = {}) {
       roles,
     },
     skip,
+    onError: handleGqlError,
   });
 }

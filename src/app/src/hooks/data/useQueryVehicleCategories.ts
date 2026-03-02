@@ -1,4 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
+import { handleGqlError } from '../../lib/toastUtils';
 
 export const CATEGORIES_QUERY = gql`
   query Categories {
@@ -19,5 +20,7 @@ export interface VehicleCategoriesQueryResult {
 }
 
 export function useQueryVehicleCategories() {
-  return useQuery<VehicleCategoriesQueryResult>(CATEGORIES_QUERY);
+  return useQuery<VehicleCategoriesQueryResult>(CATEGORIES_QUERY, {
+    onError: handleGqlError,
+  });
 }
