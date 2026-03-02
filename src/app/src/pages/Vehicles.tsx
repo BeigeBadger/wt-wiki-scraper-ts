@@ -1,12 +1,7 @@
 import { ApolloError } from '@apollo/client';
 import { VehicleList } from '../components/VehicleList';
+import { LoadingProgress } from '../components/LoadingProgress';
 import { useQueryVehicles, Vehicle } from '../hooks/data/useQueryVehicles';
-
-const Loading = () => (
-  <div className="flex items-center justify-center min-h-screen">
-    <p className="text-lg">Loading...</p>
-  </div>
-);
 
 const ErrorOnLoadComplete = ({ error }: { error: ApolloError | undefined }) => (
   <div className="flex flex-col items-center justify-center min-h-screen">
@@ -36,7 +31,7 @@ export function Vehicles() {
   const vehicles = data ? [...data.vehicles].sort((a, b) => a.name.localeCompare(b.name)) : [];
 
   if (loading) {
-    return <Loading />
+    return <LoadingProgress ariaLabel="Loading vehicle data" />
   }
 
   if (error) {

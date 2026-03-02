@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen, within } from '@testing-library/react';
+import { render, screen, within, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MockedProvider } from '@apollo/client/testing';
 import { InMemoryCache } from '@apollo/client/cache';
@@ -19,6 +19,9 @@ import {
   waitForVehicleToBeVisible,
   selectAllFilters,
 } from './__fixtures__/LineUpBuilder/interactions';
+import { NATIONS_QUERY } from '../hooks/data/useQueryNations';
+import { CATEGORIES_QUERY } from '../hooks/data/useQueryVehicleCategories';
+import { ROLES_QUERY } from '../hooks/data/useQueryVehicleRoles';
 
 const mockCache = new InMemoryCache();
 
@@ -350,24 +353,93 @@ describe('LineUpBuilder', () => {
     // Try to deselect all roles by clicking each tag
     // With disallowEmptySelection=true, at least one tag must remain selected
     const fighterTag = getSelectedTags().find(el => el.textContent?.toLowerCase().includes('fighter'));
-    if (fighterTag) await userEvent.click(fighterTag);
+    if (fighterTag) {
+      await userEvent.click(fighterTag);
+    }
 
     // After clicking Fighter, 2 should remain selected
     expect(getSelectedTags().length).toBe(2);
 
     // Click Bomber to try to deselect it
     const bomberTag = getSelectedTags().find(el => el.textContent?.toLowerCase().includes('bomber'));
-    if (bomberTag) await userEvent.click(bomberTag);
+    if (bomberTag) {
+      await userEvent.click(bomberTag);
+    }
 
     // After clicking Bomber, 1 should remain selected (cannot deselect the last one)
     expect(getSelectedTags().length).toBe(1);
 
     // Try to click the last remaining tag - it should NOT deselect
     const lastTag = getSelectedTags()[0];
-    if (lastTag) await userEvent.click(lastTag);
+    if (lastTag) {
+      await userEvent.click(lastTag);
+    }
 
     // Assert
     // Should still have 1 selected (last tag cannot be deselected due to disallowEmptySelection=true)
     expect(getSelectedTags().length).toBe(1);
+  });
+
+  it('should show and then hide "Loading initial data" ProgressCircle during initial load', async () => {
+    // Arrange
+    // Create mocks with a delay to make loading state observable
+    const delayedMocks = [
+      {
+        request: { query: NATIONS_QUERY },
+        result: { data: { countries: [{ __typename: 'Country', id: 'usa', name: 'United States' }, { __typename: 'Country', id: 'germany', name: 'Germany' }] }, delay: 100 },
+      },
+      {
+        request: { query: CATEGORIES_QUERY },
+        result: { data: { categories: [{ __typename: 'Category', id: 'aviation', name: 'Aviation' }, { __typename: 'Category', id: 'ground', name: 'Ground Vehicles' }] }, delay: 100 },
+      },
+      {
+        request: { query: ROLES_QUERY },
+        result: { data: { roles: [{ __typename: 'Role', id: 'Fighter', name: 'Fighter' }, { __typename: 'Role', id: 'Bomber', name: 'Bomber' }, { __typename: 'Role', id: 'Strike aircraft', name: 'Strike Aircraft' }] }, delay: 100 },
+      },
+    ];
+
+    // Act
+    render(
+      <MockedProvider mocks={delayedMocks} cache={new InMemoryCache()}>
+        <LineUpBuilder />
+      </MockedProvider>
+    );
+
+    // Assert
+    // Loading should be visible at some point during initial load
+    await waitFor(
+      () => {
+        expect(screen.getByRole('progressbar', { name: SELECTORS.LOADING_INITIAL_DATA })).toBeInTheDocument();
+      },
+      { timeout: 5000 }
+    );
+
+    // Wait for initial data to load
+    await waitForNationToBeVisible(SELECTORS.NATION_UNITED_STATES);
+
+    // Loading should NOT be visible once data has loaded
+    expect(screen.queryByRole('progressbar', { name: SELECTORS.LOADING_INITIAL_DATA })).not.toBeInTheDocument();
+  });
+
+  it('should hide "Loading vehicle data" ProgressCircle once vehicles load', async () => {
+    // Arrange/Act
+    render(
+      <MockedProvider mocks={mocks} cache={mockCache}>
+        <LineUpBuilder />
+      </MockedProvider>
+    );
+
+    // Wait for initial data to load
+    await waitForNationToBeVisible(SELECTORS.NATION_UNITED_STATES);
+
+    // Select all filters to trigger vehicle fetch
+    await selectAllFilters(SELECTORS.NATION_UNITED_STATES, SELECTORS.CATEGORY_AVIATION, SELECTORS.GAME_MODE_ARCADE);
+
+    // Wait for vehicles to load
+    await waitForVehicleToBeVisible(SELECTORS.VEHICLE_P51);
+
+    // Assert
+    // Loading should NOT be visible once vehicles have loaded
+    expect(screen.queryByRole('progressbar', { name: SELECTORS.LOADING_VEHICLE_DATA })).not.toBeInTheDocument();
   });
 });

@@ -11,5 +11,7 @@ export const SELECTORS = {
   ROLE_BOMBER: /bomber/i,
   ROLE_STRIKE_AIRCRAFT: /strike aircraft/i,
   BR_RANGE_GROUP: /battle rating range/i,
-  VEHICLE_ROLE: /vehicle role/i
+  VEHICLE_ROLE: /vehicle role/i,
+  LOADING_INITIAL_DATA: /loading initial data/i,
+  LOADING_VEHICLE_DATA: /loading vehicle data/i
 } as const;

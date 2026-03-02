@@ -1,21 +1,16 @@
 import React from 'react';
 import { VehicleList } from '../components/VehicleList';
+import { LoadingProgress } from '../components/LoadingProgress';
 import { useQueryVehicles } from '../hooks/data/useQueryVehicles';
 import { useQueryVehicleRoles } from '../hooks/data/useQueryVehicleRoles';
+import { useQueryNations } from '../hooks/data/useQueryNations';
+import { useQueryVehicleCategories } from '../hooks/data/useQueryVehicleCategories';
 import { LineUpBuilderFilterProvider, useLineUpBuilderFilter } from '../hooks/useLineUpBuilderFilter';
 import { NationSelection } from '../components/selectors/NationSelection';
 import { VehicleTypeSelector } from '../components/selectors/VehicleTypeSelector';
 import { GameModeSelector } from '../components/selectors/GameModeSelector';
 import { VehicleRoleSelector } from '../components/selectors/VehicleRoleSelector';
 import { BattleRatingRangeSelector } from '../components/selectors/BattleRatingRangeSelector';
-
-function Loading(): React.ReactElement {
-  return (
-    <div className="flex items-center justify-center py-8">
-      <div className="text-gray-500">Loading...</div>
-    </div>
-  );
-}
 
 function ErrorDisplay({ message }: { message: string }): React.ReactElement {
   return (
@@ -59,7 +54,7 @@ function VehicleResults(): React.ReactElement | null {
   return (
     <div className="mt-4">
       <h2 className="text-lg font-semibold text-gray-800 mb-3 border-b pb-2">Eligible Vehicles</h2>
-      {vehiclesLoading && <Loading />}
+      {vehiclesLoading && <LoadingProgress ariaLabel="Loading vehicle data" />}
       {vehiclesError && <ErrorDisplay message={vehiclesError.message} />}
       {vehiclesData?.vehicles && vehiclesData.vehicles.length > 0 && (
         <VehicleList vehicles={vehiclesData.vehicles} />
@@ -86,6 +81,12 @@ export function LineUpBuilder(): React.ReactElement {
 function LineUpBuilderContent(): React.ReactElement {
   const { atDefault, resetAll } = useLineUpBuilderFilter();
 
+  const { loading: nationsLoading } = useQueryNations();
+  const { loading: categoriesLoading } = useQueryVehicleCategories();
+  const { loading: rolesLoading } = useQueryVehicleRoles();
+
+  const isInitialLoading = nationsLoading || categoriesLoading || rolesLoading;
+
   return (
     <div className="flex flex-col gap-6 p-4 max-w-4xl mx-auto">
       <div className="flex items-center justify-between">
@@ -104,8 +105,13 @@ function LineUpBuilderContent(): React.ReactElement {
           Reset Filters
         </button>
       </div>
-      <FilterSection />
-      <VehicleResults />
+      {isInitialLoading && <LoadingProgress ariaLabel="Loading initial data" />}
+      {!isInitialLoading && (
+        <>
+          <FilterSection />
+          <VehicleResults />
+        </>
+      )}
     </div>
   );
 }

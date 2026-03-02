@@ -147,6 +147,7 @@ npx vitest run -t "should extract vehicle name from table row"
 - **Minimize mocks** - only mock the bare essentials (e.g., Apollo Client for GraphQL queries)
 - **Test behavior, not implementation** - prefer testing user interactions and accessibility
 - When adding new components, add basic test coverage for rendering and basic behavior
+- Test ProgressCircle components for correct aria-label attributes using `findByRole('progressbar', { name: /loading/i })`
 
 ### Selecting Elements
 
