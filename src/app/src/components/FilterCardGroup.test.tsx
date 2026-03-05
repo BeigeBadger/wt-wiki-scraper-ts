@@ -105,4 +105,39 @@ describe('FilterCardGroup', () => {
     expect(card).toHaveClass('opacity-50');
     expect(card).toBeDisabled();
   });
+
+  it('should apply custom minWidth when provided', async () => {
+    // Arrange/Act
+    render(
+      <FilterCardGroup
+        label="Nation"
+        options={defaultOptions}
+        value={null}
+        onChange={() => { }}
+        minWidth="150px"
+      />
+    );
+
+    // Assert
+    const card = await screen.findByRole('button', { name: /usa/i });
+
+    expect(card).toHaveStyle({ minWidth: '150px' });
+  });
+
+  it('should default minWidth to 100px when not provided', async () => {
+    // Arrange/Act
+    render(
+      <FilterCardGroup
+        label="Nation"
+        options={defaultOptions}
+        value={null}
+        onChange={() => { }}
+      />
+    );
+
+    // Assert
+    const card = await screen.findByRole('button', { name: /usa/i });
+
+    expect(card).toHaveStyle({ minWidth: '100px' });
+  });
 });

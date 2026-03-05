@@ -30,6 +30,7 @@ export function NationSelection(): React.ReactElement | null {
       options={options}
       value={state.nation}
       onChange={updateNationSelection}
+      minWidth="125px"
     />
   );
 }

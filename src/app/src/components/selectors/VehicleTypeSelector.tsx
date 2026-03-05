@@ -33,6 +33,7 @@ export function VehicleTypeSelector(): React.ReactElement | null {
       value={state.vehicleType}
       onChange={updateVehicleTypeSelection}
       disabled={disabled}
+      minWidth="140px"
     />
   );
 }

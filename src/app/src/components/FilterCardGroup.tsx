@@ -12,6 +12,7 @@ interface FilterCardGroupProps {
   value: string | null;
   onChange: (id: string) => void;
   disabled?: boolean;
+  minWidth?: string;
 }
 
 export function FilterCardGroup({
@@ -20,6 +21,7 @@ export function FilterCardGroup({
   value,
   onChange,
   disabled = false,
+  minWidth = '100px',
 }: FilterCardGroupProps): React.ReactElement {
   const labelId = `filter-card-group-label-${label.toLowerCase()}`;
 
@@ -37,9 +39,10 @@ export function FilterCardGroup({
               aria-label={option.name}
               disabled={disabled}
               onClick={() => onChange(option.id)}
+              style={{ minWidth }}
               className={[
                 'flex flex-col items-center justify-center',
-                'border rounded-lg px-4 py-3 min-w-[80px]',
+                `border rounded-lg px-4 py-3`,
                 'transition-colors duration-150',
                 disabled
                   ? 'opacity-50 cursor-not-allowed'

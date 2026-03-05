@@ -42,7 +42,7 @@ export function VehicleRoleSelector(): React.ReactElement | null {
               className={composeRenderProps(
                 '',
                 (_, renderProps) =>
-                  `cursor-default text-sm font-medium rounded-lg border px-4 py-2 flex items-center max-w-fit transition ${
+                  `cursor-default text-sm font-medium rounded-lg border px-4 py-2 flex items-center justify-center max-w-fit min-w-[125px] transition ${
                     renderProps.isDisabled
                       ? 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed'
                       : renderProps.isSelected
