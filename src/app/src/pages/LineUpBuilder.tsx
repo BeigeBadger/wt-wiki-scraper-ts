@@ -6,7 +6,7 @@ import { useQueryVehicleRoles } from '../hooks/data/useQueryVehicleRoles';
 import { useQueryNations } from '../hooks/data/useQueryNations';
 import { useQueryVehicleCategories } from '../hooks/data/useQueryVehicleCategories';
 import { LineUpBuilderFilterProvider, useLineUpBuilderFilter } from '../hooks/useLineUpBuilderFilter';
-import { NationSelection } from '../components/selectors/NationSelection';
+import { NationSelector } from '../components/selectors/NationSelector';
 import { VehicleTypeSelector } from '../components/selectors/VehicleTypeSelector';
 import { GameModeSelector } from '../components/selectors/GameModeSelector';
 import { VehicleRoleSelector } from '../components/selectors/VehicleRoleSelector';
@@ -23,7 +23,7 @@ function ErrorDisplay({ message }: { message: string }): React.ReactElement {
 function FilterSection(): React.ReactElement {
   return (
     <div className="flex flex-col gap-4">
-      <NationSelection />
+      <NationSelector />
       <VehicleTypeSelector />
       <GameModeSelector />
       <VehicleRoleSelector />
@@ -96,11 +96,10 @@ function LineUpBuilderContent(): React.ReactElement {
           aria-label="Reset Filters"
           onClick={resetAll}
           disabled={atDefault}
-          className={`border rounded-lg px-4 py-2 text-sm font-medium ${
-            atDefault
-              ? 'opacity-50 cursor-not-allowed border-gray-200 text-gray-400'
-              : 'border-gray-300 text-gray-700 hover:bg-gray-100 cursor-pointer'
-          }`}
+          className={`border rounded-lg px-4 py-2 text-sm font-medium ${atDefault
+            ? 'opacity-50 cursor-not-allowed border-gray-200 text-gray-400'
+            : 'border-gray-300 text-gray-700 hover:bg-gray-100 cursor-pointer'
+            }`}
         >
           Reset Filters
         </button>

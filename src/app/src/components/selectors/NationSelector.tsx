@@ -5,7 +5,7 @@ import { useLineUpBuilderFilter } from '../../hooks/useLineUpBuilderFilter';
 import { NATION_FLAGS } from './constants';
 import type { FilterCardOption } from '../FilterCardGroup';
 
-export function NationSelection(): React.ReactElement | null {
+export function NationSelector(): React.ReactElement | null {
   const { state, updateNationSelection } = useLineUpBuilderFilter();
   const { data, loading, error } = useQueryNations();
 

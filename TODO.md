@@ -7,7 +7,6 @@
 
 ## Fixes
 
-- More era appropriate flags, especially for Soviet Union
 - Better icons for the vehicle types
 
 ### Tests
